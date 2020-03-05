@@ -13,6 +13,7 @@ public class BlogPlatformApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BlogPlatformApplication.class, args);
 		System.out.println("test");
+		System.out.println("test2");
 	}
 
 	@RestController
