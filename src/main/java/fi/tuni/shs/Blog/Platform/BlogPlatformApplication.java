@@ -11,8 +11,10 @@ import java.util.Date;
 public class BlogPlatformApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Maija Visala, Hanna Tuominen, Viljami Pietarila");
+		System.out.println("Commands that can be used for REST testing.");
+		System.out.println("Necessary user name / passwords needed for testing");
 		SpringApplication.run(BlogPlatformApplication.class, args);
-
 	}
 
 	@RestController
