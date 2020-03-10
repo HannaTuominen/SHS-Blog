@@ -16,14 +16,15 @@ public class BlogPlatformApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BlogPlatformApplication.class, args);
-		System.out.println("test");
-		System.out.println("test2");
-		try {
-			Connection connection = getConnection();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		System.out.println(System.getenv("JDBC_DATABASE_URL"));
+		if (System.getenv("JDBC_DATABASE_URL") != null) {
+			try {
+				Connection connection = getConnection();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
