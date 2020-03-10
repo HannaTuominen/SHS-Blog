@@ -18,8 +18,8 @@ public class BlogPlatformApplication {
 		System.out.println("Maija Visala, Hanna Tuominen, Viljami Pietarila");
 		System.out.println("Commands that can be used for REST testing.");
 		System.out.println("Necessary user name / passwords needed for testing");
-		SpringApplication.run(BlogPlatformApplication.class, args);
 		System.out.println(System.getenv("JDBC_DATABASE_URL"));
+		SpringApplication.run(BlogPlatformApplication.class, args);
 		if (System.getenv("JDBC_DATABASE_URL") != null) {
 			try {
 				Connection connection = getConnection();
