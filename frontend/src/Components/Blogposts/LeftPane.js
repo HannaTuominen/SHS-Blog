@@ -4,11 +4,20 @@ import Paper from '@material-ui/core/Paper'
 import PostText from './PostText'
 import Route from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
+import TextEditor from './TextEditor'
+import { withStyles }  from '@material-ui/core/styles'
+
+const useStyles = theme => ({
+  leftPane: {
+    padding: "0 30px",
+    height: 500
+  },
+});
 
 const ReadPost = <div><PostText/><PostText/></div>
 const EditPost = () => <div><h3>Yeah</h3></div>
 
-export default class extends Component{
+class LeftPane extends Component{
   state = {index: 0}
 
   handleTabSelected = () => {
@@ -20,8 +29,11 @@ export default class extends Component{
   }
 
   render(){
+    const { classes } = this.props;
     return <Fragment>
-      <Paper>
+      <Paper className={classes.leftPane}>
+      <TextEditor/>
+      <div><PostText/><PostText/></div>
         {/* <BrowserRouter>
           <Route exact={true} path="/" component={ReadPost}/>
           <Route path="/editpost" component= {EditPost}/>
@@ -33,7 +45,8 @@ export default class extends Component{
       </Paper>
     </Fragment>
   }
-  
 }
+
+export default withStyles(useStyles)(LeftPane)
 
 

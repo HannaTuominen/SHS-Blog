@@ -5,19 +5,13 @@ import Paper from '@material-ui/core/Paper';
 import LeftPane from './LeftPane'
 import RightPane from './RightPane'
 
-const styles = {
-  Paper: {
-    padding: 30
-  }
-}
-
 function Blogpost() {
-  return <Grid container md={12}>
-    <Grid item md={8}>
-      <LeftPane style={styles}/>
+  return <Grid container>
+    <Grid item xs={12} sm={8}>
+      <LeftPane/>
     </Grid>
-    <Grid item md={4}>
-      <RightPane style={styles}/>
+    <Grid item xs={12} sm={4}>
+      <RightPane/>
     </Grid>
 
   </Grid>
