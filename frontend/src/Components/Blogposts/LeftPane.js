@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react'
 import EditTabs from './EditTabs'
 import Paper from '@material-ui/core/Paper'
 import PostText from './PostText'
-
+import Typography from '@material-ui/core/Typography';
 import TextEditor from './TextEditor'
 import { withStyles }  from '@material-ui/core/styles'
 import {Route, Link} from 'react-router-dom'
@@ -15,8 +15,8 @@ const useStyles = theme => ({
   },
 });
 
-const ReadPost = () => <h1>You're in the ReadPost</h1>
-const EditPost = () => <h1>You're in the EditPost</h1>
+const ReadPost = () => <Typography  color="secondary" variant="h4" noWrap>You re in the ReadPost</Typography>
+const EditPost = () => <Typography  color="secondary" variant="h4" noWrap>You re in the EditPost</Typography>
 
 class LeftPane extends Component{
   state = {index: 0}
