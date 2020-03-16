@@ -15,7 +15,7 @@ class RightPane extends Component {
     const { classes } = this.props;
         return <Fragment>
             <Paper className={classes.rightPane}>
-                <p>This is left pane</p>
+                <p>This is right pane</p>
             </Paper>
           </Fragment>
     }
