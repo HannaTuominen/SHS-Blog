@@ -2,14 +2,12 @@ package fi.tuni.shs.Blog.Platform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Date;
+
 
 @SpringBootApplication
 public class BlogPlatformApplication {
@@ -23,19 +21,9 @@ public class BlogPlatformApplication {
 		if (System.getenv("JDBC_DATABASE_URL") != null) {
 			try {
 				Connection connection = getConnection();
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
+			} catch (URISyntaxException | SQLException e) {
 				e.printStackTrace();
 			}
-		}
-	}
-
-	@RestController
-	public class HelloController {
-		@GetMapping("/api/hello")
-		public String hello() {
-			return "Hello, the time at the server is now " + new Date() + "\n";
 		}
 	}
 

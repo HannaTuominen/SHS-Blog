@@ -22,15 +22,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().authorizeRequests().anyRequest().permitAll();
 //        http
 //                .authorizeRequests()
 //                .anyRequest().authenticated()
 //                .and()
 //                .httpBasic();
-        http
-                .authorizeRequests()
-                .antMatchers("/api/hello")
-                .hasAuthority("ADMIN_AUTH")
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/api/hello")
+//                .hasAuthority("ADMIN_AUTH")
 //                .anyRequest().authenticated()
 //                .and()
 //                .formLogin()
@@ -39,8 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .logout()
 //                .permitAll();
-                .and()
-                .httpBasic();
+//                .and()
+//                .httpBasic();
 
 //                http
 //                .authorizeRequests()
