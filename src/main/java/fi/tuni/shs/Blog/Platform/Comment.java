@@ -4,6 +4,7 @@ package fi.tuni.shs.Blog.Platform;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Comment {
@@ -13,12 +14,12 @@ public class Comment {
     long id;
     String name;
     String comment;
-    String time;
+    Date time;
 
     public Comment() {
     }
 
-    public Comment(String name, String comment, String time) {
+    public Comment(String name, String comment, Date time) {
         setName(name);
         setComment(comment);
         setTime(time);
@@ -32,11 +33,11 @@ public class Comment {
         this.comment = comment;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
@@ -49,7 +50,12 @@ public class Comment {
     }
 
     public String toString() {
-        return "id: " + id + " Name: " + getName();
+        return "Comment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", comment='" + comment + '\'' +
+                ", time='" + time + '\'' +
+                '}';
     }
 
 }
