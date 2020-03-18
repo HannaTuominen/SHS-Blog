@@ -1,16 +1,15 @@
 package fi.tuni.shs.Blog.Platform;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class BlogComment {
     // primary key, autoincrement
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
     private long id;
     private long parentPost;
     private String name;
@@ -57,6 +56,14 @@ public class BlogComment {
 
     public void setParentPost(long parentPost) {
         this.parentPost = parentPost;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String toString() {

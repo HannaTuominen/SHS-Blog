@@ -37,18 +37,13 @@ public class SHSRestController {
         return new ResponseEntity<>(blogPostRepository.findAll(), HttpStatus.CREATED);
     }
 
-    @RequestMapping("api/getComments/{postId}")
-    public ResponseEntity<Iterable<BlogComment>> getComments(@PathVariable long postId) {
-        return new ResponseEntity<>(blogCommentRepository.findByParentPost(postId), HttpStatus.CREATED);
-    }
-
     @RequestMapping("api/get/{postId}")
     public ResponseEntity<BlogPost> get(@PathVariable long postId) {
         Optional<BlogPost> blogPost = blogPostRepository.findById(postId);
         if (blogPost.isPresent()) {
             return new ResponseEntity<>(blogPost.get(), HttpStatus.CREATED);
         } else {
-            System.out.println("ReponseEntity get error");
+            System.out.println("ResponseEntity get error");
             return null;
         }
     }
@@ -59,6 +54,28 @@ public class SHSRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @RequestMapping("api/getComments/{postId}")
+    public ResponseEntity<Iterable<BlogComment>> getComments(@PathVariable long postId) {
+        return new ResponseEntity<>(blogCommentRepository.findByParentPost(postId), HttpStatus.CREATED);
+    }
+
+    @RequestMapping("api/deleteComment/{commentId}")
+    public ResponseEntity<Void> deleteComment(@PathVariable long commentId) {
+        blogCommentRepository.deleteById(commentId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "api/addComment/", method = RequestMethod.POST)
+    public ResponseEntity<Void> addComment(@RequestBody BlogComment comment, UriComponentsBuilder b) {
+        blogCommentRepository.save(comment);
+        UriComponents uriComponents = b.path("api/get/{id}").buildAndExpand(comment.getId());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(uriComponents.toUri());
+
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+
     @RequestMapping("/api/hello")
     public String hello() {
         return "Hello, the time at the server is now " + new Date() + "\n";
@@ -66,15 +83,15 @@ public class SHSRestController {
 
     @RequestMapping("test/")
     public void CreateTestPosts() {
-        Date date = new Date(10000);
+        Date date = new Date();
         long parentPost = 1;
         blogPostRepository.save(new BlogPost("Hello 1", "Hello 1 body"));
         blogPostRepository.save(new BlogPost("Hello 2", "Hello 2 body"));
         blogPostRepository.save(new BlogPost("Hello 3", "Hello 3 body"));
         blogPostRepository.save(new BlogPost("Hello 4", "Hello 4 body"));
-        blogCommentRepository.save(new BlogComment("Hellurei", "Hellurei body", date, parentPost));
-        blogCommentRepository.save(new BlogComment("Hellurei", "Hellurei body", date, parentPost));
-        blogCommentRepository.save(new BlogComment("Hellurei", "Hellurei body", date, parentPost));
-        blogCommentRepository.save(new BlogComment("Hellurei", "Hellurei body", date, parentPost));
+        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost));
+        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost));
+        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost));
+        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost));
     }
 }
