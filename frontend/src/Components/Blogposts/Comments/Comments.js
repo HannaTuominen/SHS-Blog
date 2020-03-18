@@ -44,17 +44,17 @@ class Comments extends Component {
 //        this.setState({ loading: true });
 
         // get all the comments
-//        fetch("/api/fetchComments")
-//          .then(res => res.json())
-//          .then(res => {
-//            this.setState({
-//              comments: res,
+        fetch("api/getComments/1")
+          .then(res => res.json())
+          .then(res => {
+            this.setState({
+              comments: res,
 //              loading: false
-//            });
-//          })
-//          .catch(err => {
+            });
+          })
+          .catch(err => {
 //            this.setState({ loading: false });
-//          });
+          });
     }
 
   render() {

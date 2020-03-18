@@ -1,15 +1,27 @@
 import React, { Fragment, Component } from 'react'
 import Box from '@material-ui/core/Box'
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  textField: {
+    width: '150px',
+  },
+}));
+
 
 export default class CommentForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+          error: "",
 
           comment: {
             name: "",
-            message: ""
+            message: "",
+            time: "",
+            parentPost: 0
+
           }
         }
         // bind context to methods
@@ -32,33 +44,57 @@ export default class CommentForm extends Component {
         })
     }
 
+      renderError() {
+        return this.state.error ? (
+          <div className="alert alert-danger">{this.state.error}</div>
+        ) : null;
+      }
+
+
     /**
      * Form submit handler
      */
       onSubmit(e) {
+      // prevent default form submission
+          e.preventDefault();
 
+        // loading status and clear error
+        this.setState({ error: ""/*, loading: true */});
 
           // persist the comments on server
           let { comment } = this.state;
-//          fetch("api/saveComment", {
-//            method: "post",
-//            body: JSON.stringify(comment)
-//          })
-//            .then(res => res.json())
-//            .then(res => {
-//              if (res.error) {
-//                this.setState({ loading: false, error: res.error });
-//              } else {
+          comment.time = new Date();
+          comment.parentPost = 1
+          fetch("api/addComment/", {
+            method: "post",
+             headers: {
+                  'Content-Type': 'application/json'
+                },
+            body: JSON.stringify(comment)
+          })
+            .then(res => res.json())
+            .then(res => {
+              if (res.error) {
+                this.setState({ /*loading: false,*/ error: res.error });
+              } else {
                 // add time return from api and push comment to parent state
-//                comment.time = res.time;
-//                this.props.addComment(comment);
+
+                this.props.addComment(comment);
 //
                 // clear the message box
                 this.setState({
                   comment: { ...comment, message: "" }
-                });
-        }
+                })
+             }
+             })
+            .catch(err => {
+              this.setState({
+                error: "Something went wrong while submitting form.",
+//                loading: false
+              });
 
+            });
+           }
 
       render() {
           return (
@@ -79,14 +115,14 @@ export default class CommentForm extends Component {
                   <textarea
                     onChange={this.handleFieldChange}
                     value={this.state.comment.message}
-                    className="form-control"
+                    className="textField"
                     placeholder="Add comment here..."
                     name="message"
                     rows="5"
                   />
                 </Box>
 
-              {/*{this.renderError()}*/}
+              {this.renderError()}
 
                 <Box>
                   <button /*disabled={this.state.loading}*/>
