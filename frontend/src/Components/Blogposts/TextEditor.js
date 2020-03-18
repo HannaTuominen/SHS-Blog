@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react'
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils} from 'draft-js'
+import {Editor, EditorState, RichUtils, ContentState} from 'draft-js'
 import Paper from '@material-ui/core/Paper'
 import { withStyles }  from '@material-ui/core/styles'
 
@@ -13,9 +13,14 @@ const useStyles = theme => ({
 
 class TextEditor extends Component {
 
-  constructor(props) {
+    constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+    let editorState;
+    const contentState = ContentState.createFromText('Hello');
+    editorState = EditorState.createWithContent(contentState);
+    editorState = EditorState.moveFocusToEnd(editorState);
+
+    this.state = {editorState: editorState};
     this.onChange = editorState => this.setState({editorState});
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
