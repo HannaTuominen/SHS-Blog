@@ -5,6 +5,7 @@ import PostText from './PostText'
 import Typography from '@material-ui/core/Typography';
 import TextEditor from './TextEditor'
 import { withStyles }  from '@material-ui/core/styles'
+import Comments from './Comments/Comments'
 import {Route, Link} from 'react-router-dom'
 
 
@@ -41,6 +42,7 @@ class LeftPane extends Component{
         onSelect={this.handleTabSelected}
         tabSelected={this.state.index}
       />
+        <Comments/>
       </Paper>
     </Fragment>
   }
