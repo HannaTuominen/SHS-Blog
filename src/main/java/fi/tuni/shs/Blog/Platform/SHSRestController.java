@@ -18,10 +18,10 @@ public class SHSRestController {
     @Autowired
     SHSDatabase database;
 
-    @RequestMapping(value = "add/", method = RequestMethod.POST)
+    @RequestMapping(value = "api/add/", method = RequestMethod.POST)
     public ResponseEntity<Void> add(@RequestBody BlogPost post, UriComponentsBuilder b) {
         database.save(post);
-        UriComponents uriComponents = b.path("/get/{id}").buildAndExpand(post.getId());
+        UriComponents uriComponents = b.path("api/get/{id}").buildAndExpand(post.getId());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uriComponents.toUri());
@@ -29,12 +29,12 @@ public class SHSRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping("get/")
+    @RequestMapping("api/get/")
     public ResponseEntity<Iterable<BlogPost>> getAll() {
         return new ResponseEntity<>(database.findAll(), HttpStatus.CREATED);
     }
 
-    @RequestMapping("get/{postId}")
+    @RequestMapping("api/get/{postId}")
     public ResponseEntity<BlogPost> get(@PathVariable long postId) {
         Optional<BlogPost> blogPost = database.findById(postId);
         if (blogPost.isPresent()) {
@@ -45,7 +45,7 @@ public class SHSRestController {
         }
     }
 
-    @RequestMapping(value = "delete/{postId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/delete/{postId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable long postId) {
         database.deleteById(postId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

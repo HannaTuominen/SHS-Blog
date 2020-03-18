@@ -11,10 +11,11 @@ public class Comment {
     // primary key, autoincrement
     @Id
     @GeneratedValue
-    long id;
-    String name;
-    String comment;
-    Date time;
+    private long id;
+    private long parentPost;
+    private String name;
+    private String comment;
+    private Date time;
 
     public Comment() {
     }
@@ -47,6 +48,14 @@ public class Comment {
 
     public String getName() {
         return name;
+    }
+
+    public long getParentPost() {
+        return parentPost;
+    }
+
+    public void setParentPost(long parentPost) {
+        this.parentPost = parentPost;
     }
 
     public String toString() {
