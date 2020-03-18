@@ -37,6 +37,7 @@ class RightPane extends Component {
     const { classes } = this.props;
     return <Fragment>
       <Paper className={classes.rightPane}>
+        <h2>Blog history</h2>
         <ul>{this.state.data}</ul>
       </Paper>
     </Fragment>
