@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Comment {
+public class BlogComment {
     // primary key, autoincrement
     @Id
     @GeneratedValue
@@ -17,10 +17,11 @@ public class Comment {
     private String comment;
     private Date time;
 
-    public Comment() {
+    public BlogComment() {
     }
 
-    public Comment(String name, String comment, Date time) {
+    public BlogComment(String name, String comment, Date time, long parentPost) {
+        setParentPost(parentPost);
         setName(name);
         setComment(comment);
         setTime(time);

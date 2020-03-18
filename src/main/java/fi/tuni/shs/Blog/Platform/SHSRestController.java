@@ -16,11 +16,14 @@ import java.util.Optional;
 public class SHSRestController {
 
     @Autowired
-    SHSDatabase database;
+    BlogPostRepository blogPostRepository;
+
+    @Autowired
+    BlogCommentRepository blogCommentRepository;
 
     @RequestMapping(value = "api/add/", method = RequestMethod.POST)
     public ResponseEntity<Void> add(@RequestBody BlogPost post, UriComponentsBuilder b) {
-        database.save(post);
+        blogPostRepository.save(post);
         UriComponents uriComponents = b.path("api/get/{id}").buildAndExpand(post.getId());
 
         HttpHeaders headers = new HttpHeaders();
@@ -31,12 +34,17 @@ public class SHSRestController {
 
     @RequestMapping("api/get/")
     public ResponseEntity<Iterable<BlogPost>> getAll() {
-        return new ResponseEntity<>(database.findAll(), HttpStatus.CREATED);
+        return new ResponseEntity<>(blogPostRepository.findAll(), HttpStatus.CREATED);
+    }
+
+    @RequestMapping("api/getComments/{postId}")
+    public ResponseEntity<Iterable<BlogComment>> getComments(@PathVariable long postId) {
+        return new ResponseEntity<>(blogCommentRepository.findByParentPost(postId), HttpStatus.CREATED);
     }
 
     @RequestMapping("api/get/{postId}")
     public ResponseEntity<BlogPost> get(@PathVariable long postId) {
-        Optional<BlogPost> blogPost = database.findById(postId);
+        Optional<BlogPost> blogPost = blogPostRepository.findById(postId);
         if (blogPost.isPresent()) {
             return new ResponseEntity<>(blogPost.get(), HttpStatus.CREATED);
         } else {
@@ -47,7 +55,7 @@ public class SHSRestController {
 
     @RequestMapping(value = "/api/delete/{postId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable long postId) {
-        database.deleteById(postId);
+        blogPostRepository.deleteById(postId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -58,9 +66,15 @@ public class SHSRestController {
 
     @RequestMapping("test/")
     public void CreateTestPosts() {
-        database.save(new BlogPost("Hello 1", "Hello 1 body"));
-        database.save(new BlogPost("Hello 2", "Hello 2 body"));
-        database.save(new BlogPost("Hello 3", "Hello 3 body"));
-        database.save(new BlogPost("Hello 4", "Hello 4 body"));
+        Date date = new Date(10000);
+        long parentPost = 1;
+        blogPostRepository.save(new BlogPost("Hello 1", "Hello 1 body"));
+        blogPostRepository.save(new BlogPost("Hello 2", "Hello 2 body"));
+        blogPostRepository.save(new BlogPost("Hello 3", "Hello 3 body"));
+        blogPostRepository.save(new BlogPost("Hello 4", "Hello 4 body"));
+        blogCommentRepository.save(new BlogComment("Hellurei", "Hellurei body", date, parentPost));
+        blogCommentRepository.save(new BlogComment("Hellurei", "Hellurei body", date, parentPost));
+        blogCommentRepository.save(new BlogComment("Hellurei", "Hellurei body", date, parentPost));
+        blogCommentRepository.save(new BlogComment("Hellurei", "Hellurei body", date, parentPost));
     }
 }
