@@ -6,11 +6,13 @@ const PostText = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("https://swapi.co/api/films/4/");
+      const res = await fetch("/get/")
       res
         .json()
         .then(res => setTexts(res))
         .catch(err => setErrors(err));
+      console.log(res)
+
     }
 
     fetchData();
@@ -18,7 +20,7 @@ const PostText = () => {
 
   return (
     <div>
-      <span>{JSON.stringify(blogText.opening_crawl)}</span>
+      <span>{JSON.stringify(blogText)}</span>
     </div>
   );
 };
