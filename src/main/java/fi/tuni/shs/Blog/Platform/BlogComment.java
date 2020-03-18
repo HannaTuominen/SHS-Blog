@@ -13,25 +13,25 @@ public class BlogComment {
     private long id;
     private long parentPost;
     private String name;
-    private String comment;
+    private String message;
     private Date time;
 
     public BlogComment() {
     }
 
-    public BlogComment(String name, String comment, Date time, long parentPost) {
+    public BlogComment(String name, String message, Date time, long parentPost) {
         setParentPost(parentPost);
         setName(name);
-        setComment(comment);
+        setMessage(message);
         setTime(time);
     }
 
-    public String getComment() {
-        return comment;
+    public String getMessage() {
+        return message;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setMessage(String comment) {
+        this.message = comment;
     }
 
     public Date getTime() {
@@ -70,7 +70,7 @@ public class BlogComment {
         return "Comment{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", comment='" + comment + '\'' +
+                ", comment='" + message + '\'' +
                 ", time='" + time + '\'' +
                 '}';
     }
