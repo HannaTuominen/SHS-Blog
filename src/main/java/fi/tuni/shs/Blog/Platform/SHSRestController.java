@@ -51,11 +51,16 @@ public class SHSRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RestController
-    public class HelloController {
-        @GetMapping("/api/hello")
-        public String hello() {
-            return "Hello, the time at the server is now " + new Date() + "\n";
-        }
+    @RequestMapping("/api/hello")
+    public String hello() {
+        return "Hello, the time at the server is now " + new Date() + "\n";
+    }
+
+    @RequestMapping("test/")
+    public void CreateTestPosts() {
+        database.save(new BlogPost("Hello 1", "Hello 1 body"));
+        database.save(new BlogPost("Hello 2", "Hello 2 body"));
+        database.save(new BlogPost("Hello 3", "Hello 3 body"));
+        database.save(new BlogPost("Hello 4", "Hello 4 body"));
     }
 }
