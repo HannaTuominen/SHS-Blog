@@ -59,6 +59,11 @@ public class SHSRestController {
         return new ResponseEntity<>(blogCommentRepository.findByParentPost(postId), HttpStatus.CREATED);
     }
 
+    @RequestMapping("api/getAllPosts/")
+    public ResponseEntity<Iterable<Object>> getAllPosts() {
+        return new ResponseEntity<>(blogPostRepository.getAllBlogPostTitle(), HttpStatus.CREATED);
+    }
+
     @RequestMapping("api/deleteComment/{commentId}")
     public ResponseEntity<Void> deleteComment(@PathVariable long commentId) {
         blogCommentRepository.deleteById(commentId);
