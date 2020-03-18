@@ -11,7 +11,6 @@ const PostText = () => {
         .json()
         .then(res => setTexts(res))
         .catch(err => setErrors(err));
-      console.log(res)
 
     }
 

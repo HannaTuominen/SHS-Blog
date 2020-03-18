@@ -30,8 +30,8 @@ public class BlogComment {
         return message;
     }
 
-    public void setMessage(String comment) {
-        this.message = comment;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Date getTime() {
@@ -70,7 +70,7 @@ public class BlogComment {
         return "Comment{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", comment='" + message + '\'' +
+                ", message='" + message + '\'' +
                 ", time='" + time + '\'' +
                 '}';
     }

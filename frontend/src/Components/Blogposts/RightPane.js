@@ -10,15 +10,37 @@ const useStyles = theme => ({
 });
 
 class RightPane extends Component {
+  constructor(props) {
+    super(props);
+    this.fetchPosts()
+    this.state = ({data : ''})
+  }
 
-    render(){
-    const { classes } = this.props;
-        return <Fragment>
-            <Paper className={classes.rightPane}>
-                <p>This is right pane</p>
-            </Paper>
-          </Fragment>
+  fetchPosts = () => {
+    fetch('/api/getAllPosts/').then(data => data.json()).then(this.updatePage).catch(this.serverError)
+  }
+
+  serverError = (data) => {
+    console.log('Server error while fetching posts data')
+    console.log(data)
+  }
+
+  updatePage = (data) => {
+    let items = [];
+    for (let n = 0; n < data.length; n++) {
+      items.push(<li>{data[n][0]}</li>)
     }
+    this.setState({'data' : items})
+  }
+
+  render(){
+    const { classes } = this.props;
+    return <Fragment>
+      <Paper className={classes.rightPane}>
+        <ul>{this.state.data}</ul>
+      </Paper>
+    </Fragment>
+  }
 
 }
 
