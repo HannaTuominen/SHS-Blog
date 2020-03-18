@@ -6,7 +6,7 @@ const PostText = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("/get/")
+      const res = await fetch("/api/get/")
       res
         .json()
         .then(res => setTexts(res))
