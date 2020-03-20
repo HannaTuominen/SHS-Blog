@@ -21,8 +21,6 @@ class CommentList extends Component {
         return <Fragment>
                 <Box>
                     <h5>
-                                                            {/*  How many comments there are in total and
-                                                                                                the word Comment with the possibility to the letter s if the comments amount is >0. */}
                     <span>{this.props.comments.length}</span>{" "} Comment{this.props.comments.length > 0 ? "s" : ""}
                     </h5>
 
@@ -32,11 +30,7 @@ class CommentList extends Component {
                         Be the first to comment.
                     </Box>
                     ) : null}
-                    {/*  All of the comments
-                        javascript array map function which builds the list of all the comment and it will be shown to user.
-                        When rendering list react also asks for a unique key props which it uses to optimize the performance of list
-                        and it helps react to know which element it needs to update on data change.
-                    */}
+
                     {this.props.comments.map((comment,index) => (
                     <Comment key={index} comment={comment} />
                     ))}

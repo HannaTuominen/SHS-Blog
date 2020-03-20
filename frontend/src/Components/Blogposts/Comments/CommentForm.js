@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
 export default class CommentForm extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
           error: "",
           loading: false,
@@ -51,7 +50,6 @@ export default class CommentForm extends Component {
         ) : null;
       }
 
-
     /**
      * Form submit handler
      */
@@ -67,37 +65,18 @@ export default class CommentForm extends Component {
           comment.time = new Date();
           comment.parentPost = 1
 
-          fetch("api/addComment/", {
-            method: "post",
-             headers: {
-                  'Content-Type': 'application/json'
-                },
-            body: JSON.stringify(comment)
-          })
-            .then(res => res.json())
-            .then(res => {
-              if (res.error) {
-                this.setState({ loading: false, error: res.error });
-              } else {
-              console.log("vittu nyt2")
-                // add time return from api and push comment to parent state
-                this.props.addComment(comment);
 
-                // clear the message box
-                this.setState({
-                  loading: false,
-                  comment: { ...comment, message: "" }
-                });
-               }
-             })
-            .catch(err => {
-            console.log("vittu nyt3")
-              this.setState({
-                error: "Something went wrong while submitting form.",
-                loading: false
-              });
-            });
-           }
+        fetch('api/addComment/',  {
+             method: "post",
+              headers: {
+                   'Content-Type': 'application/json'
+              },
+             body: JSON.stringify(comment)
+       })
+        .then(this.props.fetching()).catch(err => console.log(err))
+
+        this.setState({ error: "", loading: false });
+      }
 
       render() {
           return (
@@ -124,8 +103,6 @@ export default class CommentForm extends Component {
                     rows="5"
                   />
                 </Box>
-
-              {this.renderError()}
 
                 <Box>
                   <button disabled={this.state.loading}>
