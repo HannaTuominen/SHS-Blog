@@ -6,21 +6,21 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { withStyles }  from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-// import MenuIcon from '@material-ui/icons/Menu';
-// import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = theme => ({
-  header: {
-    flexGrow: 1,
-    padding: "10px"
-  },
-
   title: {
+      padding: "20px",
       flexGrow: 1,
+      justifyContent: 'center'
     },
-  search: {
-      flexGrow: 1,
-    },
+    alignItemsAndJustifyContent: {
+        flexGrow: 1,
+        padding: "10px",
+        minHeight: 150,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
 });
 
 class Header extends Component {
@@ -28,25 +28,11 @@ class Header extends Component {
     render(){
         const { classes } = this.props;
         return <div>
-          <AppBar position="static" className={classes.header}>
+          <AppBar position="static" className={classes.alignItemsAndJustifyContent}>
             <Toolbar>
-              {/* <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-              > */}
-                {/* <MenuIcon /> */}
-              {/* </IconButton> */}
-              <Typography color="secondary" variant="h2" className={classes.title}>
+              <Typography color="secondary" variant="h1" className={classes.title}>
                 SHS-Blogs
               </Typography>
-
-                  {/* <SearchIcon /> */}
-                <InputBase
-                  placeholder="Search…"
-                  inputProps={{ 'aria-label': 'search' }}
-                  className={classes.search}
-                />
                 <Button color="inherit">Login</Button>
             </Toolbar>
           </AppBar>
