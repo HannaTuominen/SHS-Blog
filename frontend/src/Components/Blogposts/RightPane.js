@@ -37,7 +37,7 @@ class RightPane extends Component {
         <Link
           component="button"
           onClick={() => {
-            this.props.callback(n + 1)
+            this.props.callback(data[n][1])
           }}
           >
           {data[n][0]}
