@@ -25,7 +25,7 @@ class Comments extends Component {
 
     fetching = () => {
         // get all the comments
-        fetch("api/getComments/1")
+        fetch("api/getComments/" + this.props.currentPostId)
           .then(res => res.json())
           .then(res => {
             this.setState({

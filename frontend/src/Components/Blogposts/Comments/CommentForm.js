@@ -66,7 +66,8 @@ export default class CommentForm extends Component {
           console.log(comment)
           comment.time = new Date()
           const currentPostId =  this.props.currentPostId
-          comment.parentPost = 1
+
+          comment.parentPost = currentPostId
 
 
         fetch('api/addComment/',  {
