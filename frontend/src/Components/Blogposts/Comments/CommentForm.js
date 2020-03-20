@@ -86,8 +86,8 @@ export default class CommentForm extends Component {
     return (
       <Fragment >
 
-        <Box flexGrow={1} padding="10px 10px 10px 10px" bgcolor="primary.main" align="center">
-          <Box  bgcolor="primary.main">
+        <Box flexGrow={1} padding="10px 10px 10px 10px" bgcolor="secondary.light" align="center">
+          <Box  bgcolor="secondary.main">
           <h5 align="center" >Make a comment</h5>
           </Box >
           <Box padding="10px 10px 10px 10px" bgcolor="white">

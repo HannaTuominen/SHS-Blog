@@ -12,7 +12,8 @@ const useStyles = theme => ({
   welcome: {
     padding: "50px 0px 0px 50px",
     height: 360,
-    margin: "30px"
+    margin: "30px",
+    color: 'primary.light'
   },
   btn: {
     width: 205
@@ -24,12 +25,12 @@ class WelcomePane extends Component{
   render(){
    const { classes } = this.props;
     return <div>
-        <Paper className={classes.welcome}>
+        <Paper color="primary.light" className={classes.welcome}>
             <h1>Welcome, Friend!</h1>
             <Button className={classes.btn}
                 size="large"
                 variant="contained"
-                color="primary.dark"
+                color="secondary"
                 startIcon={<MenuBookIcon style={{ fontSize: 35 }}/>}
                 onClick={() => history.push('/read')}
               > Read Posts
@@ -39,7 +40,7 @@ class WelcomePane extends Component{
             <Button
                 size="large"
                 variant="contained"
-                color="primary.light"
+                color="secondary"
                 startIcon={<AddCircleOutlineIcon style={{ fontSize: 35 }}/>}
                 onClick={() => history.push('/edit')}
               > Create New Post
