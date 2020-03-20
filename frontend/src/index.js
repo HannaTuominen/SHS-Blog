@@ -9,9 +9,11 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
     palette: {
-        primary: { 500: '#FFE3B0' },
-        secondary :{ A400: '#807258' },
-        textPrimary: { 500: '#FEFEF8'}
+        primary:{
+            light: '#34E4FF',
+            main: '#807258',
+            dark: '#FFE3B0'
+        },
     },
     typography: {
           fontFamily: '"Segoe UI"',

@@ -29,7 +29,7 @@ class WelcomePane extends Component{
             <Button className={classes.btn}
                 size="large"
                 variant="contained"
-                color="secondary"
+                color="primary.dark"
                 startIcon={<MenuBookIcon style={{ fontSize: 35 }}/>}
                 onClick={() => history.push('/read')}
               > Read Posts
@@ -39,7 +39,7 @@ class WelcomePane extends Component{
             <Button
                 size="large"
                 variant="contained"
-                color="secondary"
+                color="primary.light"
                 startIcon={<AddCircleOutlineIcon style={{ fontSize: 35 }}/>}
                 onClick={() => history.push('/edit')}
               > Create New Post
