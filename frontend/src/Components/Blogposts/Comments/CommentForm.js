@@ -15,6 +15,7 @@ export default class CommentForm extends Component {
 
         this.state = {
           error: "",
+          loading: false,
 
           comment: {
             name: "",
@@ -59,12 +60,13 @@ export default class CommentForm extends Component {
           e.preventDefault();
 
         // loading status and clear error
-        this.setState({ error: ""/*, loading: true */});
+        this.setState({ error: "", loading: true });
 
           // persist the comments on server
           let { comment } = this.state;
           comment.time = new Date();
           comment.parentPost = 1
+
           fetch("api/addComment/", {
             method: "post",
              headers: {
@@ -75,24 +77,25 @@ export default class CommentForm extends Component {
             .then(res => res.json())
             .then(res => {
               if (res.error) {
-                this.setState({ /*loading: false,*/ error: res.error });
+                this.setState({ loading: false, error: res.error });
               } else {
+              console.log("vittu nyt2")
                 // add time return from api and push comment to parent state
-
                 this.props.addComment(comment);
-//
+
                 // clear the message box
                 this.setState({
+                  loading: false,
                   comment: { ...comment, message: "" }
-                })
-             }
+                });
+               }
              })
             .catch(err => {
+            console.log("vittu nyt3")
               this.setState({
                 error: "Something went wrong while submitting form.",
-//                loading: false
+                loading: false
               });
-
             });
            }
 
@@ -125,7 +128,7 @@ export default class CommentForm extends Component {
               {this.renderError()}
 
                 <Box>
-                  <button /*disabled={this.state.loading}*/>
+                  <button disabled={this.state.loading}>
                     Add Comment
                   </button>
                 </Box>

@@ -27,7 +27,7 @@ class CommentList extends Component {
                     </h5>
 
                     {/*  Used to give a alert if there are no comments made yet. */}
-                    {this.props.comments.length === 0 /*&& !this.props.loading */? (
+                    {this.props.comments.length === 0 && !this.props.loading ? (
                     <Box>
                         Be the first to comment.
                     </Box>

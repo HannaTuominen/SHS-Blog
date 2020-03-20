@@ -30,18 +30,18 @@ class Comments extends Component {
     this.addComment = this.addComment.bind(this);
     this.state = {
       comments: [],
-//      loading: false
+      loading: false
     };
   }
   addComment(comment) {
       this.setState({
-//        loading: false,
+        loading: false,
         comments: [comment, ...this.state.comments]
   })
   }
     componentDidMount() {
         // loading
-//        this.setState({ loading: true });
+        this.setState({ loading: true });
 
         // get all the comments
         fetch("api/getComments/1")
@@ -49,23 +49,25 @@ class Comments extends Component {
           .then(res => {
             this.setState({
               comments: res,
-//              loading: false
+              loading: false
             });
           })
           .catch(err => {
-//            this.setState({ loading: false });
+            this.setState({ loading: false });
           });
     }
 
   render() {
+  const loadingSpin = this.state.loading ? "App-logo Spin" : "App-logo";
     return (
     <MuiThemeProvider theme={theme}>
       <Box>
+       {/*<img src={logo} className={loadingSpin} alt="logo" />*/}
         <Box className="row">
           <Box className="col-12  pt-3 border-right">
             <CommentForm addComment={this.addComment}/>
             <CommentList
-//               loading={this.state.loading}
+               loading={this.state.loading}
                comments={this.state.comments}
             />
           </Box>
