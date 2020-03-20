@@ -1,27 +1,27 @@
 import React, { Fragment, Component } from 'react'
 import { withStyles }  from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
+import {Box, Typography} from '@material-ui/core'
 import { borders } from '@material-ui/system';
+import moment from "moment";
 
 const useStyles = theme => ({
-  leftPane: {
-    padding: "0 30px",
-    height: 300,
-  },
-  commentBox: {
-    padding: "30px"
-  }
+    left: {
+      display: "inline",
+    },
+    right: {
+      justifyContent: 'flex-end'
+    }
 });
 
 function Comment(props) {
     const { name, message, time, parentPost } = props.comment
-
     return <Fragment>
-        <Box className="commentBox" border={1}>
-            <small>{time}</small>
-            <h6>{name}</h6>
-            {message}
-            {parentPost}
+        <Box bgcolor="primary.main">
+          <Box bgcolor="secondary.main" display="flex">
+            <Box flexGrow={1} padding="10px 10px 10px 10px"><Typography className="left">{name}</Typography></Box>
+            <Box padding="10px 10px 10px 10px"><Typography className="right"> {moment(time).format('DD-MM-YYYY HH:MM')}</Typography></Box>
+          </Box>
+          <Box padding="10px 10px 10px 10px">{message}    {parentPost}</Box>
         </Box>
       </Fragment>
 }

@@ -16,7 +16,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "typeface-lobster": "0.0.72",
-    "typeface-roboto": "0.0.75"
+    "typeface-roboto": "0.0.75",
+    "moment": "2.18.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -23,20 +23,21 @@ class Comments extends Component {
         this.fetching()
     }
 
-        fetching = () => {
-            // get all the comments
-            fetch("api/getComments/1")
-              .then(res => res.json())
-              .then(res => {
-                this.setState({
-                  comments: res,
-                  loading: false
-                });
-              })
-              .catch(err => {
-                this.setState({ loading: false });
-              });
-        }
+    fetching = () => {
+        // get all the comments
+        fetch("api/getComments/" + this.props.currentPostId)
+          .then(res => res.json())
+          .then(res => {
+            this.setState({
+              comments: res,
+              loading: false
+            });
+          })
+          .catch(err => {
+            this.setState({ loading: false });
+          });
+    }
+
 
       addComment(comment) {
           this.setState({
@@ -46,19 +47,22 @@ class Comments extends Component {
       }
 
   render() {
-  const loadingSpin = this.state.loading ? "App-logo Spin" : "App-logo";
+
+    var sorted_comments = this.state.comments.sort((a,b) => {
+       return new Date(a.time).getTime() -
+           new Date(b.time).getTime()
+   }).reverse();
+
     return (
       <Box>
-       {/*<img src={logo} className={loadingSpin} alt="logo" />*/}
         <Box className="row">
           <Box className="col-12  pt-3 border-right">
-            <CommentForm addComment={this.addComment} fetching={this.fetching}/>
+            <CommentForm addComment={this.addComment} fetching={this.fetching} currentPostId =  {this.props.currentPostId}/>
             <CommentList
                loading={this.state.loading}
-               comments={this.state.comments}
+               comments={sorted_comments}
             />
           </Box>
-
         </Box>
       </Box>
     );
