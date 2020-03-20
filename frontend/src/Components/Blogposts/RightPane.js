@@ -5,8 +5,10 @@ import { withStyles }  from '@material-ui/core/styles'
 const useStyles = theme => ({
   rightPane: {
     padding: "0 30px",
-    height: 500
-  },
+    height: "100%",
+    width: "100%",
+    position: "fixed"
+  }
 });
 
 class RightPane extends Component {
