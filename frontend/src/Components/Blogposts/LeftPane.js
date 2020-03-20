@@ -6,7 +6,6 @@ import ReadPost from './ReadPost'
 import Typography from '@material-ui/core/Typography';
 import EditPost from './EditPost'
 import { withStyles }  from '@material-ui/core/styles'
-
 import {Route, Link} from 'react-router-dom'
 
 
@@ -17,10 +16,8 @@ const useStyles = theme => ({
   },
 });
 
-//const ReadPost = () => <Typography  color="secondary" variant="h4" noWrap>You re in the ReadPost</Typography>
-//const EditPost = () => <Typography  color="secondary" variant="h4" noWrap>You re in the EditPost</Typography>
-
 class LeftPane extends Component{
+
   state = {index: 0}
 
   handleTabSelected = () => {
@@ -33,15 +30,15 @@ class LeftPane extends Component{
 
   render(){
     const { classes } = this.props;
+    const currentPostId = this.props.currentPostId
     return <Fragment>
-      <Paper className={classes.leftPane}>
-        <Route exact={true} path="/" component={ReadPost}/>
+        <EditTabs
+                onSelect={this.handleTabSelected}
+                tabSelected={this.state.index}
+              />
+        <Route exact={true} path="/" component= {ReadPost} currentPostId={currentPostId}/>
         <Route path="/editpost" component= {EditPost}/>
-      <EditTabs
-        onSelect={this.handleTabSelected}
-        tabSelected={this.state.index}
-      />
-      </Paper>
+
     </Fragment>
   }
 }

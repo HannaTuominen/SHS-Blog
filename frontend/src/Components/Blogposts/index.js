@@ -6,9 +6,11 @@ import LeftPane from './LeftPane'
 import RightPane from './RightPane'
 
 function Blogpost() {
+    let currentPostId = 1;
   return <Grid container>
     <Grid item xs={12} sm={8}>
-      <LeftPane/>
+      <LeftPane
+        currentPostId={currentPostId}/>
     </Grid>
     <Grid item xs={12} sm={4}>
       <RightPane/>

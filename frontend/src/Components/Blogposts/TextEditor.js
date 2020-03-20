@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Editor, EditorState, RichUtils, ContentState} from 'draft-js'
 import Paper from '@material-ui/core/Paper'
 import { withStyles }  from '@material-ui/core/styles'
+import './../../App.css';
 
 const useStyles = theme => ({
   textEditor: {
