@@ -103,16 +103,16 @@ export default class CommentForm extends Component {
           </Box>
 
           <Box bgcolor="white" padding="10px 10px 10px 10px">
-                  <TextField
-                    onChange={this.handleFieldChange}
-                    value={this.state.comment.message}
-                    className="textField"
-                    placeholder="Add comment here..."
-                    name="message"
-                    fullWidth
-                    multiline
-                    rows="4"
-                  />
+            <TextField
+              onChange={this.handleFieldChange}
+              value={this.state.comment.message}
+              className="textField"
+              placeholder="Add comment here..."
+              name="message"
+              fullWidth
+              multiline
+              rows="4"
+            />
           </Box>
 
           <Box padding="10px 10px 10px 10px">

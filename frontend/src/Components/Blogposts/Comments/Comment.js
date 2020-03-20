@@ -22,7 +22,7 @@ function Comment(props) {
         <Box padding="10px 10px 10px 10px"><Typography className="right"> {moment(time).format('DD-MM-YYYY HH:mm')}</Typography></Box>
       </Box>
       <Box padding="10px 10px 10px 10px" bgcolor="primary.main">
-        {message}    {parentPost}
+        <Typography ><pre style={{ fontFamily: 'inherit' }}>{message}    {parentPost} </pre></Typography>
       </Box>
     </Box>
   </Fragment>
