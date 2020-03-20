@@ -7,7 +7,7 @@ import Comments from './Comments/Comments'
 const useStyles = theme => ({
   rightPane: {
     padding: "0 30px",
-    height: 430
+    flex: 0
   },
 });
 
