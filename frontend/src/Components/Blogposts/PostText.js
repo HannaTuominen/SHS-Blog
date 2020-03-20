@@ -3,12 +3,16 @@ import React, { Component, useState, useEffect } from "react";
 class PostText extends Component {
   constructor(props) {
     super(props);
-    this.fetchPosts()
+    this.fetchPosts(this.props.currentPostId)
     this.state = ({data : ''})
   }
 
-  fetchPosts = () => {
-    fetch("/api/get/" + this.props.currentPostId).then(data => data.json()).then(this.updatePage).catch(err => console.log("error"))
+  componentWillReceiveProps(nextProps) {
+    this.fetchPosts(nextProps.currentPostId)
+  }
+
+  fetchPosts = (id) => {
+    fetch("/api/get/" + id).then(data => data.json()).then(this.updatePage).catch(err => console.log("error"))
   }
 
   updatePage = (data) => {

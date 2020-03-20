@@ -1,6 +1,9 @@
 import React, { Fragment, Component } from 'react'
 import Paper from '@material-ui/core/Paper';
 import { withStyles }  from '@material-ui/core/styles'
+import Link from '@material-ui/core/Link';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 const useStyles = theme => ({
   rightPane: {
@@ -14,8 +17,8 @@ const useStyles = theme => ({
 class RightPane extends Component {
   constructor(props) {
     super(props);
-    this.fetchPosts()
     this.state = ({data : ''})
+    this.fetchPosts()
   }
 
   fetchPosts = () => {
@@ -30,7 +33,16 @@ class RightPane extends Component {
   updatePage = (data) => {
     let items = [];
     for (let n = 0; n < data.length; n++) {
-      items.push(<li>{data[n][0]}</li>)
+      items.push(<ListItem>
+        <Link
+          component="button"
+          onClick={() => {
+            this.props.callback(n + 1)
+          }}
+          >
+          {data[n][0]}
+        </Link>
+      </ListItem>)
     }
     this.setState({'data' : items})
   }
@@ -39,7 +51,7 @@ class RightPane extends Component {
     const { classes } = this.props;
     return <Fragment>
       <Paper className={classes.rightPane}>
-        <h2>Blog history</h2>
+        <List>Blog history</List>
         <ul>{this.state.data}</ul>
       </Paper>
     </Fragment>
