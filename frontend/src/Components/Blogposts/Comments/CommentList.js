@@ -19,9 +19,9 @@ class CommentList extends Component {
   render(){
     const { classes } = this.props;
     return <Fragment>
-      <Box>
+      <Box padding="10px 10px 10px 10px">
         <h5>
-          <span>{this.props.comments.length}</span>{" "} Comment{this.props.comments.length > 0 ? "s" : ""}
+          <span >{this.props.comments.length}</span>{" "} Comment{this.props.comments.length > 0 ? "s" : ""}
         </h5>
 
         {/*  Used to give a alert if there are no comments made yet. */}
