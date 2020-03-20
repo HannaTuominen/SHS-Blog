@@ -17,11 +17,11 @@ function Comment(props) {
     const { name, message, time, parentPost } = props.comment
     return <Fragment>
         <Box bgcolor="primary.main">
-        <Box bgcolor="secondary.main">
-                <Typography className="left">{name}</Typography>
-                <Typography className="right"> {moment(time).format('DD-MM-YYYY HH:MM')}</Typography>
-            </Box>
-            <Box padding="10px 10px 10px 10px">{message}    {parentPost}</Box>
+          <Box bgcolor="secondary.main" display="flex">
+            <Box flexGrow={1}><Typography className="left">{name}</Typography></Box>
+            <Box><Typography className="right"> {moment(time).format('DD-MM-YYYY HH:MM')}</Typography></Box>
+          </Box>
+          <Box padding="10px 10px 10px 10px">{message}    {parentPost}</Box>
         </Box>
       </Fragment>
 }
