@@ -7,8 +7,8 @@ import TextEditor from './TextEditor'
 const useStyles = theme => ({
   rightPane: {
     padding: "0 30px",
-    height: 430
-  },
+    flex: 0
+  }
 });
 
 class EditPost extends Component {

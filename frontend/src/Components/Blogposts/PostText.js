@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 
-const PostText = () => {
-  const [hasError, setErrors] = useState(false);
-  const [blogText, setTexts] = useState({});
+class PostText extends Component {
+  constructor(props) {
+    super(props);
+    this.fetchPosts()
+    this.state = ({data : ''})
+  }
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("/api/get/")
-      res
-        .json()
-        .then(res => setTexts(res))
-        .catch(err => setErrors(err));
+  fetchPosts = () => {
+    fetch("/api/get/" + this.props.currentPostId).then(data => data.json()).then(this.updatePage).catch(err => console.log("error"))
+  }
 
-    }
+  updatePage = (data) => {
+    const newData = JSON.stringify(data)
+    this.setState({'data' : newData})
+  }
 
-    fetchData();
-  });
+  render(){
+    return <div>
+        <span>{this.state.data}</span>
+      </div>
+  }
+}
 
-  return (
-    <div>
-      <span>{JSON.stringify(blogText)}</span>
-    </div>
-  );
-};
-export default PostText;
+export default PostText

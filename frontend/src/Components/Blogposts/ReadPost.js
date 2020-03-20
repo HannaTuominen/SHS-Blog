@@ -12,13 +12,15 @@ const useStyles = theme => ({
 });
 
 class ReadPost extends Component {
-
     render(){
+    const currentPostId = this.props.currentPostId
     const { classes } = this.props;
         return <Fragment>
             <Paper className={classes.rightPane}>
-                <PostText/>
-                <Comments/>
+                <PostText
+                    currentPostId = {currentPostId}
+                />
+                <Comments currentPostId = {currentPostId}/>
             </Paper>
           </Fragment>
     }

@@ -32,13 +32,22 @@ class LeftPane extends Component{
     const { classes } = this.props;
     const currentPostId = this.props.currentPostId
     return <Fragment>
-        <EditTabs
-                onSelect={this.handleTabSelected}
-                tabSelected={this.state.index}
-              />
-        <Route exact={true} path="/" component= {ReadPost} currentPostId={currentPostId}/>
-        <Route path="/editpost" component= {EditPost}/>
 
+        <Fragment>
+            <EditTabs
+                    onSelect={this.handleTabSelected}
+                    tabSelected={this.state.index}
+                  />
+            <Route
+                exact={true}
+                path="/"
+                render= {(props) => <ReadPost {...props} currentPostId={currentPostId} />}
+            />
+            <Route
+                path="/editpost"
+                render= {(props) => <EditPost {...props} currentPostId={currentPostId} />}
+            />
+        </Fragment>
     </Fragment>
   }
 }
