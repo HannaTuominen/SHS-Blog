@@ -20,12 +20,16 @@ class Comments extends Component {
   componentDidMount() {
     // loading
     this.setState({ loading: true });
-    this.fetching()
+    this.fetching(this.props.currentPostId)
   }
 
-  fetching = () => {
+  componentWillReceiveProps(nextProps) {
+    this.fetching(nextProps.currentPostId)
+  }
+
+  fetching = (id) => {
     // get all the comments
-    fetch("api/getComments/" + this.props.currentPostId)
+    fetch("api/getComments/" + id)
       .then(res => res.json())
       .then(res => {
         this.setState({
@@ -47,7 +51,6 @@ class Comments extends Component {
   }
 
   render() {
-
     var sorted_comments = this.state.comments.sort((a,b) => {
       return new Date(a.time).getTime() -
         new Date(b.time).getTime()
