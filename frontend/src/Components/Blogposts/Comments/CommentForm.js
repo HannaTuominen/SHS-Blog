@@ -2,6 +2,7 @@ import React, { Fragment, Component } from 'react'
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles(theme => ({
   textField: {
     width: '150px',
@@ -62,7 +63,9 @@ export default class CommentForm extends Component {
 
           // persist the comments on server
           let { comment } = this.state;
-          comment.time = new Date();
+          console.log(comment)
+          comment.time = new Date()
+          const currentPostId =  this.props.currentPostId
           comment.parentPost = 1
 
 
@@ -73,7 +76,7 @@ export default class CommentForm extends Component {
               },
              body: JSON.stringify(comment)
        })
-        .then(this.props.fetching()).catch(err => console.log(err))
+        .then(this.props.addComment(comment)).catch(err => console.log(err))
 
         this.setState({ error: "", loading: false });
       }
