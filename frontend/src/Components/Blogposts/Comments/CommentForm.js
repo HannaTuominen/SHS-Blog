@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react'
-import Box from '@material-ui/core/Box'
+import {Box, Typography, TextField, Button} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -84,36 +84,43 @@ export default class CommentForm extends Component {
 
   render() {
     return (
-      <Fragment>
-        <form method="post" onSubmit={this.onSubmit}>
-          <Box>
-            <input
+      <Fragment >
+
+        <Box flexGrow={1} padding="10px 10px 10px 10px" bgcolor="primary.main" align="center">
+          <Box  bgcolor="primary.main">
+          <h5 align="center" >Make a comment</h5>
+          </Box >
+          <Box padding="10px 10px 10px 10px" bgcolor="white">
+            <TextField
               onChange={this.handleFieldChange}
               value={this.state.comment.name}
               className="form-control"
               placeholder="Name"
               name="name"
               type="text"
+              fullWidth
             />
           </Box>
 
-          <Box>
-                  <textarea
+          <Box bgcolor="white" padding="10px 10px 10px 10px">
+                  <TextField
                     onChange={this.handleFieldChange}
                     value={this.state.comment.message}
                     className="textField"
                     placeholder="Add comment here..."
                     name="message"
-                    rows="5"
+                    fullWidth
+                    multiline
+                    rows="4"
                   />
           </Box>
 
-          <Box>
-            <button disabled={this.state.loading}>
+          <Box padding="10px 10px 10px 10px">
+            <Button disabled={this.state.loading} variant="outlined" color="secondary" onClick={this.onSubmit}>
               Add Comment
-            </button>
+            </Button>
           </Box>
-        </form>
+        </Box>
       </Fragment>
     );
   }
