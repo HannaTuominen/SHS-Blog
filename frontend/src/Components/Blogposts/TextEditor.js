@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react'
+import React, { Fragment, Component, useState } from 'react'
 import ReactDOM from 'react-dom';
 import {Editor, EditorState, RichUtils, ContentState} from 'draft-js'
 import Paper from '@material-ui/core/Paper'
@@ -7,9 +7,13 @@ import './../../App.css';
 
 const useStyles = theme => ({
   textEditor: {
-    padding: "0 30px",
-    height: 200
+    margin: "30px",
+    padding: "30px",
+    flex:0
   },
+    buttons: {
+        margin: "0px 0px 5px 20px"
+    }
 });
 
 class TextEditor extends Component {
@@ -17,7 +21,7 @@ class TextEditor extends Component {
     constructor(props) {
     super(props);
     let editorState;
-    const contentState = ContentState.createFromText('Hello');
+    const contentState = ContentState.createFromText(props.text);
     editorState = EditorState.createWithContent(contentState);
     editorState = EditorState.moveFocusToEnd(editorState);
 
@@ -26,7 +30,7 @@ class TextEditor extends Component {
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
 
-  handleKeyCommand(command, editorState) {
+    handleKeyCommand(command, editorState) {
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
         this.onChange(newState);
@@ -51,10 +55,12 @@ class TextEditor extends Component {
   const { classes } = this.props;
     return (
         <div>
-            <Paper>
-                <button onClick={this._onBoldClick.bind(this)}>Bold</button>
-                <button onClick={this._onItalicClick.bind(this)}>Italic</button>
-                <button onClick={this._onUnderlineClick.bind(this)}>Underline</button>
+            <Paper className={classes.textEditor}>
+                <div className={classes.buttons}>
+                    <button onClick={this._onBoldClick.bind(this)}>Bold</button>
+                    <button onClick={this._onItalicClick.bind(this)}>Italic</button>
+                    <button onClick={this._onUnderlineClick.bind(this)}>Underline</button>
+                </div>
                 <Editor className={classes.textEditor}
                   editorState={this.state.editorState}
                   handleKeyCommand={this.handleKeyCommand}

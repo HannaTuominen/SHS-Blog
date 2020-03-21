@@ -10,23 +10,25 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 const theme = createMuiTheme({
     palette: {
         primary: {
-          light: '#E5E0DC',
-          main: '#8E857E',
+          light: '#DBE0DC',
+          main: '#817E8E',
           dark: '#DCD0C2',
           contrastText: '#fff',
         },
         secondary: {
-          light: '#E5E0DC',
+          light: '#DBE0DC',
           main: '#ADBEDB',
-          dark: '#8E857E',
+          dark: '#95A4BC',
           contrastText: '#000',
         }
       },
 //    palette: {
 //        primary: { 500: '#E5E0DC' }, vaalea
-//        secondary: { 500: '#ADBEDB' } sininen
-//         #8E857E   tumma beige
+//          #95A4BC   tumma sininen
+//        secondary: '#ADBEDB' sininen
+//         #817E8E   tumma harmahtava
 //          #DCD0C2   vaalea beige
+//          #EAEFEB   paper-tausta
 //    },
     typography: {
           fontFamily: '"Segoe UI"',

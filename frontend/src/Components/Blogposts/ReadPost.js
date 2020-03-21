@@ -6,7 +6,8 @@ import Comments from './Comments/Comments'
 
 const useStyles = theme => ({
   rightPane: {
-    padding: "0 30px",
+    padding: "30px",
+    margin: "30px",
     flex: 0
   },
 });
@@ -20,6 +21,8 @@ class ReadPost extends Component {
                 <PostText
                     currentPostId = {currentPostId}
                 />
+                <br/>
+                <br/>
                 <Comments currentPostId = {currentPostId}/>
             </Paper>
           </Fragment>

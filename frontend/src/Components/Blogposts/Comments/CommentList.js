@@ -20,7 +20,7 @@ class CommentList extends Component {
     const { classes } = this.props;
     return <Fragment>
       <Box padding="10px 10px 10px 10px">
-      <Box bgcolor="primary.main" padding="5px 10px 10px 10px">
+      <Box bgcolor="secondary.light" padding="5px 10px 10px 10px">
         <h5 align="center">
           <span >{this.props.comments.length}</span>{" "} Comment{this.props.comments.length > 0 ? "s" : ""}
         </h5>

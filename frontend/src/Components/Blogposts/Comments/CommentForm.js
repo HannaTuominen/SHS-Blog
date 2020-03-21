@@ -87,7 +87,7 @@ export default class CommentForm extends Component {
       <Fragment >
 
         <Box flexGrow={1} padding="10px 10px 10px 10px" bgcolor="secondary.light" align="center">
-          <Box  bgcolor="secondary.main">
+          <Box  bgcolor="secondary">
           <h5 align="center" >Make a comment</h5>
           </Box >
           <Box padding="10px 10px 10px 10px" bgcolor="white">
@@ -116,7 +116,7 @@ export default class CommentForm extends Component {
           </Box>
 
           <Box padding="10px 10px 10px 10px">
-            <Button disabled={this.state.loading} variant="outlined" color="secondary" onClick={this.onSubmit}>
+            <Button disabled={this.state.loading} variant="contained" color="secondary" onClick={this.onSubmit}>
               Add Comment
             </Button>
           </Box>

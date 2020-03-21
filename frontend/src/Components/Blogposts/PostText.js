@@ -16,14 +16,12 @@ class PostText extends Component {
   }
 
   updatePage = (data) => {
-    const newData = JSON.stringify(data)
+    const newData = JSON.stringify(data.body)
     this.setState({'data' : newData})
   }
 
   render(){
-    return <div>
-        <span>{this.state.data}</span>
-      </div>
+    return this.state.data
   }
 }
 

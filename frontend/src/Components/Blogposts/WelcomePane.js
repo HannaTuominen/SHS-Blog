@@ -7,13 +7,13 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import history from './history'
+import './../../App.css';
 
 const useStyles = theme => ({
   welcome: {
     padding: "50px 0px 0px 50px",
     height: 360,
     margin: "30px",
-    color: 'primary.light'
   },
   btn: {
     width: 205
@@ -25,7 +25,7 @@ class WelcomePane extends Component{
   render(){
    const { classes } = this.props;
     return <div>
-        <Paper color="primary.light" className={classes.welcome}>
+        <Paper className={classes.welcome}>
             <h1>Welcome, Friend!</h1>
             <Button className={classes.btn}
                 size="large"

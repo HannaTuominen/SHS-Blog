@@ -3,25 +3,24 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles }  from '@material-ui/core/styles'
 import PostText from './PostText'
 import TextEditor from './TextEditor'
-
-const useStyles = theme => ({
-  rightPane: {
-    padding: "0 30px",
-    flex: 0
-  }
-});
+import { renderToString } from 'react-dom/server'
 
 class EditPost extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    render(){
-    const { classes } = this.props;
-        return <Fragment>
-            <Paper className={classes.rightPane}>
-                <TextEditor/>
-            </Paper>
-          </Fragment>
-    }
 
+renderToString() {
+     return renderToString(<PostText/>)
 }
 
-export default withStyles(useStyles) (EditPost)
+    render(){
+    console.log(renderToString())
+        return <Fragment>
+                <TextEditor text='Dear diary, '/>
+          </Fragment>
+    }
+}
+
+export default EditPost
