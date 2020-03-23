@@ -11,14 +11,14 @@ const theme = createMuiTheme({
     palette: {
         primary: {
           light: '#DBE0DC',
-          main: '#817E8E',
+          main: '#9790a3',
           dark: '#DCD0C2',
           contrastText: '#fff',
         },
         secondary: {
           light: '#DBE0DC',
-          main: '#ADBEDB',
-          dark: '#95A4BC',
+          main: '#A6BDB7',
+          dark: '#8DA09B',
           contrastText: '#000',
         }
       },
@@ -29,6 +29,9 @@ const theme = createMuiTheme({
 //         #817E8E   tumma harmahtava
 //          #DCD0C2   vaalea beige
 //          #EAEFEB   paper-tausta
+//          #9790a3   tumma-lila
+//          #A6BDB7   vaalea vihreä
+//          #8DA09B   tumma vihreä
 //    },
     typography: {
           fontFamily: '"Segoe UI"',

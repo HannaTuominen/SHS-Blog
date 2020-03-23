@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import InputBase from '@material-ui/core/InputBase';
 import { withStyles }  from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import img from '../../images/blogi_tausta2.png'
+import img from '../../images/blogi_tausta4.png'
 
 const useStyles = theme => ({
   title: {
