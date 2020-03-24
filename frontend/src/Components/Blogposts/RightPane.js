@@ -38,14 +38,15 @@ class RightPane extends Component {
         <Link
           component="button"
           onClick={() => {
-            this.props.callback(data[n][1])
+            this.props.idChangeCallback(data[n][1])
           }}
           >
           {data[n][0]}
         </Link>
       </ListItem>)
     }
-    this.setState({'data' : items})
+    this.setState({'data' : items});
+    this.props.dataCallback(data);
   }
 
   render(){

@@ -16,6 +16,12 @@ export default class Blogpost extends Component {
     this.currentPostText = post;
   }
 
+  postsData = [];
+
+  postsDataUpdate = (data) => {
+  this.postsData = data;
+  console.log(data);
+  }
 
   constructor(props) {
     super(props);
@@ -48,7 +54,7 @@ export default class Blogpost extends Component {
         </Router>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <RightPane currentPostId={this.state.currentPostId} callback={this.changeId}/>
+        <RightPane currentPostId={this.state.currentPostId} idChangeCallback={this.changeId} dataCallback={this.postsDataUpdate}/>
       </Grid>
     </Grid>
   }
