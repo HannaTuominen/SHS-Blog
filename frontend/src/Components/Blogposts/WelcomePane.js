@@ -42,7 +42,7 @@ class WelcomePane extends Component{
                 variant="contained"
                 color="secondary"
                 startIcon={<AddCircleOutlineIcon style={{ fontSize: 35 }}/>}
-                onClick={() => history.push('/edit')}
+                onClick={() => history.push('/new')}
               > Create New Post
             </Button>
         </Paper>

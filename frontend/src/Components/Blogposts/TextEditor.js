@@ -21,7 +21,7 @@ class TextEditor extends Component {
     constructor(props) {
     super(props);
     let editorState;
-    const contentState = ContentState.createFromText(props.text);
+    const contentState = ContentState.createFromText(this.props.text);
     editorState = EditorState.createWithContent(contentState);
     editorState = EditorState.moveFocusToEnd(editorState);
 
@@ -55,18 +55,16 @@ class TextEditor extends Component {
   const { classes } = this.props;
     return (
         <div>
-            <Paper className={classes.textEditor}>
-                <div className={classes.buttons}>
-                    <button onClick={this._onBoldClick.bind(this)}>Bold</button>
-                    <button onClick={this._onItalicClick.bind(this)}>Italic</button>
-                    <button onClick={this._onUnderlineClick.bind(this)}>Underline</button>
-                </div>
-                <Editor className={classes.textEditor}
-                  editorState={this.state.editorState}
-                  handleKeyCommand={this.handleKeyCommand}
-                  onChange={this.onChange}
-                />
-            </Paper>
+            <div className={classes.buttons}>
+                <button onClick={this._onBoldClick.bind(this)}>Bold</button>
+                <button onClick={this._onItalicClick.bind(this)}>Italic</button>
+                <button onClick={this._onUnderlineClick.bind(this)}>Underline</button>
+            </div>
+            <Editor className={classes.textEditor}
+              editorState={this.state.editorState}
+              handleKeyCommand={this.handleKeyCommand}
+              onChange={this.onChange}
+            />
         </div>
     );
   }

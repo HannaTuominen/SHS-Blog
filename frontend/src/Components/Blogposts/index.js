@@ -2,10 +2,10 @@ import React, {Component, Fragment} from 'react'
 import EditTabs from './EditTabs';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import LeftPane from './LeftPane'
 import RightPane from './RightPane'
 import ReadPost from './ReadPost'
 import EditPost from './EditPost'
+import NewPost from './NewPost'
 import { Router, Switch, Route } from "react-router-dom";
 import WelcomePane from './WelcomePane'
 import history from './history'
@@ -33,6 +33,10 @@ export default class Blogpost extends Component {
             <Route
               path="/edit"
               render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId}/>}
+            />
+            <Route
+              path="/new"
+              render={(props) => <NewPost {...props} currentPostId={this.state.currentPostId}/>}
             />
           </Switch>
         </Router>
