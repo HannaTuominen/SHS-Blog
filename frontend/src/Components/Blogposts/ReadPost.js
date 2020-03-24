@@ -46,6 +46,10 @@ class ReadPost extends Component {
     history.push('/')
   }
 
+  callback = (postText) => {
+    this.props.callback(postText);
+  }
+
   render(){
   const currentPostId = this.props.currentPostId
   const { classes } = this.props;
@@ -75,6 +79,7 @@ class ReadPost extends Component {
         <div className={classes.postText}>
           <PostText
             currentPostId = {currentPostId}
+            callback = {this.callback}
           />
         </div>
         <br/>

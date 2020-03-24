@@ -6,37 +6,38 @@ import TextEditor from './TextEditor'
 import { renderToString } from 'react-dom/server'
 
 class EditPost extends Component {
+  data;
   constructor(props) {
     super(props);
-//    this.state = ({data : ''})
+    this.state = ({text : ''})
+    this.fetchPosts(props.currentPostId)
   }
 
-// componentWillReceiveProps(nextProps) {
-//    this.fetchPosts(nextProps.currentPostId)
-//  }
-//
-//  fetchPosts = (id) => {
-//    fetch("/api/get/" + id).then(data => data.json()).then(this.updatePage).catch(err => console.log("error"))
-//  }
-//
-//  componentDidMount() {
-//      this.fetchPosts(this.props.currentPostId)
-//  }
-//
-//  updatePage = (data) => {
-//    const newData = JSON.stringify(data.body)
-//    this.setState({'data' : newData})
-//  }
+  componentWillReceiveProps(nextProps) {
+    this.fetchPosts(nextProps.currentPostId)
+  }
 
-    render(){
-    const currentPostId = this.props.currentPostId
-//    const string1 = this.state.data
-    const string2 = renderToString(<PostText/>);
-    console.log(string2 + '!!!!')
-        return <Fragment>
-                <TextEditor text={string2}/>
-          </Fragment>
-    }
+  callback = (newEditorState) => {
+    this.editorState = newEditorState
+  }
+
+  fetchPosts = (id) => {
+    fetch("/api/get/" + id).then(data => data.json()).then(this.updatePage).catch(err => console.log("Error fetching post"))
+  }
+
+  componentDidMount() {
+    this.fetchPosts(this.props.currentPostId)
+  }
+  updatePage = (data) => {
+    this.setState({text : data.body})
+    this.data = data
+  }
+
+  render(){
+    return <Fragment>
+      <TextEditor text={this.props.currentPost} callback={this.callback}/>
+    </Fragment>
+  }
 }
 
 export default EditPost

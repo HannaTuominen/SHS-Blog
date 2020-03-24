@@ -18,6 +18,7 @@ class PostText extends Component {
   updatePage = (data) => {
     const newData = JSON.stringify(data.body)
     this.setState({'data' : newData})
+    this.props.callback(newData)
   }
 
   render(){

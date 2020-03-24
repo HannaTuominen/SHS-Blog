@@ -11,6 +11,12 @@ import WelcomePane from './WelcomePane'
 import history from './history'
 
 export default class Blogpost extends Component {
+  currentPostText;
+  callback = (post) => {
+    this.currentPostText = post;
+  }
+
+
   constructor(props) {
     super(props);
     this.state = {currentPostId : 2}
@@ -28,11 +34,11 @@ export default class Blogpost extends Component {
             <Route path="/" exact component={WelcomePane}/>
             <Route
               path="/read"
-              render={(props) => <ReadPost {...props} currentPostId={this.state.currentPostId}/>}
+              render={(props) => <ReadPost {...props} currentPostId={this.state.currentPostId} callback={this.callback}/>}
             />
             <Route
               path="/edit"
-              render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId}/>}
+              render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.currentPostText}/>}
             />
             <Route
               path="/new"
