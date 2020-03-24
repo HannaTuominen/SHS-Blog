@@ -54,7 +54,6 @@ class NewPost extends Component {
   }
 
   callback = (newEditorState) => {
-    console.log('hellurei')
     this.editorState = newEditorState
   }
 
