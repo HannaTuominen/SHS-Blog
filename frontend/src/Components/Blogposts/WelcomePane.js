@@ -13,7 +13,7 @@ const useStyles = theme => ({
   welcome: {
     padding: "50px 0px 0px 50px",
     height: 360,
-    margin: "30px",
+    margin: "30px 30px 0px 30px",
   },
   btn: {
     width: 205

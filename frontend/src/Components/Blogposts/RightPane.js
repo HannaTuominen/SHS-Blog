@@ -4,14 +4,30 @@ import { withStyles }  from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Box from "@material-ui/core/Box";
 
 const useStyles = theme => ({
   rightPane: {
-    padding: "0 30px",
+    // padding: "0 30px",
     height: "100%",
     margin: "30px 30px 30px 0px",
-    flex: 0
+    flex: 0,
+    ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
+      margin: "30px 30px 30px 0px",
+      height: "100%",
+    },
+    ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
+      margin: "30px 30px 0px 0px",
+      height: "100%",
+    },
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      margin: "0px 30px 30px 30px",
+      height: "100%",
+    }
 //    position: "fixed"
+  },
+  testStyle: {
+      width:'100%'
   }
 });
 
@@ -23,7 +39,10 @@ class RightPane extends Component {
   }
 
   fetchPosts = () => {
-    fetch('/api/getAllPosts/').then(data => data.json()).then(this.updatePage).catch(this.serverError)
+    fetch('/api/getAllPosts/',{
+      mode: 'no-cors', // 'cors' by default
+      credentials: "same-origin"
+    }).then(data => data.json()).then(this.updatePage).catch(this.serverError)
   }
 
   serverError = (data) => {
@@ -34,7 +53,8 @@ class RightPane extends Component {
   updatePage = (data) => {
     let items = [];
     for (let n = 0; n < data.length; n++) {
-      items.push(<ListItem>
+      items.push(<ListItem alignItems="center">
+        <Box flexGrow={1} align="center">
         <Link
           component="button"
           onClick={() => {
@@ -43,6 +63,7 @@ class RightPane extends Component {
           >
           {data[n][0]}
         </Link>
+        </Box>
       </ListItem>)
     }
     this.setState({'data' : items});
@@ -53,8 +74,9 @@ class RightPane extends Component {
     const { classes } = this.props;
     return <Fragment>
       <Paper className={classes.rightPane}>
-        <List>Blog history</List>
-        <ul>{this.state.data}</ul>
+            <h3 align="center" >Blog history</h3>
+
+            <Box>{this.state.data}</Box>
       </Paper>
     </Fragment>
   }

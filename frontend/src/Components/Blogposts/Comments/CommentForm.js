@@ -73,8 +73,9 @@ export default class CommentForm extends Component {
     fetch('api/addComment/',  {
       method: "post",
       headers: {
-        'Content-Type': 'application/json'
-      },
+        'Content-Type': 'application/json',
+      credentials: 'same-origin'
+    },
       body: JSON.stringify(comment)
     })
       .then(this.props.addComment(comment)).catch(err => console.log(err))

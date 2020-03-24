@@ -5,7 +5,28 @@ import PostText from './PostText'
 import TextEditor from './TextEditor'
 import { renderToString } from 'react-dom/server'
 
+const useStyles = theme => ({
+  // paper: {
+  //   padding: "10px 0px 30px 10px",
+  //   margin: "30px 30px 0px 30px",
+  //   flex:0
+  // },
+  // leftContainer: {
+  //   flex: 1,
+  //   flexDirection: 'row',
+  //   justifyContent: 'flex-start',
+  // },
+  // btn: {
+  //   flex: 0,
+  //   margin: "30px 30px 0px 30px ",
+  //   flexDirection: 'row',
+  //   justifyContent: 'flex-end',
+  //   alignItems: 'center',
+  // }
+});
+
 class EditPost extends Component {
+
   data;
   constructor(props) {
     super(props);
@@ -22,7 +43,10 @@ class EditPost extends Component {
   }
 
   fetchPosts = (id) => {
-    fetch("/api/get/" + id).then(data => data.json()).then(this.updatePage).catch(err => console.log("Error fetching post"))
+    fetch("/api/get/" + id,{
+      mode: 'no-cors', // 'cors' by default
+      credentials: "same-origin"
+    }).then(data => data.json()).then(this.updatePage).catch(err => console.log("Error fetching post"))
   }
 
   componentDidMount() {
@@ -34,10 +58,11 @@ class EditPost extends Component {
   }
 
   render(){
-    return <Fragment>
+    const { classes } = this.props;
+    return <Fragment className={classes.paper}>
       <TextEditor text={this.props.currentPost} callback={this.callback}/>
     </Fragment>
   }
 }
 
-export default EditPost
+export default withStyles(useStyles)(EditPost)

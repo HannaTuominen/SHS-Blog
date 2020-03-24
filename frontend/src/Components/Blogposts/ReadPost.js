@@ -9,9 +9,10 @@ import history from './history'
 
 const useStyles = theme => ({
   rightPane: {
-    padding: "30px",
+    padding: "30px 30px 0px 30px",
     margin: "30px",
-    flex: 0
+    flex: 0,
+    height: "100%",
   },
   postText: {
     margin: "30px 30px 30px 30px",

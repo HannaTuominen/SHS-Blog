@@ -9,6 +9,9 @@ import NewPost from './NewPost'
 import { Router, Switch, Route } from "react-router-dom";
 import WelcomePane from './WelcomePane'
 import history from './history'
+import AuthenticatedRoute from "../AuthenticatedRoute";
+import LogoutComponent from "../LogoutComponent";
+import LoginComponent from "../LoginComponent";
 
 export default class Blogpost extends Component {
   currentPostText;
@@ -41,14 +44,18 @@ export default class Blogpost extends Component {
               path="/read"
               render={(props) => <ReadPost {...props} currentPostId={this.state.currentPostId} callback={this.callback}/>}
             />
-            <Route
-              path="/edit"
-              render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.currentPostText}/>}
+            <AuthenticatedRoute
+              path="/edit" render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.currentPostText}/>}
             />
             <Route
               path="/new"
               render={(props) => <NewPost {...props} currentPostId={this.state.currentPostId}/>}
             />
+            <Route
+              path="/login"
+              render={(props) => <LoginComponent {...props} currentPostId={this.state.currentPostId} />}
+            />
+            <AuthenticatedRoute path="/logout" exact component={LogoutComponent} />
           </Switch>
         </Router>
       </Grid>

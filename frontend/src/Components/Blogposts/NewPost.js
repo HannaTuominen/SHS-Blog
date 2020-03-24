@@ -10,8 +10,8 @@ import {Editor, EditorState,} from 'draft-js'
 
 const useStyles = theme => ({
   paper: {
-    margin: "30px",
-    padding: "30px",
+    padding: "10px 0px 30px 10px",
+    margin: "30px 30px 0px 30px",
     flex:0
   },
   leftContainer: {

@@ -11,7 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.Date;
 import java.util.Optional;
 
-
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:8080" })
 @RestController
 public class SHSRestController {
 
