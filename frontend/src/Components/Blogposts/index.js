@@ -20,7 +20,6 @@ export default class Blogpost extends Component {
 
   postsDataUpdate = (data) => {
   this.postsData = data;
-  console.log(data);
   }
 
   constructor(props) {
