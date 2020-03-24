@@ -15,10 +15,10 @@ const useStyles = theme => ({
     flex:0
   },
   leftContainer: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-    },
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
   btn: {
     flex: 0,
     margin: "30px 30px 0px 30px ",
@@ -34,43 +34,53 @@ class NewPost extends Component {
     this.state = ({data : ''})
   }
 
-  sendData(){
-      const blocks = convertToRaw(editorState.getCurrentContent()).blocks;
-      const newText = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n');
+  editorState;
+
+  sendData = () =>{
+
+    const blocks = convertToRaw(this.editorState.getCurrentContent()).blocks;
+    const newText = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n');
+
+
 
     fetch('api/add/',  {
-          method: "post",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(newText)
-        })
-          .then(this.doned(newText)).catch(err => console.log(err))
-    }
+      method: "post",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newText)
+    })
+      .then(this.doned(newText)).catch(err => console.log(err))
+  }
 
-    doned(newText){
-        this.setState({'data' : newText})
-        console.log(this.data.newText)
-    }
+  callback = (newEditorState) => {
+    console.log('hellurei')
+    this.editorState = newEditorState
+  }
 
-render(){
-  const { classes } = this.props;
+  doned = (newText) => {
+    this.setState({data : newText})
+    console.log('doned: ' + this.state.data)
+  }
+
+  render(){
+    const { classes } = this.props;
     return <Paper className={classes.paper}>
-            <TextEditor text='Dear diary, ' sendMethod={this.sendData.bind(this)}/>
-            <Box display="flex">
-                <Box className={classes.leftContainer}/>
-                <Box>
-                    <Button className={classes.btn}
-//                        onClick={this.sendData.bind(this)}
-                        size="large"
-                        variant="contained"
-                        color="secondary"
-                      > Create
-                    </Button>
-                </Box>
-            </Box>
-      </Paper>
-    }
+      <TextEditor text='Dear diary, ' callback={this.callback}/>
+      <Box display="flex">
+        <Box className={classes.leftContainer}/>
+        <Box>
+          <Button className={classes.btn}
+                  onClick={this.sendData}
+                  size="large"
+                  variant="contained"
+                  color="secondary"
+          > Create
+          </Button>
+        </Box>
+      </Box>
+    </Paper>
+  }
 }
 
 export default withStyles(useStyles)(NewPost)

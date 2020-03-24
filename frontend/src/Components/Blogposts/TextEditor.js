@@ -11,14 +11,14 @@ const useStyles = theme => ({
     padding: "30px",
     flex:0
   },
-    buttons: {
-        margin: "0px 0px 5px 20px"
-    }
+  buttons: {
+    margin: "0px 0px 5px 20px"
+  }
 });
 
 class TextEditor extends Component {
 
-    constructor(props) {
+  constructor(props) {
     super(props);
     let editorState;
     const contentState = ContentState.createFromText(this.props.text);
@@ -26,46 +26,51 @@ class TextEditor extends Component {
     editorState = EditorState.moveFocusToEnd(editorState);
 
     this.state = {editorState: editorState};
-    this.onChange = editorState => this.setState({editorState});
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
 
-    handleKeyCommand(command, editorState) {
-      const newState = RichUtils.handleKeyCommand(editorState, command);
-      if (newState) {
-        this.onChange(newState);
-        return 'handled';
-      }
-      return 'not-handled';
-    }
+  onChange= (change) => {
+    this.setState({change});
+    this.props.callback(this.state.editorState)
+  }
 
-    _onBoldClick() {
-        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+  handleKeyCommand(command, editorState) {
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return 'handled';
     }
+    return 'not-handled';
+  }
 
-    _onItalicClick() {
-            this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
-    }
+  _onBoldClick() {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+  }
 
-    _onUnderlineClick() {
-                this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-    }
+  _onItalicClick() {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
+  }
+
+  _onUnderlineClick() {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  }
 
   render() {
-  const { classes } = this.props;
+    const { classes } = this.props;
+    console.log(this.state.editorState)
     return (
-        <div>
-            <div className={classes.buttons}>
-                <button onClick={this._onBoldClick.bind(this)}>Bold</button>
-                <button onClick={this._onItalicClick.bind(this)}>Italic</button>
-                <button onClick={this._onUnderlineClick.bind(this)}>Underline</button>
-            </div>
-            <Editor className={classes.textEditor}
-              editorState={this.state.editorState}
-              handleKeyCommand={this.handleKeyCommand}
-              onChange={this.onChange}
-            />
+      <div>
+        <div className={classes.buttons}>
+          <button onClick={this._onBoldClick.bind(this)}>Bold</button>
+          <button onClick={this._onItalicClick.bind(this)}>Italic</button>
+          <button onClick={this._onUnderlineClick.bind(this)}>Underline</button>
         </div>
+        <Editor className={classes.textEditor}
+                editorState={this.state.editorState}
+                handleKeyCommand={this.handleKeyCommand}
+                onChange={this.onChange}
+        />
+      </div>
     );
   }
 }
