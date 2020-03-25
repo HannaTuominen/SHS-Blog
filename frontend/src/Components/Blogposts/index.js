@@ -12,6 +12,7 @@ import history from './history'
 import AuthenticatedRoute from "../AuthenticatedRoute";
 import LogoutComponent from "../LogoutComponent";
 import LoginComponent from "../LoginComponent";
+import {Box} from "@material-ui/core";
 
 export default class Blogpost extends Component {
   currentPostText;
@@ -82,7 +83,7 @@ export default class Blogpost extends Component {
               path="/login"
               render={(props) => <LoginComponent {...props} currentPostId={this.state.currentPostId} />}
             />
-            <AuthenticatedRoute path="/logout" exact component={LogoutComponent} />
+            <Route path="/logout" render={(props) => <LogoutComponent {...props} currentPostId={this.state.currentPostId}/>} />
           </Switch>
         </Router>
       </Grid>

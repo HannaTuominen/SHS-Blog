@@ -7,11 +7,13 @@ import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import {withStyles} from "@material-ui/core/styles";
 import AuthenticationService from "../../service/AuthenticationService";
+import Box from "@material-ui/core/Box";
 
 const useStyles = theme => ({
   footer: {
-    position: "relative",
-    bottom:"0"
+    zIndex: "1",
+    position: "relative"
+
 },
 });
 
@@ -23,7 +25,7 @@ class Footer extends Component {
 
   render() {
     const { classes } = this.props;
-    return <AppBar position="static" className={classes.footer}>
+    return <Box className={classes.footer} bgcolor="primary.main">
       <Toolbar>
         <IconButton edge="start"color="inherit" aria-label="menu">
         </IconButton>
@@ -31,7 +33,7 @@ class Footer extends Component {
         <Button color="inherit">Login</Button>
         <Button color="inherit">Login</Button>
       </Toolbar>
-    </AppBar>
+    </Box>
   }
 
 }

@@ -20,6 +20,7 @@ const useStyles = theme => ({
     }
   },
   title: {
+      cursor: "pointer",
       padding: "20px",
       flexGrow: 1,
       justifyContent: 'center',
@@ -81,20 +82,20 @@ class Header extends Component {
   render(){
     const { classes } = this.props;
     return <div>
-    <img src={img} className={classes.headerImage} />
-      <AppBar position="static" className={classes.alignItemsAndJustifyContent}>
-              <Typography color="primary.light" variant="h1" className={classes.title}>
-                SHS-Blogs
-              </Typography>
-          <Typography color="primary.light" className={classes.display}>
-              Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saaani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan.
-            </Typography>
-            <Typography color="primary.light" className={classes.display}>
-               Sanat suussani sulavat, puheet putoelevat, kielelleni kerkiävät, hampahilleni hajoovat.
-            </Typography>
-        {!this.state.isLoggedIn &&  <Button onClick={() => history.push('/login')} >Login</Button>}
-        {this.state.isLoggedIn  &&  <Button onClick={() => {
-          history.push('/')
+    <img src={img} className={classes.headerImage}  />
+      <AppBar position="static" className={classes.alignItemsAndJustifyContent} >
+        <Typography color="primary.light" variant="h1" className={classes.title} onClick={() => history.push('/')} >
+          SHS-Blogs
+        </Typography>
+        <Typography color="primary.light" className={classes.display}>
+          Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saaani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan.
+        </Typography>
+        <Typography color="primary.light" className={classes.display}>
+           Sanat suussani sulavat, puheet putoelevat, kielelleni kerkiävät, hampahilleni hajoovat.
+        </Typography>
+        {!this.state.isLoggedIn && <Button onClick={() => history.push('/login')} >Login</Button>}
+        {this.state.isLoggedIn && <Button onClick={() => {
+          history.push('/logout')
           AuthenticationService.logout()
         }}>Logout</Button>}
       </AppBar>

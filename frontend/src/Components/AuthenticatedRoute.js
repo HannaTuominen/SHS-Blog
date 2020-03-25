@@ -7,7 +7,7 @@ class AuthenticatedRoute extends Component {
     if (AuthenticationService.isUserLoggedIn()) {
       return <Route {...this.props} />
     } else {
-      return <Redirect to="/login" currentPostId={this.state.currentPostId} />
+      return <Redirect to="/login"  />
     }
 
   }
