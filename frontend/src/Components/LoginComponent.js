@@ -43,7 +43,7 @@ class LoginComponent extends Component {
         console.log("successfully logged in");
         AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
         this.setState({showSuccessMessage:true})
-        this.props.history.push(`/edit`)
+        this.props.history.push(`/edit` )
       }).catch(() => {
       this.setState({ showSuccessMessage: false })
       this.setState({ hasLoginFailed: true })

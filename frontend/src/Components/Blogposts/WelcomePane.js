@@ -14,6 +14,10 @@ const useStyles = theme => ({
     padding: "50px 0px 0px 50px",
     height: 360,
     margin: "30px 30px 0px 30px",
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      margin: "0px",
+      padding: "50px 0px 0px 50px",
+    }
   },
   btn: {
     width: 205

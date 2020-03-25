@@ -12,7 +12,11 @@ const useStyles = theme => ({
   paper: {
     padding: "10px 0px 30px 10px",
     margin: "30px 30px 0px 30px",
-    flex:0
+    flex:0,
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      margin: "0px",
+      padding: "0px 10px 30px 10px",
+    }
   },
   leftContainer: {
     flex: 1,

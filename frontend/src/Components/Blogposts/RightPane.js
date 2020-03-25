@@ -14,15 +14,12 @@ const useStyles = theme => ({
     flex: 0,
     ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
       margin: "30px 30px 30px 0px",
-      height: "100%",
     },
     ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
       margin: "30px 30px 0px 0px",
-      height: "100%",
     },
     ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
-      margin: "0px 30px 30px 30px",
-      height: "100%",
+      margin: "0px 0px 0px 0px"
     }
 //    position: "fixed"
   },
@@ -74,7 +71,7 @@ class RightPane extends Component {
     const { classes } = this.props;
     return <Fragment>
       <Paper className={classes.rightPane}>
-            <h3 align="center" >Blog history</h3>
+            <h4 align="center">Blog history</h4>
 
             <Box>{this.state.data}</Box>
       </Paper>

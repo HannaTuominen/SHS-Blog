@@ -40,6 +40,7 @@ const useStyles = theme => ({
 
     },
     alignItemsAndJustifyContent: {
+        backgroundImage:"img",
         position: 'absolute',
         top: 20,
         flexGrow: 1,

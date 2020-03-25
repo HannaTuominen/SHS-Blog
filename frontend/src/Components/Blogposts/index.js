@@ -45,7 +45,7 @@ export default class Blogpost extends Component {
               render={(props) => <ReadPost {...props} currentPostId={this.state.currentPostId} callback={this.callback}/>}
             />
             <AuthenticatedRoute
-              path="/edit" render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.currentPostText}/>}
+              path="/edit" currentPostId={this.state.currentPostId} render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.currentPostText}/>}
             />
             <Route
               path="/new"

@@ -8,10 +8,9 @@ import { Box } from '@material-ui/core'
 
 export default class extends Component {
   render() {
-    return <Box bgcolor= "secondary.light"
-    >
+    return <Box bgcolor= "secondary.light"  height="100%" >
           <Header/>
-          <Blogpost/>
+          <Blogpost height="100%"/>
           <Footer />
     </Box>
 

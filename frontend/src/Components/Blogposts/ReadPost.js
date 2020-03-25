@@ -13,6 +13,10 @@ const useStyles = theme => ({
     margin: "30px",
     flex: 0,
     height: "100%",
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      margin: "0px",
+      height: "100%",
+    }
   },
   postText: {
     margin: "30px 30px 30px 30px",

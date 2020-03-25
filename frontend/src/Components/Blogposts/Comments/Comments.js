@@ -30,8 +30,9 @@ class Comments extends Component {
   fetching = (id) => {
 
     // get all the comments
-    fetch("api/getComments/" + id, {
-      credentials: 'same-origin'
+    fetch("api/getComments/" + id,{
+      mode: 'no-cors', // 'cors' by default
+      credentials: "same-origin"
     })
       .then(res => res.json())
       .then(res => {
