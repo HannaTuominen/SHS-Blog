@@ -68,8 +68,6 @@ class ReadPost extends Component {
   render(){
   const currentPostId = this.props.currentPostId
   const { classes } = this.props;
-  const postData = this.props.data
-  console.log(postData.length)
 
     return <Fragment>
       <Paper className={classes.rightPane}>
@@ -103,27 +101,27 @@ class ReadPost extends Component {
         <br/>
         <Box bgcolor="secondary.light" display="flex">
 
-                  <Box  className={classes.leftContainer}>
-                    <Button className={classes.btn}
-                        size="small"
+            <Box  className={classes.leftContainer}>
+              <Button className={classes.btn}
+                  size="small"
 //                        variant="contained"
-                        color="#000"
-                        startIcon={<ArrowLeftIcon style={{ fontSize: 35 }}/>}
-                        onClick={() => history.push('/edit')}
-                      > Previous post
-                    </Button>
-                  </Box>
-                  <Box>
-                    <Button className={classes.leftBtn}
-                        size="small"
+                  color="#000"
+                  startIcon={<ArrowLeftIcon style={{ fontSize: 35 }}/>}
+                  onClick={() => this.props.moveToNextPost(false)}
+                > Previous post
+              </Button>
+            </Box>
+            <Box>
+              <Button className={classes.leftBtn}
+                  size="small"
 //                        variant="contained"
-                        color="#000"
-                        endIcon={<ArrowRightIcon style={{ fontSize: 35 }}/>}
-                        onClick={this.deletePost}
-                      > Next post
-                    </Button>
-                  </Box>
-                </Box>
+                  color="#000"
+                  endIcon={<ArrowRightIcon style={{ fontSize: 35 }}/>}
+                  onClick={() => this.props.moveToNextPost(true)}
+                > Next post
+              </Button>
+            </Box>
+          </Box>
         <br/>
         <Comments currentPostId = {currentPostId}/>
       </Paper>
