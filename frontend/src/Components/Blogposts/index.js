@@ -42,14 +42,14 @@ export default class Blogpost extends Component {
             <Route path="/" exact component={WelcomePane}/>
             <Route
               path="/read"
-              render={(props) => <ReadPost {...props} currentPostId={this.state.currentPostId} callback={this.callback}/>}
+              render={(props) => <ReadPost {...props} currentPostId={this.state.currentPostId} callback={this.callback} idChangeCallback={this.changeId} data={this.postsData}/>}
             />
             <AuthenticatedRoute
               path="/edit" currentPostId={this.state.currentPostId} render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.currentPostText}/>}
             />
             <Route
               path="/new"
-              render={(props) => <NewPost {...props} currentPostId={this.state.currentPostId}/>}
+              render={(props) => <NewPost {...props} currentPostId={this.state.currentPostId} />}
             />
             <Route
               path="/login"

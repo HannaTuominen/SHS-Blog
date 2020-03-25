@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles }  from '@material-ui/core/styles'
 import TextEditor from './TextEditor'
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import { renderToString } from 'react-dom/server'
 import { convertToRaw, } from 'draft-js';
@@ -29,46 +30,72 @@ const useStyles = theme => ({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
+  },
+  textField: {
+    margin: "20px 30px 30px 30px ",
   }
 });
 
 class NewPost extends Component {
   constructor(props) {
     super(props);
-    this.state = ({data : ''})
+    this.state = {
+      post: {
+        title: "",
+        body: "",
+      }
+    }
   }
 
   editorState;
 
   sendData = () =>{
+    let { post } = this.state;
 
     const blocks = convertToRaw(this.editorState.getCurrentContent()).blocks;
     const newText = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n');
-
-
+    this.state.post.body = newText;
 
     fetch('api/add/',  {
       method: "post",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newText)
+      body: JSON.stringify(post)
     })
-      .then(this.doned(newText)).catch(err => console.log(err))
+    .catch(err => console.log(err))
   }
 
   callback = (newEditorState) => {
     this.editorState = newEditorState
   }
 
-  doned = (newText) => {
-    this.setState({data : newText})
-    console.log('doned: ' + this.state.data)
-  }
+    handleFieldChange = event => {
+      const { value, name } = event.target;
+
+      this.setState({
+        ...this.state,
+        post: {
+          ...this.state.comment,
+          [name]: value
+        }
+      })
+    }
 
   render(){
     const { classes } = this.props;
     return <Paper className={classes.paper}>
+       <Box className={classes.textField}>
+        <TextField
+          onChange={this.handleFieldChange}
+          value={this.state.post.title}
+          className="form-control"
+          placeholder="Post title"
+          name="title"
+          type="text"
+          fullWidth
+        />
+      </Box>
       <TextEditor text='Dear diary, ' callback={this.callback}/>
       <Box display="flex">
         <Box className={classes.leftContainer}/>
