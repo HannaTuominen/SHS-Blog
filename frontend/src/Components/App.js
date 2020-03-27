@@ -42,12 +42,44 @@ export default class extends Component {
     this.fetchPost(id);
   }
 
+  moveToNextPost = (forward) => {
+    let index;
+    let newPostId;
+    for(let i = 0; i < this.postsData.length; i++){
+      if(this.postsData[i][1] === this.state.currentPostId){
+        index = i
+      }
+    }
+    if(forward){
+      let newIndex = index
+      if(index + 1 < this.postsData.length){
+        newIndex = (index + 1)
+      }
+      newPostId = this.postsData[newIndex][1]
+      this.changeId(newPostId)
+      console.log(newPostId)
+    }else if (!forward) {
+      let newIndex = index
+      if((index - 1) >= 0){
+        newIndex = (index - 1)
+      }
+      newPostId = this.postsData[newIndex][1]
+      this.changeId(newPostId)
+      console.log(newPostId + '!!!!')
+    }
+  }
+
   render() {
     console.log(this.state.postsData)
     console.log(this.state.currentPost)
     return <Box bgcolor= "secondary.light"  position="absolute">
       <Header/>
-      <BlogPost height="100%"/>
+      <BlogPost height="100%"
+                currentPost={this.state.currentPost}
+                postsData={this.state.postsData}
+                changeId={this.changeId}
+                moveToNextPost={this.moveToNextPost}
+      />
       <Footer />
     </Box>
   }

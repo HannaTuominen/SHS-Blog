@@ -94,6 +94,7 @@ class ReadPost extends Component {
         </Box>
         <div className={classes.postText}>
           <PostText
+            currentPost = {this.props.currentPost}
             currentPostId = {currentPostId}
             callback = {this.callback}
           />
