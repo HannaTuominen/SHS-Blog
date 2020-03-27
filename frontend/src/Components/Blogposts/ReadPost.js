@@ -49,8 +49,13 @@ class ReadPost extends Component {
   constructor(props){
     super(props)
     this.deletePost = this.deletePost.bind(this)
+    this.state = {currentPost : props.currentPost}
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('hellurei')
+    this.setState({currentPost : nextProps.currentPost})
+  }
 
   deletePost(){
     fetch('api/delete/' + this.props.currentPostId, {
@@ -59,10 +64,6 @@ class ReadPost extends Component {
     .catch(err => console.log(err))
 
     history.push('/')
-  }
-
-  callback = (postText) => {
-    this.props.callback(postText);
   }
 
   render(){
@@ -94,7 +95,7 @@ class ReadPost extends Component {
         </Box>
         <div className={classes.postText}>
           <PostText
-            currentPost = {this.props.currentPost}
+            currentPost = {this.state.currentPost}
           />
         </div>
         <br/>

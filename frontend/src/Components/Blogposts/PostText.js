@@ -11,7 +11,9 @@ class PostText extends Component {
   }
 
   render(){
-    return this.state.data
+    return <>
+      {this.state.data}
+    </>
   }
 }
 
