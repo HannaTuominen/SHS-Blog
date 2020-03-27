@@ -14,7 +14,7 @@ import LogoutComponent from "../LogoutComponent";
 import LoginComponent from "../LoginComponent";
 import {Box} from "@material-ui/core";
 
-export default class Blogpost extends Component {
+export default class BlogPost extends Component {
   currentPostText;
   callback = (post) => {
     this.currentPostText = post;
