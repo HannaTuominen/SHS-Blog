@@ -35,7 +35,7 @@ class WelcomePane extends Component{
                 size="large"
                 variant="contained"
                 color="secondary"
-                startIcon={<MenuBookIcon style={{ fontSize: 35 }}/>}
+                endIcon={<MenuBookIcon style={{ fontSize: 35 }}/>}
                 onClick={() => history.push('/read')}
               > Read Posts
             </Button>
@@ -45,7 +45,7 @@ class WelcomePane extends Component{
                 size="large"
                 variant="contained"
                 color="secondary"
-                startIcon={<AddCircleOutlineIcon style={{ fontSize: 35 }}/>}
+                endIcon={<AddCircleOutlineIcon style={{ fontSize: 35 }}/>}
                 onClick={() => history.push('/new')}
               > Create New Post
             </Button>

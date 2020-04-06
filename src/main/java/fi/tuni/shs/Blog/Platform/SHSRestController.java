@@ -94,9 +94,9 @@ public class SHSRestController {
         blogPostRepository.save(new BlogPost("Hello 2", "Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
         blogPostRepository.save(new BlogPost("Hello 3", "Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
         blogPostRepository.save(new BlogPost("Hello 4", "Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
-        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost));
-        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost));
-        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost));
-        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost));
+        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost, 0));
+        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost,0));
+        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost,0));
+        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost,0));
     }
 }

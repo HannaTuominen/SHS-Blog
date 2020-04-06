@@ -17,6 +17,7 @@ class Comments extends Component {
     };
     this.addComment = this.addComment.bind(this);
   }
+
   componentDidMount() {
     // loading
     this.setState({ loading: true });
