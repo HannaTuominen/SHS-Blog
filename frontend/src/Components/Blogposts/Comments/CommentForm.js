@@ -21,7 +21,8 @@ export default class CommentForm extends Component {
         name: "",
         message: "",
         time: "",
-        parentPost: 0
+        parentPost: 0,
+        thumbsUp: 0,
 
       }
     }
@@ -80,7 +81,15 @@ export default class CommentForm extends Component {
     })
       .then(this.props.addComment(comment)).catch(err => console.log(err))
 
-    this.setState({ error: "", loading: false });
+    this.setState({ error: "", loading: false,
+      comment: {
+        name: "",
+        message: "",
+        time: "",
+        parentPost: 0,
+        thumbsUp: 0,
+
+      }});
   }
 
   render() {

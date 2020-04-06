@@ -15,15 +15,17 @@ public class BlogComment {
     private String name;
     private String message;
     private Date time;
+    private long thumbsUp;
 
     public BlogComment() {
     }
 
-    public BlogComment(String name, String message, Date time, long parentPost) {
+    public BlogComment(String name, String message, Date time, long parentPost, long thumbsUp) {
         setParentPost(parentPost);
         setName(name);
         setMessage(message);
         setTime(time);
+        setThumbsUp(thumbsUp);
     }
 
     public String getMessage() {
@@ -66,12 +68,21 @@ public class BlogComment {
         this.id = id;
     }
 
+    public long getThumbsUp() {
+        return thumbsUp;
+    }
+
+    public void setThumbsUp(long thumbsUp) {
+        this.thumbsUp = thumbsUp;
+    }
+
     public String toString() {
         return "Comment{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", message='" + message + '\'' +
                 ", time='" + time + '\'' +
+                ", thumbsUp='" + thumbsUp + '\'' +
                 '}';
     }
 
