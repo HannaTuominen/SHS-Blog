@@ -53,7 +53,6 @@ class ReadPost extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('hellurei')
     this.setState({currentPost : nextProps.currentPost})
   }
 
