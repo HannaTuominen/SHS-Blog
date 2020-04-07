@@ -25,6 +25,7 @@ const StyledButton = withStyles({
     width:10,
     padding: '0',
     margin:'0',
+    minWidth: 25,
   },
 })(Button);
 
@@ -39,28 +40,27 @@ class Comment extends Component {
   }
 
   addThumbsUp = () => {
-    this.setState({
-        thumbsUp: this.state.thumbsUp + 1
-    })
+    this.setState({ thumbsUp: this.state.thumbsUp + 1 });
+
   }
 
   removeThumbsUp = () => {
-    this.setState({
-      thumbsUp: this.state.thumbsUp - 1
-    })
+    this.setState({ thumbsUp: this.state.thumbsUp - 1 });
+
   }
 
     render() {
+    let {time, name, message, parentPost, thumbsUp} = this.props.comment;
       return (
         <Fragment>
           <Box bgcolor="white" padding="10px 10px 10px 10px">
             <Box bgcolor="secondary.dark" display="flex">
-              <Box flexGrow={1} padding="10px 10px 10px 10px"><Typography className="left"> {moment(this.props.comment.time).format('DD-MM-YYYY HH:mm')}</Typography></Box>
-              <Box  padding="10px 10px 10px 10px"><Typography className="left">{this.props.comment.name}</Typography></Box>
+              <Box flexGrow={1} padding="10px 10px 10px 10px"><Typography className="left"> {moment(time).format('DD-MM-YYYY HH:mm')}</Typography></Box>
+              <Box  padding="10px 10px 10px 10px"><Typography className="left">{name}</Typography></Box>
             </Box>
             <Box padding="10px 10px 10px 10px" bgcolor="secondary.light" display="flex">
               <Box flexGrow={1} padding="10px 10px 10px 10px">
-                <Typography className="left"><pre style={{ fontFamily: 'inherit' }}>{this.props.comment.message}    {this.props.comment.parentPost} </pre></Typography>
+                <Typography className="left"><pre style={{ fontFamily: 'inherit' }}>{message}    {parentPost} </pre></Typography>
               </Box>
             </Box>
             <Box bgcolor="secondary.dark" padding="0px 10px 0px 10px">
