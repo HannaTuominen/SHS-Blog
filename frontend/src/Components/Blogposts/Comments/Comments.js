@@ -16,6 +16,7 @@ class Comments extends Component {
       loading: false
     };
     this.addComment = this.addComment.bind(this);
+    this.removeComment = this.removeComment.bind(this);
   }
 
   componentDidMount() {
@@ -55,6 +56,12 @@ class Comments extends Component {
     })
   }
 
+  removeComment(commentId) {
+      this.setState({
+        comments: this.state.comments.filter(item => item.id != commentId)
+      })
+  }
+
   render() {
     var sorted_comments = this.state.comments.sort((a,b) => {
       return new Date(a.time).getTime() -
@@ -69,6 +76,7 @@ class Comments extends Component {
             <CommentList
               loading={this.state.loading}
               comments={sorted_comments}
+              removeComment={this.removeComment}
             />
           </Box>
         </Box>
