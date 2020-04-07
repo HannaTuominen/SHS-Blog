@@ -14,7 +14,7 @@ import LogoutComponent from "../LogoutComponent";
 import LoginComponent from "../LoginComponent";
 import {Box} from "@material-ui/core";
 
-export default class Blogpost extends Component {
+export default class BlogPost extends Component {
   currentPostText;
   callback = (post) => {
     this.currentPostText = post;
@@ -32,37 +32,12 @@ export default class Blogpost extends Component {
   }
 
   changeId = (id) => {
-    this.setState({currentPostId: id})
-  }
-
-  moveToNextPost = (forward) => {
-    let index;
-    let newPostId;
-      for(let i = 0; i < this.postsData.length; i++){
-        if(this.postsData[i][1] === this.state.currentPostId){
-            index = i
-        }
-      }
-      if(forward){
-        let newIndex = index
-        if(index + 1 < this.postsData.length){
-          newIndex = (index + 1)
-        }
-        newPostId = this.postsData[newIndex][1]
-        this.changeId(newPostId)
-        console.log(newPostId)
-      }else if (!forward) {
-        let newIndex = index
-        if((index - 1) >= 0){
-          newIndex = (index - 1)
-        }
-        newPostId = this.postsData[newIndex][1]
-        this.changeId(newPostId)
-        console.log(newPostId + '!!!!')
-      }
+    this.setState({currentPostId: id});
+    this.props.changeId(id);
   }
 
   render() {
+    console.log(this.props.currentPost)
     return <Grid container>
       <Grid item xs={12} sm={8}>
         <Router history={history}>
@@ -70,7 +45,11 @@ export default class Blogpost extends Component {
             <Route path="/" exact component={WelcomePane}/>
             <Route
               path="/read"
-              render={(props) => <ReadPost {...props} currentPostId={this.state.currentPostId} callback={this.callback} idChangeCallback={this.changeId} moveToNextPost={this.moveToNextPost}/>}
+              render={(props) => <ReadPost
+                {...props}
+                currentPost={this.props.currentPost}
+                currentPostId={this.state.currentPostId}
+                moveToNextPost={this.props.moveToNextPost}/>}
             />
             <AuthenticatedRoute
               path="/edit" currentPostId={this.state.currentPostId} render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.currentPostText}/>}
