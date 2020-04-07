@@ -47,12 +47,17 @@ class Comment extends Component {
     this.setState({ thumbsUp: this.state.thumbsUp - 1 });
   }
 
-  deleteComment = () => {
-
+  deleteComment = (id) => {
+    fetch('api/deleteComment/'+id,  {
+      method: "delete",
+    })
+      .catch(err => console.log(err))
+    console.log("deleted" + id);
   }
 
     render() {
-    let {time, name, message, parentPost, thumbsUp} = this.props.comment;
+    let {time, name, message, parentPost, thumbsUp, id} = this.props.comment;
+    console.log(id);
       return (
         <Fragment>
           <Box bgcolor="white" padding="10px 10px 10px 10px">
@@ -72,7 +77,7 @@ class Comment extends Component {
                 <StyledButton color="secondary" onClick={this.removeThumbsUp}><ThumbDownIcon style={{fontSize: 20}}/></StyledButton>
               </Box>
               <Box className="right" bgcolor="secondary.dark" padding="10px 10px 0px 10px">
-                <Button color="black" onClick={this.deleteComment}>Delete</Button>
+                <Button onClick={() => this.deleteComment(this.props.comment.id)}>Delete</Button>
               </Box>
             </Box>
 
