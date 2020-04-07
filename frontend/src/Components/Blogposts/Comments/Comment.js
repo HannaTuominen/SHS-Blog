@@ -53,6 +53,7 @@ class Comment extends Component {
     })
       .catch(err => console.log(err))
     console.log("deleted" + id);
+    this.props.removeComment(id)
   }
 
     render() {

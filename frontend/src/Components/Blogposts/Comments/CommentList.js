@@ -33,7 +33,7 @@ class CommentList extends Component {
         ) : null}
 
         {this.props.comments.map((comment,index) => (
-          <Comment key={index} comment={comment}/>
+          <Comment key={index} comment={comment} removeComment={this.props.removeComment}/>
         ))}
       </Box>
       </Box>
