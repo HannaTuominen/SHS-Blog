@@ -36,6 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/getComments/**").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/api/addComment/*").permitAll()
+                .antMatchers("/api/deleteComment/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
 //                .formLogin()
