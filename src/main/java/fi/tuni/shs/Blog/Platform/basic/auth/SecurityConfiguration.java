@@ -27,8 +27,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 //*************************
-                .antMatchers("/css/**", "/js/**", "/fonts/**", "/index").permitAll()
-                .antMatchers("/storage/**").permitAll()
+//                .antMatchers("/css/**", "/js/**", "/fonts/**", "/index").permitAll()
+//                .antMatchers("/storage/**").permitAll()
                 //**************************
                 .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/**").permitAll()
@@ -43,6 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/deleteComment/*").permitAll()
                 .antMatchers("/api/thumbsDown/*").permitAll()
                 .antMatchers("/api/thumbsUp/*").permitAll()
+                .antMatchers("/api/downloadFile/").permitAll()
+                .antMatchers("api/uploadFile/").permitAll()
                 .anyRequest().authenticated()
                 .and()
 //                .formLogin()
