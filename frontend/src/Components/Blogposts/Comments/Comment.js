@@ -39,12 +39,22 @@ class Comment extends Component {
     };
   }
 
-  addThumbsUp = () => {
+  addThumbsUp = (commentId) => {
     this.setState({ thumbsUp: this.state.thumbsUp + 1 });
+    fetch('api/thumbsUp/'+commentId,  {
+      method: "post",
+    })
+      .catch(err => console.log(err))
+    console.log("added to backend plus thumbs up " + commentId);
   }
 
-  removeThumbsUp = () => {
+  removeThumbsUp = (commentId) => {
     this.setState({ thumbsUp: this.state.thumbsUp - 1 });
+    fetch('api/thumbsDown/'+commentId,  {
+      method: "post",
+    })
+      .catch(err => console.log(err))
+    console.log("added to backend minus thumbs up " + commentId);
   }
 
   deleteComment = (id) => {
@@ -73,9 +83,9 @@ class Comment extends Component {
             </Box>
             <Box display="flex">
               <Box bgcolor="secondary.dark" padding="0px 10px 0px 10px" flexGrow={1} className="left">
-                <StyledButton color="secondary" onClick={this.addThumbsUp}><ThumbUpIcon style={{fontSize: 20}}/></StyledButton>
-                <Typography style={{display: 'inline-block', padding: '0px 20px 0px 20px'}}><pre style={{ fontFamily: 'inherit'}}>{this.state.thumbsUp}</pre></Typography>
-                <StyledButton color="secondary" onClick={this.removeThumbsUp}><ThumbDownIcon style={{fontSize: 20}}/></StyledButton>
+                <StyledButton color="secondary" onClick={() => this.addThumbsUp(this.props.comment.id)}><ThumbUpIcon style={{fontSize: 20}}/></StyledButton>
+                <Typography style={{display: 'inline-block', padding: '0px 20px 0px 20px'}}><pre style={{ fontFamily: 'inherit'}}>{thumbsUp}</pre></Typography>
+                <StyledButton color="secondary" onClick={() => this.removeThumbsUp(this.props.comment.id)}><ThumbDownIcon style={{fontSize: 20}}/></StyledButton>
               </Box>
               <Box className="right" bgcolor="secondary.dark" padding="10px 10px 0px 10px">
                 <Button onClick={() => this.deleteComment(this.props.comment.id)}>Delete</Button>
