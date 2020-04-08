@@ -32,7 +32,7 @@ class TextEditor extends Component {
 
   onChange= (change) => {
     this.setState({change});
-    this.props.callback(this.state.editorState)
+//    this.props.callback(this.state.editorState)
   }
 
   handleKeyCommand(command, editorState) {
