@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8080'
+const API_URL = ''
 
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 
 class AuthenticationService {
 
   executeBasicAuthenticationService(username, password) {
-    return axios.get(`${API_URL}/basicauth`,
+    return axios.get(`/basicauth`,
       { headers: { authorization: this.createBasicAuthToken(username, password) } })
   }
 

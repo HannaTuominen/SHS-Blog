@@ -2,6 +2,17 @@ import React, { Component } from 'react'
 import AuthenticationService from '../service/AuthenticationService';
 import Paper from "@material-ui/core/Paper";
 import {withStyles} from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
+import {TextField} from "@material-ui/core";
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Button from "@material-ui/core/Button";
 
 const useStyles = theme => ({
   welcome: {
@@ -15,7 +26,15 @@ const useStyles = theme => ({
   },
   btn: {
     width: 205
-  }
+  },
+  textField: {
+    margin: theme.spacing(1),
+    width: '25ch',
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+
 });
 
 class LoginComponent extends Component {
@@ -27,7 +46,8 @@ class LoginComponent extends Component {
       username: 'admin',
       password: 'admin',
       hasLoginFailed: false,
-      showSuccessMessage: false
+      showSuccessMessage: false,
+      showPassword: false,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -42,6 +62,13 @@ class LoginComponent extends Component {
       }
     )
   }
+  handleClickShowPassword = () => {
+    this.setState({ showPassword: !this.state.showPassword });
+  };
+
+  handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   loginClicked() {
     // if(this.state.username==='admin' && this.state.password==='admin'){
@@ -70,18 +97,57 @@ class LoginComponent extends Component {
   }
 
   render() {
+
     const { classes } = this.props;
     return (
       <div>
         <Paper className={classes.welcome}>
           <h1>Login</h1>
-          <div className="container">
-            {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
-            {this.state.showSuccessMessage && <div>Login Successful</div>}
-            User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-            Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-            <button className="btn btn-success" onClick={this.loginClicked}>Login</button>
-          </div>
+          <Box className="container">
+            <Box>{this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
+              {this.state.showSuccessMessage && <div>Login Successful</div>}</Box>
+          <Box>
+            <FormControl className={classes.textField}>
+              <InputLabel htmlFor="input-with-icon-adornment">Username</InputLabel>
+              <Input
+                id="input-with-icon-adornment"
+                startAdornment={
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                }
+                value={this.state.username}
+                onChange={this.handleChange}
+                name="username"
+              />
+            </FormControl>
+          </Box>
+            <Box>
+              <FormControl className={classes.textField}>
+                <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                <Input
+                  id="standard-adornment-password"
+                  type={this.state.showPassword ? 'text' : 'password'}
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={this.handleClickShowPassword}
+                        onMouseDown={this.handleMouseDownPassword}
+                      >
+                        {this.state.password ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </Box>
+
+
+            <Button className="btn btn-success" onClick={this.loginClicked}>Login</Button>
+          </Box>
         </Paper>
 
       </div>
