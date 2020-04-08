@@ -81,6 +81,25 @@ public class SHSRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "api/thumbsUp/{commentId}")
+    public ResponseEntity<Void> addThumbsUp(@PathVariable long commentId) {
+        changeThumbs(commentId, + 1);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "api/thumbsDown/{commentId}")
+    public ResponseEntity<Void> addThumbsDown(@PathVariable long commentId) {
+        changeThumbs(commentId, - 1);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    private void changeThumbs(long commentId, long value) {
+        BlogComment commentInDB = blogCommentRepository.findById(commentId).get();
+        long thumbs = commentInDB.getThumbsUp() + value;
+        commentInDB.setThumbsUp(thumbs);
+        blogCommentRepository.save(commentInDB);
+    }
+
     @RequestMapping("/api/hello")
     public String hello() {
         return "Hello, the time at the server is now " + new Date() + "\n";
@@ -89,14 +108,15 @@ public class SHSRestController {
     @RequestMapping("test/")
     public void CreateTestPosts() {
         Date date = new Date();
-        long parentPost = 1;
-        blogPostRepository.save(new BlogPost("Hello 1", "Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
-        blogPostRepository.save(new BlogPost("Hello 2", "Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
-        blogPostRepository.save(new BlogPost("Hello 3", "Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
-        blogPostRepository.save(new BlogPost("Hello 4", "Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
-        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost, 0));
-        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost,0));
-        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost,0));
-        blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme", date, parentPost,0));
+        blogPostRepository.save(new BlogPost("Hello 1", "Post 1: Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
+        blogPostRepository.save(new BlogPost("Hello 2", "Post 2: Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
+        blogPostRepository.save(new BlogPost("Hello 3", "Post 3: Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
+        blogPostRepository.save(new BlogPost("Hello 4", "Post 4: Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, kielelleni kerkiävät, hampahilleni hajoovat."));
+        for (long parentPost = 1; parentPost < 5; parentPost++) {
+            blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme " + parentPost, date, parentPost, 0));
+            blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme " + parentPost, date, parentPost, 0));
+            blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme " + parentPost, date, parentPost, 0));
+            blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme " + parentPost, date, parentPost, 0));
+        }
     }
 }
