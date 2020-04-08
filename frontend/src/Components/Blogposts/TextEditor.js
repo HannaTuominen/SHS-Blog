@@ -1,6 +1,8 @@
 import React, { Fragment, Component, useState } from 'react'
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils, ContentState} from 'draft-js'
+import {EditorState, RichUtils, ContentState, AtomicBlockUtils} from 'draft-js'
+import Editor from 'draft-js-plugins-editor';
+import createImagePlugin from 'draft-js-image-plugin';
 import Paper from '@material-ui/core/Paper'
 import { withStyles }  from '@material-ui/core/styles'
 import './../../App.css';
@@ -15,6 +17,7 @@ const useStyles = theme => ({
     margin: "0px 0px 5px 20px"
   }
 });
+const imagePlugin = createImagePlugin();
 
 class TextEditor extends Component {
 
@@ -56,6 +59,27 @@ class TextEditor extends Component {
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
   }
 
+  onImageClick(){
+    const base64 = this.props.imagesrc;
+    const newEditorState = this.insertImage(this.state.editorState, base64);
+    this.setState({ editorState: newEditorState });
+  }
+
+  insertImage = (editorState, base64) => {
+      const contentState = editorState.getCurrentContent();
+      const contentStateWithEntity = contentState.createEntity(
+        'image',
+        'IMMUTABLE',
+        { src: base64 },
+      );
+      const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+      const newEditorState = EditorState.set(
+        editorState,
+        { currentContent: contentStateWithEntity },
+      );
+      return AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ');
+    };
+
   render() {
     const { classes } = this.props;
     console.log(this.state.editorState)
@@ -65,11 +89,13 @@ class TextEditor extends Component {
           <button onClick={this._onBoldClick.bind(this)}>Bold</button>
           <button onClick={this._onItalicClick.bind(this)}>Italic</button>
           <button onClick={this._onUnderlineClick.bind(this)}>Underline</button>
+          <button onClick={this.onImageClick.bind(this)}>Image</button>
         </div>
         <Editor className={classes.textEditor}
                 editorState={this.state.editorState}
                 handleKeyCommand={this.handleKeyCommand}
                 onChange={this.onChange}
+                plugins={[imagePlugin]}
         />
       </div>
     );

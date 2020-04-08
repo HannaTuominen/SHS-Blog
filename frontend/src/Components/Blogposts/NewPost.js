@@ -88,15 +88,16 @@ class NewPost extends Component {
   }
 
   fileSelectedHandler = event => {
-
     this.setState({
       selectedFile: event.target.files[0]
     })
   }
 
-  showImage = event => {
+  showImage = () => {
   var imageDataUrl
-    axios.get('/api/downloadFile/face.png', { responseType:"blob" })
+    var fileName = this.state.selectedFile.name
+    const _this = this
+    axios.get('/api/downloadFile/' + fileName, { responseType:"blob" })
       .then(function (response) {
         var reader = new window.FileReader();
         reader.readAsDataURL(response.data);
@@ -104,8 +105,8 @@ class NewPost extends Component {
 
          imageDataUrl = reader.result;
          console.log(imageDataUrl)
-//          imageElement.setAttribute("src", imageDataUrl);
-          document.getElementById("img1").src=imageDataUrl;
+         console.log(this)
+         _this.setState({pic: imageDataUrl})
         }
       })
   }
@@ -116,6 +117,8 @@ class NewPost extends Component {
     formData.append('file', this.state.selectedFile)
     axios.post('api/uploadFile/', formData)
      .then(res => {console.log(res.data)})
+
+     this.showImage()
   }
 
   render(){
@@ -132,7 +135,7 @@ class NewPost extends Component {
           fullWidth
         />
       </Box>
-      <TextEditor text='Dear diary, ' callback={this.callback}/>
+      <TextEditor text='Dear diary, ' callback={this.callback} imagesrc={this.state.pic}/>
       <Box display="flex">
         <Box className={classes.leftContainer}/>
         <Box>
@@ -146,7 +149,7 @@ class NewPost extends Component {
                   size="large"
                   variant="contained"
                   color="secondary"
-          > Add image
+          > Choose image
           </Button>
           <Button className={classes.btn}
                   onClick={this.fileUploadHandler}
@@ -156,13 +159,6 @@ class NewPost extends Component {
           > Send (test)
           </Button>
           <Button className={classes.btn}
-                            onClick={this.showImage}
-                            size="large"
-                            variant="contained"
-                            color="secondary"
-                    > Get image (test)
-                    </Button>
-          <Button className={classes.btn}
                   onClick={this.sendData}
                   size="large"
                   variant="contained"
@@ -171,7 +167,7 @@ class NewPost extends Component {
           </Button>
         </Box>
       </Box>
-      <img id="img1" />
+      <img src={this.state.pic} />
     </Paper>
   }
 }

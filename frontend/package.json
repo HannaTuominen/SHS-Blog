@@ -12,6 +12,8 @@
     "axios": "^0.19.2",
     "base-64": "^0.1.0",
     "draft-js": "^0.11.4",
+    "draft-js-image-plugin": "^2.0.7",
+    "draft-js-plugins-editor": "^3.0.0",
     "moment": "2.18.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
