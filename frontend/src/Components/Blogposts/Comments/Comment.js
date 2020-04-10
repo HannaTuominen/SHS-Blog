@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from 'react'
 import { withStyles }  from '@material-ui/core/styles'
 import {Box, Button, Typography} from '@material-ui/core'
-import { borders } from '@material-ui/system';
 import moment from "moment";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
@@ -33,7 +32,7 @@ class Comment extends Component {
 
   constructor(props) {
     super(props);
-
+    console.log(this)
     this.state = {
         thumbsUp: this.props.comment.thumbsUp,
     };
@@ -68,7 +67,6 @@ class Comment extends Component {
 
     render() {
     let {time, name, message, parentPost, thumbsUp, id} = this.props.comment;
-    console.log(id);
       return (
         <Fragment>
           <Box bgcolor="white" padding="10px 10px 10px 10px">
@@ -83,15 +81,14 @@ class Comment extends Component {
             </Box>
             <Box display="flex">
               <Box bgcolor="secondary.dark" padding="0px 10px 0px 10px" flexGrow={1} className="left">
-                <StyledButton color="secondary" onClick={() => this.addThumbsUp(this.props.comment.id)}><ThumbUpIcon style={{fontSize: 20}}/></StyledButton>
-                <Typography style={{display: 'inline-block', padding: '0px 20px 0px 20px'}}><pre style={{ fontFamily: 'inherit'}}>{thumbsUp}</pre></Typography>
-                <StyledButton color="secondary" onClick={() => this.removeThumbsUp(this.props.comment.id)}><ThumbDownIcon style={{fontSize: 20}}/></StyledButton>
+                <StyledButton color="secondary" onClick={() => this.addThumbsUp(id)}><ThumbUpIcon style={{fontSize: 20}}/></StyledButton>
+                <Typography style={{display: 'inline-block', padding: '0px 20px 0px 20px'}}><pre style={{ fontFamily: 'inherit'}}>{this.state.thumbsUp}</pre></Typography>
+                <StyledButton color="secondary" onClick={() => this.removeThumbsUp(id)}><ThumbDownIcon style={{fontSize: 20}}/></StyledButton>
               </Box>
               <Box className="right" bgcolor="secondary.dark" padding="10px 10px 0px 10px">
                 <Button onClick={() => this.deleteComment(this.props.comment.id)}>Delete</Button>
               </Box>
             </Box>
-
           </Box>
         </Fragment>
         )
