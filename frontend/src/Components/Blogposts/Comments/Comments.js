@@ -11,6 +11,10 @@ class Comments extends Component {
   constructor(props) {
     super(props);
 
+
+
+
+
     this.state = {
       comments: [],
       loading: false
