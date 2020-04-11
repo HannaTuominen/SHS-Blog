@@ -73,24 +73,26 @@ class ReadPost extends Component {
       <Paper className={classes.rightPane}>
         <Box bgcolor="secondary.light" display="flex">
           <Box className={classes.leftContainer}/>
-          <Box>
+          <Box> {this.props.isUserLoggedIn ?
             <Button className={classes.btn}
-                size="small"
-                variant="contained"
-                color="secondary"
-                onClick={() => history.push('/edit')}
-              >Edit this post
-            </Button>
-          </Box>
-          <Box>
+              size="small"
+              variant="contained"
+              color="secondary"
+              onClick={() => history.push('/edit')}
+            >Edit this post
+            </Button> : void 0
+            }
+            </Box>
+            <Box> {this.props.isUserLoggedIn ?
             <Button className={classes.btn}
-                size="small"
-                variant="contained"
-                color="secondary"
-                onClick={this.deletePost}
+                      size="small"
+                      variant="contained"
+                      color="secondary"
+                      onClick={this.deletePost}
               > Delete this post
-            </Button>
-          </Box>
+              </Button> : void 0
+            } </Box>
+
         </Box>
         <div className={classes.postText}>
           <PostText
@@ -122,7 +124,7 @@ class ReadPost extends Component {
             </Box>
           </Box>
         <br/>
-        <Comments currentPostId = {currentPostId}/>
+        <Comments currentPostId = {currentPostId} isUserLoggedIn={this.props.isUserLoggedIn}/>
       </Paper>
       </Fragment>
   }

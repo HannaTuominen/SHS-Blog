@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Header, Footer } from './Layouts'
 import { Box } from '@material-ui/core'
 import BlogPost from "./Blogposts/BlogPost";
-
+import AuthenticationService from '../service/AuthenticationService';
 
 export default class extends Component {
   constructor(props) {
@@ -99,6 +99,7 @@ export default class extends Component {
                 currentComments={this.state.currentComments}
                 changeId={this.changeId}
                 moveToNextPost={this.moveToNextPost}
+                isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
       />
       <Footer />
     </Box>

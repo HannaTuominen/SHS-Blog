@@ -38,6 +38,8 @@ export default class BlogPost extends Component {
 
   render() {
     console.log(this.props.currentPost)
+    console.log("is user logged in: " + this.props.isUserLoggedIn );
+
     return <Grid container>
       <Grid item xs={12} sm={8}>
         <Router history={history}>
@@ -49,7 +51,8 @@ export default class BlogPost extends Component {
                 {...props}
                 currentPost={this.props.currentPost}
                 currentPostId={this.state.currentPostId}
-                moveToNextPost={this.props.moveToNextPost}/>}
+                moveToNextPost={this.props.moveToNextPost}
+                isUserLoggedIn={this.props.isUserLoggedIn}/>}
             />
             <AuthenticatedRoute
               path="/edit" currentPostId={this.state.currentPostId} render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.currentPostText}/>}

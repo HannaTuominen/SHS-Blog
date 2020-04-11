@@ -86,7 +86,11 @@ class Comment extends Component {
                 <StyledButton color="secondary" onClick={() => this.removeThumbsUp(id)}><ThumbDownIcon style={{fontSize: 20}}/></StyledButton>
               </Box>
               <Box className="right" bgcolor="secondary.dark" padding="10px 10px 0px 10px">
+                {this.props.isUserLoggedIn ?
                 <Button onClick={() => this.deleteComment(this.props.comment.id)}>Delete</Button>
+                  : void 0
+                }
+
               </Box>
             </Box>
           </Box>

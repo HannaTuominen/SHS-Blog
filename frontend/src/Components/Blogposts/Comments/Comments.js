@@ -10,11 +10,6 @@ class Comments extends Component {
 
   constructor(props) {
     super(props);
-
-
-
-
-
     this.state = {
       comments: [],
       loading: false
@@ -77,6 +72,7 @@ class Comments extends Component {
               loading={this.state.loading}
               comments={this.state.comments}
               removeComment={this.removeComment}
+              isUserLoggedIn={this.props.isUserLoggedIn}
             />
           </Box>
         </Box>
