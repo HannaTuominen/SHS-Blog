@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
-import Comment from './Comment'
-import { createMuiTheme } from '@material-ui/core/styles';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box'
 
 class Comments extends Component {

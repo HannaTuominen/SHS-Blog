@@ -6,7 +6,6 @@ import img from '../../images/blogi_tausta4.png';
 import AuthenticationService from '../../service/AuthenticationService';
 import history from "../Blogposts/history";
 import Button from "@material-ui/core/Button";
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = theme => ({
   display: {

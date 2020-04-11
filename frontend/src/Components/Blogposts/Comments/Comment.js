@@ -14,6 +14,7 @@ const useStyles = theme => ({
   },
 });
 
+
 const StyledButton = withStyles({
   root: {
     // background: 'secondary',
@@ -32,7 +33,6 @@ class Comment extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this)
     this.state = {
         thumbsUp: this.props.comment.thumbsUp,
     };
@@ -76,13 +76,13 @@ class Comment extends Component {
             </Box>
             <Box padding="10px 10px 10px 10px" bgcolor="secondary.light" display="flex">
               <Box flexGrow={1} padding="10px 10px 10px 10px">
-                <Typography className="left"><pre style={{ fontFamily: 'inherit' }}>{message}   {parentPost} </pre></Typography>
+                <Typography className="left"  style={{ fontFamily: 'inherit' }}>{message}   {parentPost}</Typography>
               </Box>
             </Box>
             <Box display="flex">
-              <Box bgcolor="secondary.dark" padding="0px 10px 0px 10px" flexGrow={1} className="left">
+              <Box bgcolor="secondary.dark" padding="10px 10px 10px 10px" flexGrow={1} className="left">
                 <StyledButton color="secondary" onClick={() => this.addThumbsUp(id)}><ThumbUpIcon style={{fontSize: 20}}/></StyledButton>
-                <Typography style={{display: 'inline-block', padding: '0px 20px 0px 20px'}}><pre style={{ fontFamily: 'inherit'}}>{this.state.thumbsUp}</pre></Typography>
+                <Typography style={{display: 'inline-block', padding: '0px 20px 0px 20px'}} >{this.state.thumbsUp}</Typography>
                 <StyledButton color="secondary" onClick={() => this.removeThumbsUp(id)}><ThumbDownIcon style={{fontSize: 20}}/></StyledButton>
               </Box>
               <Box className="right" bgcolor="secondary.dark" padding="10px 10px 0px 10px">
