@@ -11,6 +11,10 @@ class Comments extends Component {
   constructor(props) {
     super(props);
 
+
+
+
+
     this.state = {
       comments: [],
       loading: false
@@ -22,7 +26,7 @@ class Comments extends Component {
   componentDidMount() {
     // loading
     this.setState({ loading: true });
-    this.fetching(this.props.currentPostId)
+    // this.fetching(this.props.currentPostId)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -52,7 +56,7 @@ class Comments extends Component {
   addComment(comment) {
     this.setState({
       loading: false,
-      comments: [comment, ...this.state.comments]
+      comments: [...this.state.comments, comment]
     })
   }
 
@@ -63,19 +67,15 @@ class Comments extends Component {
   }
 
   render() {
-    var sorted_comments = this.state.comments.sort((a,b) => {
-      return new Date(a.time).getTime() -
-        new Date(b.time).getTime()
-    }).reverse();
 
     return (
       <Box>
         <Box className="row">
-          <Box className="col-12  pt-3 border-right">
-            <CommentForm addComment={this.addComment} fetching={this.fetching} currentPostId =  {this.props.currentPostId}/>
+          <Box className="col-12 pt-3 border-right">
+            <CommentForm addComment={this.addComment} fetching={this.fetching} currentPostId = {this.props.currentPostId}/>
             <CommentList
               loading={this.state.loading}
-              comments={sorted_comments}
+              comments={this.state.comments}
               removeComment={this.removeComment}
             />
           </Box>

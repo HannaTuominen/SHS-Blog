@@ -17,7 +17,7 @@ class CommentList extends Component {
   }
 
   render(){
-    const { classes } = this.props;
+    const { comments } = this.props.comments;
     return <Fragment>
       <Box padding="10px 10px 10px 10px">
       <Box bgcolor="secondary.light" padding="5px 10px 10px 10px">
@@ -34,7 +34,7 @@ class CommentList extends Component {
 
         {this.props.comments.map((comment,index) => (
           <Comment key={index} comment={comment} removeComment={this.props.removeComment}/>
-        ))}
+        )).reverse()}
       </Box>
       </Box>
     </Fragment>
