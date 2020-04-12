@@ -2,7 +2,63 @@ import React, { Component, Fragment } from 'react'
 import { Header, Footer } from './Layouts'
 import { Box } from '@material-ui/core'
 import BlogPost from "./Blogposts/BlogPost";
+import { createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import AuthenticationService from '../service/AuthenticationService';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+          light: '#DBE0DC',
+          main: '#9790a3',
+          dark: '#DCD0C2',
+          contrastText: '#fff',
+        },
+        secondary: {
+          light: '#DBE0DC',
+          main: '#A6BDB7',
+          dark: '#8DA09B',
+          contrastText: '#000',
+        }
+      },
+//    palette: {
+//        primary: { 500: '#E5E0DC' }, vaalea
+//          #95A4BC   tumma sininen
+//        secondary: '#ADBEDB' sininen
+//         #817E8E   tumma harmahtava
+//          #DCD0C2   vaalea beige
+//          #EAEFEB   paper-tausta
+//          #9790a3   tumma-lila
+//          #A6BDB7   vaalea vihreä
+//          #8DA09B   tumma vihreä
+//    },
+    typography: {
+          fontFamily: '"Segoe UI"',
+          textTransform: "none",
+      }
+})
+
+const themeAlternative = createMuiTheme({
+    palette: {
+        primary: {
+          light: '#D6ACE6',
+          main: '#BAE74E',
+          dark: '#875499',
+          contrastText: '#875499',
+        },
+        secondary: {
+          light: '#D6ACE6',
+          main: '#BAE74E',
+          dark: '#875499',
+          contrastText: '#000',
+        }
+      },
+    typography: {
+          fontFamily: '"Segoe UI"',
+          textTransform: "none",
+      }
+})
+
 
 export default class extends Component {
   constructor(props) {
@@ -10,7 +66,8 @@ export default class extends Component {
     this.state = {
       currentPost: {title: '', body: ''},
       postsData: [],
-      currentComments: []
+      currentComments: [],
+      isThemeDefault: true
     }
   }
 
@@ -90,9 +147,27 @@ export default class extends Component {
     }
   }
 
+  onThemeChange = () => {
+  if(this.state.isThemeDefault === true){
+    this.setState({ isThemeDefault: false })
+  }else{
+    this.setState({ isThemeDefault: true })
+  }
+
+//  onHeaderImageChange = () =>{
+//
+//  }
+
+  }
+
   render() {
-    return <Box bgcolor= "secondary.light"  position="absolute">
-      <Header/>
+    const { isThemeDefault } = this.state;
+    return (
+    <MuiThemeProvider theme={isThemeDefault ? theme : themeAlternative}>
+    <Box bgcolor= "secondary.light"  position="absolute">
+      <Header
+        isThemeDefault={this.state.isThemeDefault}
+      />
       <BlogPost height="100%"
                 currentPost={this.state.currentPost}
                 postsData={this.state.postsData}
@@ -101,7 +176,10 @@ export default class extends Component {
                 moveToNextPost={this.moveToNextPost}
                 isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
       />
-      <Footer />
+      <Footer
+        changeTheme={this.onThemeChange}
+      />
     </Box>
+    </MuiThemeProvider>)
   }
 }

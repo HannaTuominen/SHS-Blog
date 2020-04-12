@@ -2,7 +2,8 @@ import React, { Fragment, Component } from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles }  from '@material-ui/core/styles';
-import img from '../../images/blogi_tausta4.png';
+import img1 from '../../images/blogi_tausta4.png';
+import img2 from '../../images/blogi_tausta5.png';
 import AuthenticationService from '../../service/AuthenticationService';
 import history from "../Blogposts/history";
 import Button from "@material-ui/core/Button";
@@ -73,15 +74,20 @@ class Header extends Component {
     super(props);
 
     this.state = {
-      isLoggedIn: AuthenticationService.isUserLoggedIn()
+      isLoggedIn: AuthenticationService.isUserLoggedIn(),
+      isThemeDefault: props.isThemeDefault
     };
   }
 
+  componentWillReceiveProps(props){
+    this.setState({isThemeDefault:props.isThemeDefault})
+  }
 
   render(){
     const { classes } = this.props;
+    const { isThemeDefault } = this.state;
     return <div>
-    <img src={img} className={classes.headerImage}  />
+    <img src={isThemeDefault ? img1 : img2} className={classes.headerImage}  />
       <AppBar position="static" className={classes.alignItemsAndJustifyContent} >
         <Typography color="primary.light" variant="h1" className={classes.title} onClick={() => history.push('/')} >
           SHS-Blogs

@@ -20,7 +20,6 @@ const useStyles = theme => ({
 class Footer extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -30,8 +29,7 @@ class Footer extends Component {
         <IconButton edge="start"color="inherit" aria-label="menu">
         </IconButton>
         <Button color="inherit">Login</Button>
-        <Button color="inherit">Login</Button>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit" onClick={() => this.props.changeTheme()}>Change theme</Button>
       </Toolbar>
     </Box>
   }
