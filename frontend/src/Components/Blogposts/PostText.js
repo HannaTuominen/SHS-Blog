@@ -11,9 +11,11 @@ class PostText extends Component {
   }
 
   render(){
-    return <>
-      {this.state.data}
-    </>
+    return (
+      <div>
+        <div dangerouslySetInnerHTML={{__html: this.state.data}}/>
+      </div>
+    )
   }
 }
 

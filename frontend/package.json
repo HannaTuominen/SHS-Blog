@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "base-64": "^0.1.0",
     "draft-js": "^0.11.4",
+    "draft-js-export-html": "^1.4.1",
     "draft-js-image-plugin": "^2.0.7",
     "draft-js-plugins-editor": "^3.0.0",
     "moment": "2.18.1",

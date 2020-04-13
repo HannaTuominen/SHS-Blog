@@ -152,10 +152,6 @@ export default class extends Component {
     this.setState({ isThemeDefault: true })
   }
 
-//  onHeaderImageChange = () =>{
-//
-//  }
-
   }
 
   changeUserLogIn = (isLoggedIn) => {

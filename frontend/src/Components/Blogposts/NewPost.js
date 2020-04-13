@@ -6,9 +6,10 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import { renderToString } from 'react-dom/server'
-import { convertToRaw, } from 'draft-js';
+import { convertToRaw, convertFromRaw } from 'draft-js';
 import {Editor, EditorState,} from 'draft-js'
 import axios from 'axios'
+import {stateToHTML} from 'draft-js-export-html';
 
 const useStyles = theme => ({
   paper: {
@@ -57,9 +58,13 @@ class NewPost extends Component {
   sendData = () =>{
     let { post } = this.state;
 
-    const blocks = convertToRaw(this.editorState.getCurrentContent()).blocks;
-    const newText = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n');
-    this.state.post.body = newText;
+//    let currentContent = this.editorState.getCurrentContent()
+//    const blocks = convertToRaw(currentContent).blocks;
+//    const raw = convertToRaw(currentContent);
+//    const newText = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n');
+     let html = stateToHTML(this.editorState.getCurrentContent())
+    this.state.post.body = html;
+
 
     fetch('api/add/',  {
       method: "post",
