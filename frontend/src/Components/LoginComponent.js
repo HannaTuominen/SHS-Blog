@@ -87,15 +87,16 @@ class LoginComponent extends Component {
         console.log("successfully logged in");
         AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
         this.setState({showSuccessMessage:true})
-        this.props.history.push('/')
-      }).catch(() => {
+    }).then(() => this.props.changeUserLogIn(true))
+      .then(() => this.props.history.push('/'))
+      .catch(() => {
       this.setState({ showSuccessMessage: false })
       this.setState({ hasLoginFailed: true })
       console.log("failed to log in");
     })
 
   }
-
+  //TODO: if user is already logged in display something else?
   render() {
 
     const { classes } = this.props;
@@ -144,8 +145,6 @@ class LoginComponent extends Component {
                 />
               </FormControl>
             </Box>
-
-
             <Button className="btn btn-success" onClick={this.loginClicked}>Login</Button>
           </Box>
         </Paper>

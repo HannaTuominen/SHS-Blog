@@ -63,7 +63,7 @@ export default class BlogPost extends Component {
             />
             <Route
               path="/login"
-              render={(props) => <LoginComponent {...props} currentPostId={this.state.currentPostId} />}
+              render={(props) => <LoginComponent {...props} currentPostId={this.state.currentPostId} changeUserLogIn={this.props.changeUserLogIn} />}
             />
             <Route path="/logout" render={(props) => <LogoutComponent {...props} currentPostId={this.state.currentPostId}/>} />
           </Switch>

@@ -7,6 +7,7 @@ import img2 from '../../images/blogi_tausta5.png';
 import AuthenticationService from '../../service/AuthenticationService';
 import history from "../Blogposts/history";
 import Button from "@material-ui/core/Button";
+import BlogPost from "../Blogposts/BlogPost";
 
 const useStyles = theme => ({
   display: {
@@ -80,7 +81,10 @@ class Header extends Component {
   }
 
   componentWillReceiveProps(props){
-    this.setState({isThemeDefault:props.isThemeDefault})
+    this.setState({
+      isThemeDefault:props.isThemeDefault,
+      isLoggedIn: props.isUserLoggedIn
+    })
   }
 
   render(){
@@ -98,10 +102,11 @@ class Header extends Component {
         <Typography color="primary.light" className={classes.display}>
            Sanat suussani sulavat, puheet putoelevat, kielelleni kerkiävät, hampahilleni hajoovat.
         </Typography>
-        {!this.state.isLoggedIn && <Button onClick={() => history.push('/login')} >Login</Button>}
+        {!this.state.isLoggedIn && <Button onClick={() => history.push('/login')}>Login</Button>}
         {this.state.isLoggedIn && <Button onClick={() => {
+          AuthenticationService.logout();
+          this.props.changeUserLogIn(false)
           history.push('/logout')
-          AuthenticationService.logout()
         }}>Logout</Button>}
       </AppBar>
     </div>

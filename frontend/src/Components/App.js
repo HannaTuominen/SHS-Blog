@@ -158,6 +158,10 @@ export default class extends Component {
 
   }
 
+  changeUserLogIn = (isLoggedIn) => {
+    this.setState({ isLoggedIn: isLoggedIn })
+  }
+
   render() {
     const { isThemeDefault } = this.state;
     return (
@@ -165,6 +169,8 @@ export default class extends Component {
     <Box bgcolor= "secondary.light"  position="absolute">
       <Header
         isThemeDefault={this.state.isThemeDefault}
+        isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
+        changeUserLogIn={this.changeUserLogIn}
       />
       <BlogPost height="100%"
                 currentPost={this.state.currentPost}
@@ -173,6 +179,7 @@ export default class extends Component {
                 changeId={this.changeId}
                 moveToNextPost={this.moveToNextPost}
                 isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
+                changeUserLogIn={this.changeUserLogIn}
       />
       <Footer
         changeTheme={this.onThemeChange}

@@ -28,6 +28,7 @@ class WelcomePane extends Component{
 
   render(){
    const { classes } = this.props;
+
     return <div>
         <Paper className={classes.welcome}>
             <h1>Welcome, Friend!</h1>
