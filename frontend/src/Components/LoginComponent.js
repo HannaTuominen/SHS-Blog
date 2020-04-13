@@ -106,8 +106,8 @@ class LoginComponent extends Component {
           <h1>Login</h1>
           {!AuthenticationService.isUserLoggedIn() ?
           <Box className="container">
-            <Box>{this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
-              {this.state.showSuccessMessage && <div>Login Successful</div>}</Box>
+            <Box>{this.state.hasLoginFailed && <pre className="alert alert-warning">Invalid Credentials</pre>}
+              {this.state.showSuccessMessage && <pre>Login Successful</pre>}</Box>
           <Box>
             <FormControl className={classes.textField}>
               <InputLabel htmlFor="input-with-icon-adornment">Username</InputLabel>

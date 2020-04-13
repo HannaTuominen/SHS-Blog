@@ -21,10 +21,10 @@ class LogoutComponent extends Component {
     const { classes } = this.props;
     return (
       <Paper height="360px" className={classes.welcome}>
-        <h1>You are logged out</h1>
-        <div className="container">
+        <h1>Logged out</h1>
+        <pre className="container">
           You are no longer an admin.
-        </div>
+        </pre>
       </Paper>
     )
   }
