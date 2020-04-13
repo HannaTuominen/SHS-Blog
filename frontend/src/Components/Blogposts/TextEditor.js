@@ -59,6 +59,14 @@ class TextEditor extends Component {
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
   }
 
+   _onHeaderClick() {
+      this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'header-one'));
+   }
+
+    _onListClick() {
+       this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'unordered-list-item'));
+    }
+
   onImageClick(){
     const base64 = this.props.imagesrc;
     const newEditorState = this.insertImage(this.state.editorState, base64);
@@ -89,13 +97,15 @@ class TextEditor extends Component {
           <button onClick={this._onBoldClick.bind(this)}>Bold</button>
           <button onClick={this._onItalicClick.bind(this)}>Italic</button>
           <button onClick={this._onUnderlineClick.bind(this)}>Underline</button>
+          <button onClick={this._onHeaderClick.bind(this)}>Header</button>
+          <button onClick={this._onListClick.bind(this)}>List</button>
           <button onClick={this.onImageClick.bind(this)}>Image</button>
         </div>
         <Editor className={classes.textEditor}
-                editorState={this.state.editorState}
-                handleKeyCommand={this.handleKeyCommand}
-                onChange={this.onChange}
-                plugins={[imagePlugin]}
+            editorState={this.state.editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange}
+            plugins={[imagePlugin]}
         />
       </div>
     );
