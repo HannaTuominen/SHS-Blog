@@ -60,7 +60,7 @@ class EditPost extends Component {
   render(){
     const { classes } = this.props;
     return <Fragment className={classes.paper}>
-      <TextEditor text={this.props.currentPost} callback={this.callback}/>
+      <TextEditor text={this.props.currentPost.body} callback={this.callback}/>
     </Fragment>
   }
 }

@@ -55,7 +55,7 @@ export default class BlogPost extends Component {
                 isUserLoggedIn={this.props.isUserLoggedIn}/>}
             />
             <AuthenticatedRoute
-              path="/edit" currentPostId={this.state.currentPostId} render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.currentPostText}/>}
+              path="/edit" currentPostId={this.state.currentPostId} render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.props.currentPost}/>}
             />
             <Route
               path="/new"
