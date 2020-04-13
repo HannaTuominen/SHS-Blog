@@ -104,6 +104,7 @@ class LoginComponent extends Component {
       <div>
         <Paper className={classes.welcome}>
           <h1>Login</h1>
+          {!AuthenticationService.isUserLoggedIn() ?
           <Box className="container">
             <Box>{this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
               {this.state.showSuccessMessage && <div>Login Successful</div>}</Box>
@@ -147,6 +148,10 @@ class LoginComponent extends Component {
             </Box>
             <Button className="btn btn-success" onClick={this.loginClicked}>Login</Button>
           </Box>
+            : <Box className="container">
+              <Box><pre> You are currently logged in.</pre></Box>
+              </Box>
+          }
         </Paper>
 
       </div>
