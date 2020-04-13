@@ -64,7 +64,7 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPost: {title: '', body: ''},
+      currentPost: {id: '-1', title: '', body: ''},
       postsData: [],
       currentComments: [],
       isThemeDefault: true
@@ -124,7 +124,7 @@ export default class extends Component {
     let index;
     let newPostId;
     for(let i = 0; i < this.state.postsData.length; i++){
-      if(this.state.postsData[i][1] === this.state.currentPostId){
+      if(this.state.postsData[i][1] === this.state.currentPost.id){
         index = i
       }
     }
@@ -135,7 +135,6 @@ export default class extends Component {
       }
       newPostId = this.state.postsData[newIndex][1]
       this.changeId(newPostId)
-      console.log(newPostId)
     }else if (!forward) {
       let newIndex = index
       if((index - 1) >= 0){
@@ -143,7 +142,6 @@ export default class extends Component {
       }
       newPostId = this.state.postsData[newIndex][1]
       this.changeId(newPostId);
-      console.log(newPostId + '!!!!')
     }
   }
 

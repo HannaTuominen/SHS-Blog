@@ -102,8 +102,7 @@ class NewPost extends Component {
         var reader = new window.FileReader();
         reader.readAsDataURL(response.data);
         reader.onload = function() {
-
-         imageDataUrl = reader.result;
+          imageDataUrl = reader.result;
          console.log(imageDataUrl)
          console.log(this)
          _this.setState({pic: imageDataUrl})
