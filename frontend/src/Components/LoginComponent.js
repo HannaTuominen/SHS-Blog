@@ -132,6 +132,7 @@ class LoginComponent extends Component {
                   type={this.state.showPassword ? 'text' : 'password'}
                   value={this.state.password}
                   onChange={this.handleChange}
+                  name="password"
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton

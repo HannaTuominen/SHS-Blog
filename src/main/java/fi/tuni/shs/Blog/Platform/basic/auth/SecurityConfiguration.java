@@ -45,11 +45,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/thumbsUp/*").permitAll()
                 .antMatchers("/api/downloadFile/").permitAll()
                 .antMatchers("api/uploadFile/").permitAll()
+                .antMatchers("/basicauth").permitAll()
                 .anyRequest().authenticated()
-                .and()
-//                .formLogin()
 //                .loginPage("/login");
-//                .and()
+                .and()
                 .httpBasic();
     }
 
