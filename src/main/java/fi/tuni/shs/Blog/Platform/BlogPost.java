@@ -12,8 +12,15 @@ public class BlogPost {
 
     private String body;
     private String title;
+    private String imgSrc;
 
     public BlogPost() {
+    }
+
+    public BlogPost(String title, String body, String imgSrc) {
+        this.title = title;
+        this.body = body;
+        this.imgSrc = imgSrc;
     }
 
     public BlogPost(String title, String body) {
@@ -45,12 +52,21 @@ public class BlogPost {
         this.title = title;
     }
 
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
+    }
+
     @Override
     public String toString() {
         return "BlogPost{" +
                 "id=" + id +
                 ", body='" + body + '\'' +
                 ", title='" + title + '\'' +
+                ", imgSrc='" + imgSrc + '\'' +
                 '}';
     }
 }

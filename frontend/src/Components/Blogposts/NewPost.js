@@ -45,6 +45,7 @@ class NewPost extends Component {
       post: {
         title: "",
         body: "",
+        imgSrc: ""
       },
       selectedFile:
         null,
@@ -58,12 +59,22 @@ class NewPost extends Component {
   sendData = () =>{
     let { post } = this.state;
 
-//    let currentContent = this.editorState.getCurrentContent()
 //    const blocks = convertToRaw(currentContent).blocks;
 //    const raw = convertToRaw(currentContent);
 //    const newText = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n');
-     let html = stateToHTML(this.editorState.getCurrentContent())
-    this.state.post.body = html;
+
+    let currentContent = this.editorState.getCurrentContent()
+    let html = stateToHTML(currentContent)
+    //remove image
+    const htmlWithoutImg = html.toString().replace(/<img[^>]*>/g,"")
+    this.state.post.body = htmlWithoutImg;
+
+    if(this.state.selectedFile){
+      this.state.post.imgSrc = this.state.selectedFile.name
+      console.log(this.state.post.imgSrc)
+    }else{
+      console.log('no img')
+    }
 
 
     fetch('api/add/',  {
@@ -96,6 +107,7 @@ class NewPost extends Component {
     this.setState({
       selectedFile: event.target.files[0]
     })
+
   }
 
   showImage = () => {

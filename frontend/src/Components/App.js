@@ -64,7 +64,7 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPost: {id: '-1', title: '', body: ''},
+      currentPost: {id: '-1', title: '', body: '', imgSrc: ''},
       postsData: [],
       currentComments: [],
       isThemeDefault: true
@@ -98,6 +98,8 @@ export default class extends Component {
 
   fetchPost = (id) => {
     console.log(this.state.postsData)
+        this.state = {
+          currentPost: {id: '-1', title: '', body: '', imgSrc: ''}}
     fetch("/api/get/" + id)
       .then(data => data.json())
       .then(data => this.setState({currentPost : data}))
