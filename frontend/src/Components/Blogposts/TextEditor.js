@@ -67,11 +67,14 @@ class TextEditor extends Component {
        this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'unordered-list-item'));
     }
 
-  onImageClick(){
-    const base64 = this.props.imagesrc;
-    const newEditorState = this.insertImage(this.state.editorState, base64);
-    this.setState({ editorState: newEditorState });
-  }
+    componentWillReceiveProps(props){
+      if(props.imagesrc){
+            const base64 = props.imagesrc;
+            const newEditorState = this.insertImage(this.state.editorState, base64);
+            this.setState({ editorState: newEditorState });
+      }
+    }
+
 
   insertImage = (editorState, base64) => {
       const contentState = editorState.getCurrentContent();
@@ -99,7 +102,6 @@ class TextEditor extends Component {
           <button onClick={this._onUnderlineClick.bind(this)}>Underline</button>
           <button onClick={this._onHeaderClick.bind(this)}>Header</button>
           <button onClick={this._onListClick.bind(this)}>List</button>
-          <button onClick={this.onImageClick.bind(this)}>Image</button>
         </div>
         <Editor className={classes.textEditor}
             editorState={this.state.editorState}

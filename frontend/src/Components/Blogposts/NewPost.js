@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import { renderToString } from 'react-dom/server'
 import { convertToRaw, convertFromRaw } from 'draft-js';
-import {Editor, EditorState,} from 'draft-js'
+import {Editor, EditorState, AtomicBlockUtils} from 'draft-js'
 import axios from 'axios'
 import {stateToHTML} from 'draft-js-export-html';
 
@@ -106,7 +106,9 @@ class NewPost extends Component {
   fileSelectedHandler = event => {
     this.setState({
       selectedFile: event.target.files[0]
-    })
+    }, () => {
+        this.fileUploadHandler()
+      });
 
   }
 
@@ -168,13 +170,6 @@ class NewPost extends Component {
           > Choose image
           </Button>
           <Button className={classes.btn}
-                  onClick={this.fileUploadHandler}
-                  size="large"
-                  variant="contained"
-                  color="secondary"
-          > Send (test)
-          </Button>
-          <Button className={classes.btn}
                   onClick={this.sendData}
                   size="large"
                   variant="contained"
@@ -183,7 +178,6 @@ class NewPost extends Component {
           </Button>
         </Box>
       </Box>
-      <img src={this.state.pic} />
     </Paper>
   }
 }

@@ -16,11 +16,10 @@ class PostText extends Component {
       data : nextProps.currentPost.body,
       imgSrc: nextProps.currentPost.imgSrc
       }, () => {
-        if(this.state.imgSrc != null){
+        if(this.state.imgSrc){
           this.showImage()
         }else{
         this.setState({pic: null})
-
         }
        });
   }
@@ -45,8 +44,8 @@ class PostText extends Component {
   render(){
     return (
       <div>
-        <div dangerouslySetInnerHTML={{__html: this.state.data}}/>
         <img src={this.state.pic} />
+        <div dangerouslySetInnerHTML={{__html: this.state.data}}/>
       </div>
     )
   }
