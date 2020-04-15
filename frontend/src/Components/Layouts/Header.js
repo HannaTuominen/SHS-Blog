@@ -9,10 +9,6 @@ import AuthenticationService from '../../service/AuthenticationService';
 import history from "../Blogposts/history";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import IconButton from "@material-ui/core/IconButton";
-import Toolbar from "@material-ui/core/Toolbar";
-import Hamburger from "../Blogposts/Hamburger";
-import zIndex from "@material-ui/core/styles/zIndex";
 const useStyles = theme => ({
   display: {
     visibility: 'visible',
@@ -83,22 +79,8 @@ class Header extends Component {
     this.state = {
       isLoggedIn: AuthenticationService.isUserLoggedIn(),
       isThemeDefault: props.isThemeDefault,
-      windowWidth: undefined
     };
   }
-  handleResize = () => this.setState({
-    windowWidth: window.innerWidth
-  });
-
-  componentDidMount() {
-    this.handleResize();
-    window.addEventListener('resize', this.handleResize)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize)
-  }
-
 
   componentWillReceiveProps(props){
     this.setState({
@@ -133,7 +115,6 @@ class Header extends Component {
         }}>Logout</Button>}
 
       </AppBar>
-        {this.state.windowWidth < 600 && <Hamburger style={{zIndex:1}}/>}
       </Box>
   </Box>
   }

@@ -13,6 +13,7 @@ import AuthenticatedRoute from "../AuthenticatedRoute";
 import LogoutComponent from "../LogoutComponent";
 import LoginComponent from "../LoginComponent";
 import {Box} from "@material-ui/core";
+import Hamburger from "./Hamburger";
 
 export default class BlogPost extends Component {
   currentPostText;
@@ -55,6 +56,7 @@ export default class BlogPost extends Component {
     console.log("is user logged in: " + this.props.isUserLoggedIn );
 
     return <Grid container>
+      {this.state.windowWidth < 600 && <Hamburger currentPostId={this.state.currentPostId} idChangeCallback={this.changeId} dataCallback={this.postsDataUpdate}/>}
       <Grid item xs={12} sm={8}>
         <Router history={history}>
           <Switch>
