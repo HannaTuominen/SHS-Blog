@@ -153,7 +153,6 @@ export default class extends Component {
   }else{
     this.setState({ isThemeDefault: true })
   }
-
   }
 
   changeUserLogIn = (isLoggedIn) => {

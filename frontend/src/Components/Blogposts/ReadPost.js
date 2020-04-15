@@ -37,12 +37,12 @@ const useStyles = theme => ({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
-     leftBtn: {
-       margin: "1px 0px 3px 10px ",
-       flexDirection: 'row',
-       justifyContent: 'flex-start',
-       alignItems: 'center',
-     }
+   leftBtn: {
+     margin: "1px 0px 3px 10px ",
+     flexDirection: 'row',
+     justifyContent: 'flex-start',
+     alignItems: 'center',
+   }
 });
 
 class ReadPost extends Component {

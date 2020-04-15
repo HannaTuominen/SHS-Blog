@@ -44,7 +44,12 @@ export default class BlogPost extends Component {
       <Grid item xs={12} sm={8}>
         <Router history={history}>
           <Switch>
-            <Route path="/" exact component={WelcomePane}/>
+            <Route exact path="/"
+            render={(props) => <WelcomePane
+              {...props}
+              currentPost={this.props.currentPost}
+              currentPostId={this.state.currentPostId}/>}
+            />
             <Route
               path="/read"
               render={(props) => <ReadPost
