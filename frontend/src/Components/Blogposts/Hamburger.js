@@ -55,7 +55,7 @@ class Hamburger extends Component{
 
     this.state = {
       setOpen: false,
-      theme: 'ltr',
+      theme: 'tr',
       data: []
     };
     this.fetchPosts()
@@ -81,6 +81,7 @@ class Hamburger extends Component{
             component="button"
             onClick={() => {
               this.props.idChangeCallback(data[n][1])
+              this.setState({setOpen: false})
             }}
           >
             {data[n][0]}
