@@ -28,13 +28,27 @@ export default class BlogPost extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {currentPostId : 2}
+    this.state = {currentPostId : 2, windowWidth: undefined}
   }
 
   changeId = (id) => {
     this.setState({currentPostId: id});
     this.props.changeId(id);
   }
+
+  handleResize = () => this.setState({
+    windowWidth: window.innerWidth
+  });
+
+  componentDidMount() {
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
+  }
+
 
   render() {
     console.log(this.props.currentPost)
@@ -74,9 +88,9 @@ export default class BlogPost extends Component {
           </Switch>
         </Router>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      {this.state.windowWidth > 600 && <Grid item xs={12} sm={4}>
         <RightPane currentPostId={this.state.currentPostId} idChangeCallback={this.changeId} dataCallback={this.postsDataUpdate}/>
-      </Grid>
+      </Grid> }
     </Grid>
   }
 }
