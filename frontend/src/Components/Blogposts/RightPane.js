@@ -11,6 +11,7 @@ const useStyles = theme => ({
     // padding: "0 30px",
     height: "100%",
     margin: "30px 30px 30px 0px",
+    paddingTop: 10,
     flex: 0,
     ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
       margin: "30px 30px 30px 0px",
@@ -71,8 +72,7 @@ class RightPane extends Component {
     const { classes } = this.props;
     return <Fragment>
       <Paper className={classes.rightPane}>
-            <h4 align="center">Blog history</h4>
-
+            <h3 align="center">Blog history</h3>
             <Box>{this.state.data}</Box>
       </Paper>
     </Fragment>

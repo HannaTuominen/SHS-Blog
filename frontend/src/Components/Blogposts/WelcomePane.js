@@ -10,10 +10,11 @@ import Icon from '@material-ui/core/Icon';
 import history from './history'
 import './../../App.css';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = theme => ({
   welcome: {
-    padding: "20px 0px 0px 30px",
+    padding: "0px 0px 0px 30px",
     margin: "30px 30px 0px 0px",
     height: "100%",
     flex: 0,
@@ -38,8 +39,6 @@ class WelcomePane extends Component{
   constructor(props) {
     super(props);
     this.state = {currentPost : props.currentPost}
-    console.log(props.currentPost.id)
-    console.log(props.currentPost.body)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -52,24 +51,36 @@ class WelcomePane extends Component{
    const text = this.state.currentPost.body
 
     return <div>
-        <Box bgcolor="primary" className={classes.leftContainer}>
-          <Button
-              size="large"
-              variant="contained"
-              color="secondary"
-              endIcon={<AddCircleOutlineIcon style={{ fontSize: 35 }}/>}
-              onClick={() => history.push('/new')}
-            > Create New Post
-          </Button>
-        </Box>
         <Box bgcolor="primary" className={classes.welcome}>
-            <MediaCard
-              currentPostText={text}
-              currentPostTitle={title}
-            />
-            <br/>
-            <br/>
+            <Grid container className={classes.root} spacing={3}>
+              <Grid item xs={12}>
+                <Grid container justify="center" spacing={3}>
+                  {[0, 1, 2].map((value) => (
+                    <Grid key={value} item>
+                      <MediaCard
+                        currentPostText={text}
+                        currentPostTitle={title}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container justify="center" spacing={3}>
+                  {[0, 1, 2].map((value) => (
+                    <Grid key={value} item>
+                      <MediaCard
+                        currentPostText={text}
+                        currentPostTitle={title}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Grid>
+            </Grid>
 
+            <br/>
+            <br/>
         </Box>
     </div>
   }

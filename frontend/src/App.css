@@ -52,3 +52,9 @@ div.DraftEditor-root {
 div.MuiPaper-rounded{
     background-color: #EAEFEB;
 }
+
+div.MuiCard-root{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

@@ -7,15 +7,21 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import history from "../Blogposts/history";
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = theme => ({
     root: {
-      maxWidth: 345,
-      backgroundColor: theme.palette.primary.main
+      maxWidth: 340,
+      textAlign:'center'
     },
     media: {
-     height: 160
+     height: 160,
+     width: 160,
+     borderRadius:160/2,
+     marginLeft:(340-160)/2,
+     marginRight:(340-160)/2,
+     marginTop:10
     },
 });
 
@@ -29,10 +35,11 @@ class MediaCard extends Component {
     return (
     <div>
       <Card className={classes.root}>
-        <CardActionArea>
+        <CardActionArea
+          onClick={() => history.push('/read')}>
           <CardMedia
             className={classes.media}
-            image={require('../../images/blogi_tausta4.png')}
+            image={require('../../images/blog_card_placeholder.png')}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
