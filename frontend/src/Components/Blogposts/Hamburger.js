@@ -171,7 +171,7 @@ class Hamburger extends Component{
           className={classes.drawer}
           variant="persistent"
           anchor="left"
-          open= {clsx(this.state.setOpen && classes.hide)}
+          open= {this.state.setOpen}
           classes={{
             paper: classes.drawerPaper
           }}
