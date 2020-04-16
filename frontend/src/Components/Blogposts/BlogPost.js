@@ -24,11 +24,11 @@ const useStyles = theme => ({
     padding: "15px 30px 0px 30px",
     display: 'flex',
     alignItems: 'end',
-    justifyContent: 'end',
+    justifyContent: 'end'
   },
   topContainer: {
     borderRadius:5
-   },
+   }
  });
 
 class BlogPost extends Component {
@@ -70,10 +70,13 @@ class BlogPost extends Component {
   render() {
     const { classes } = this.props;
     console.log(this.props.currentPost)
-    console.log("is user logged in: " + this.props.isUserLoggedIn );
 
     return <Grid container>
+
+      {this.state.windowWidth < 600 && <Hamburger currentPostId={this.state.currentPostId} idChangeCallback={this.changeId} dataCallback={this.postsDataUpdate}/>}
+
       <Grid item sm={12} className={classes.topGridItem}>
+
       <div style={{ width: '100%' }}>
         <Box bgcolor="secondary.main" className={classes.topContainer} display="flex" flexDirection="row-reverse">
           <Button
@@ -87,7 +90,7 @@ class BlogPost extends Component {
         </Box>
       </div>
       </Grid>
-      {this.state.windowWidth < 600 && <Hamburger currentPostId={this.state.currentPostId} idChangeCallback={this.changeId} dataCallback={this.postsDataUpdate}/>}
+
       <Grid item xs={12} sm={9}>
         <Router history={history}>
           <Switch>

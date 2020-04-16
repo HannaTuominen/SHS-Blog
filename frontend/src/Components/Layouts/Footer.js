@@ -12,7 +12,7 @@ import Box from "@material-ui/core/Box";
 const useStyles = theme => ({
   footer: {
     zIndex: "1",
-    position: "relative"
+    position: 'relative',
 
 },
 });

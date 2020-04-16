@@ -35,7 +35,7 @@ const theme = createMuiTheme({
     typography: {
           fontFamily: '"Segoe UI"',
           textTransform: "none",
-      }
+      },
 })
 
 const themeAlternative = createMuiTheme({
@@ -169,7 +169,7 @@ export default class extends Component {
         isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
         changeUserLogIn={this.changeUserLogIn}
       />
-      <BlogPost height="100%"
+      <BlogPost
                 currentPost={this.state.currentPost}
                 postsData={this.state.postsData}
                 currentComments={this.state.currentComments}
@@ -180,6 +180,7 @@ export default class extends Component {
       />
       <Footer
         changeTheme={this.onThemeChange}
+        className={'footer'}
       />
     </Box>
     </MuiThemeProvider>)

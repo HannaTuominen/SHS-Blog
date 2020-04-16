@@ -12,40 +12,80 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Component } from 'react'
+import { Component } from 'react';
 import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
 import BookIcon from '@material-ui/icons/Book';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import Toolbar from "@material-ui/core/Toolbar";
+import AppBar from "@material-ui/core/AppBar";
+import Typography from "@material-ui/core/Typography";
 
 const drawerWidth = 240;
 
 const useStyles = theme => ({
   root: {
-    display: 'flex'
+    display: "flex"
+  },
+  appBar: {
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    marginTop:'25px'
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    }),
+    marginRight: drawerWidth
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   hide: {
-    display: 'none',
+    display: "none"
   },
   drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
+    width: 10,
+    flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth
   },
   drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start"
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    marginRight: -drawerWidth
+  },
+  contentShift: {
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    }),
+    marginRight: 0
+  },
+  button: {
+    position:'fixed',
+    display:'fixed',
+    top:'10px',
+    left:'0',
+    zIndex:9999
   }
-
 });
 
 class Hamburger extends Component{
@@ -55,7 +95,7 @@ class Hamburger extends Component{
 
     this.state = {
       setOpen: false,
-      theme: 'tr',
+      theme: 'ltr',
       data: []
     };
     this.fetchPosts()
@@ -99,44 +139,64 @@ class Hamburger extends Component{
 
 
   render() {
+    const { classes } = this.props;
     return (
-      <Box className={'root'}>
+      <Box className={classes.root}>
         <CssBaseline />
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="end"
-          onClick={this.handleDrawerOpen}
-          className={clsx( this.state.setOpen && 'hide')}
-        >
-          <MenuIcon />
-        </IconButton>
+        {/*<AppBar*/}
+        {/*  position="fixed"*/}
+        {/*  className={clsx(classes.appBar, {*/}
+        {/*    [classes.appBarShift]: this.state.setOpen*/}
+        {/*  })}*/}
+        {/*>*/}
+        {/*  <Toolbar>*/}
+          {/*  <Typography variant="h6" noWrap className={classes.title}>*/}
+          {/*    Persistent drawer*/}
+          {/*  </Typography>*/}
+          <Box className={classes.button}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={this.handleDrawerOpen}
+              className={clsx(this.state.setOpen && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
+
+          {/*</Toolbar>*/}
+        {/*</AppBar>*/}
         <Drawer
-          className={'drawer'}
+          className={classes.drawer}
           variant="persistent"
           anchor="left"
-          open={this.state.setOpen}
+          open= {clsx(this.state.setOpen && classes.hide)}
           classes={{
-            paper: 'drawerPaper',
+            paper: classes.drawerPaper
           }}
         >
-          <div className={'drawerHeader'}>
+          <div className={classes.drawerHeader}>
             <IconButton onClick={this.handleDrawerOpen}>
-              {this.state.theme === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              {this.state.theme === "rtl" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
             </IconButton>
           </div>
           <Divider />
           <List>
             {this.state.data.map((text, index) => (
-              <ListItem button key={index}>
-                <ListItemIcon>{index % 2 === 0 ? <BookIcon /> : <MenuBookIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+                      <ListItem button key={index}>
+                        <ListItemIcon>{index % 2 === 0 ? <BookIcon /> : <MenuBookIcon />}</ListItemIcon>
+                        <ListItemText primary={text} />
+                      </ListItem>
+                    ))}
           </List>
-
         </Drawer>
       </Box>
+
     );
   }
 
