@@ -1,7 +1,5 @@
-import React, {Component, Fragment} from 'react'
-import EditTabs from './EditTabs';
+import React, {Component} from 'react'
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import { withStyles }  from '@material-ui/core/styles'
 import RightPane from './RightPane'
 import ReadPost from './ReadPost'
@@ -16,7 +14,6 @@ import LoginComponent from "../LoginComponent";
 import {Box} from "@material-ui/core";
 import Hamburger from "./Hamburger";
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 import  AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 const useStyles = theme => ({

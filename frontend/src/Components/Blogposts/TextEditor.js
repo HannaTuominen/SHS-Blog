@@ -1,9 +1,7 @@
-import React, { Fragment, Component, useState } from 'react'
-import ReactDOM from 'react-dom';
+import React, { Component} from 'react'
 import {EditorState, RichUtils, ContentState, AtomicBlockUtils} from 'draft-js'
 import Editor from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin';
-import Paper from '@material-ui/core/Paper'
 import { withStyles }  from '@material-ui/core/styles'
 import './../../App.css';
 

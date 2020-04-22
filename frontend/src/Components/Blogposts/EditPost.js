@@ -1,9 +1,6 @@
 import React, { Fragment, Component } from 'react'
-import Paper from '@material-ui/core/Paper';
 import { withStyles }  from '@material-ui/core/styles'
-import PostText from './PostText'
 import TextEditor from './TextEditor'
-import { renderToString } from 'react-dom/server'
 
 const useStyles = theme => ({
   // paper: {

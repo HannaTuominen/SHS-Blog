@@ -1,13 +1,10 @@
-import React, { Fragment, Component } from 'react'
+import React, { Component } from 'react'
 import Paper from '@material-ui/core/Paper';
 import { withStyles }  from '@material-ui/core/styles'
 import TextEditor from './TextEditor'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
-import { renderToString } from 'react-dom/server'
-import { convertToRaw, convertFromRaw } from 'draft-js';
-import {Editor, EditorState, AtomicBlockUtils} from 'draft-js'
 import axios from 'axios'
 import {stateToHTML} from 'draft-js-export-html';
 

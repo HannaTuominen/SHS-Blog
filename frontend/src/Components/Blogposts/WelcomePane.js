@@ -1,13 +1,6 @@
-import React, { Fragment, Component } from 'react'
-import Paper from '@material-ui/core/Paper'
+import React, { Component } from 'react'
 import MediaCard from './../Layouts/MediaCard'
-import EditPost from './EditPost'
 import { withStyles }  from '@material-ui/core/styles'
-import  AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
-import history from './history'
 import './../../App.css';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -18,9 +11,13 @@ const useStyles = theme => ({
     margin: "30px 30px 0px 0px",
     height: "100%",
     flex: 0,
+    ['@media (max-width:1035px)']: { // eslint-disable-line no-useless-computed-key
+      margin: "0px",
+      padding: "30px 0px 0px 0px",
+    },
     ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
       margin: "0px",
-      padding: "50px 0px 0px 50px",
+      padding: "0px 0px 0px 0px",
     }
   },
   btn: {

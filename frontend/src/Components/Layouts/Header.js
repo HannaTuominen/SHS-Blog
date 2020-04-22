@@ -1,6 +1,5 @@
-import React, { Fragment, Component } from 'react'
+import React, { Component } from 'react'
 import AppBar from '@material-ui/core/AppBar';
-import MenuIcon from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography';
 import { withStyles }  from '@material-ui/core/styles';
 import img1 from '../../images/blogi_tausta4.png';

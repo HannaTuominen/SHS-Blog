@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react'
+import React, { Component } from 'react'
 import { withStyles }  from '@material-ui/core/styles';
 import img from '../../images/blogi_tausta4.png';
 import Card from '@material-ui/core/Card';
