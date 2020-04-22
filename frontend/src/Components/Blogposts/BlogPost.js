@@ -79,14 +79,15 @@ class BlogPost extends Component {
 
       <div style={{ width: '100%' }}>
         <Box bgcolor="secondary.main" className={classes.topContainer} display="flex" flexDirection="row-reverse">
-          <Button
+          {this.props.isUserLoggedIn ? <Button
             size="large"
             variant="contained" disableElevation
             color="secondary"
             endIcon={<AddCircleOutlineIcon style={{ fontSize: 35 }}/>}
             onClick={() => history.push('/new')}
             > Create New Post
-          </Button>
+          </Button>: void 0
+          }
         </Box>
       </div>
       </Grid>
@@ -112,9 +113,9 @@ class BlogPost extends Component {
             <AuthenticatedRoute
               path="/edit" currentPostId={this.state.currentPostId} render={(props) => <EditPost {...props} currentPostId={this.state.currentPostId} currentPost={this.props.currentPost}/>}
             />
-            <Route
+            <AuthenticatedRoute
               path="/new"
-              render={(props) => <NewPost {...props} currentPostId={this.state.currentPostId} />}
+              render={(props) => <NewPost {...props} currentPostId={this.state.currentPostId} isUserLoggedIn={this.props.isUserLoggedIn} />}
             />
             <Route
               path="/login"
