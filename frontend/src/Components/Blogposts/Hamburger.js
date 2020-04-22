@@ -17,9 +17,6 @@ import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
 import BookIcon from '@material-ui/icons/Book';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import Toolbar from "@material-ui/core/Toolbar";
-import AppBar from "@material-ui/core/AppBar";
-import Typography from "@material-ui/core/Typography";
 
 const drawerWidth = 240;
 
@@ -84,7 +81,10 @@ const useStyles = theme => ({
     display:'fixed',
     top:'10px',
     left:'0',
-    zIndex:9999
+    zIndex:9999,
+    // backgroundColor: "#9790a3",
+    // opacity: "70%",
+    paddingRight: "10px"
   }
 });
 
@@ -96,7 +96,8 @@ class Hamburger extends Component{
     this.state = {
       setOpen: false,
       theme: 'ltr',
-      data: []
+      data: [],
+      ids: []
     };
     this.fetchPosts()
   }
@@ -114,11 +115,11 @@ class Hamburger extends Component{
 
   updatePage = (data) => {
     let items = [];
+    let ids = [];
+
     for (let n = 0; n < data.length; n++) {
       items.push(<ListItem alignItems="center">
-        <Box flexGrow={1} align="center">
           <Link
-            component="button"
             onClick={() => {
               this.props.idChangeCallback(data[n][1])
               this.setState({setOpen: false})
@@ -126,10 +127,11 @@ class Hamburger extends Component{
           >
             {data[n][0]}
           </Link>
-        </Box>
       </ListItem>)
+      ids.push(data[n][1])
     }
-    this.setState({'data' : items});
+    this.setState({'data' : items, 'ids: ': ids});
+    console.log(this.state.ids + "  asdasd")
     this.props.dataCallback(data);
   }
 
@@ -137,6 +139,11 @@ class Hamburger extends Component{
     this.setState({setOpen: !this.state.setOpen});
   };
 
+  openPost = (index) => {
+    console.log(this.state.ids + " ASDASDAS");
+
+    this.setState({setOpen: false})
+  }
 
   render() {
     const { classes } = this.props;
@@ -188,7 +195,8 @@ class Hamburger extends Component{
           <Divider />
           <List>
             {this.state.data.map((text, index) => (
-                      <ListItem button key={index}>
+
+                      <ListItem button key={index} onClick={() => { this.openPost(index +1) }}>
                         <ListItemIcon>{index % 2 === 0 ? <BookIcon /> : <MenuBookIcon />}</ListItemIcon>
                         <ListItemText primary={text} />
                       </ListItem>
