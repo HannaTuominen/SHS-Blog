@@ -8,6 +8,21 @@ const useStyles = theme => ({
     padding: "0 30px",
     height: 500
   },
+  commentContainer: {
+    padding: "10px 10px 10px 10px",
+
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      padding: "0px 10px 10px 0px",
+    }
+
+  },
+  commentContainerInner: {
+    padding: "10px 10px 10px 10px",
+
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      padding: "10px 10px 10px 0px",
+    }
+  }
 });
 
 class CommentList extends Component {
@@ -19,8 +34,8 @@ class CommentList extends Component {
   render(){
     const { comments } = this.props.comments;
     return <Fragment>
-      <Box padding="10px 10px 10px 10px">
-      <Box bgcolor="secondary.light" padding="5px 10px 10px 10px">
+      <Box className="commentContainer">
+      <Box bgcolor="secondary.light" className="commentContainerInner">
         <h5 align="center">
           <span >{this.props.comments.length}</span>{" "} Comment{this.props.comments.length > 0 ? "s" : ""}
         </h5>

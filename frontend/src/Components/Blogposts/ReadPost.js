@@ -19,6 +19,7 @@ const useStyles = theme => ({
     ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
       margin: "0px",
       height: "100%",
+      padding: "30px 0px 0px 0px",
     }
   },
   postText: {
