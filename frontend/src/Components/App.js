@@ -66,9 +66,11 @@ export default class extends Component {
     this.state = {
       currentPost: {id: '-1', title: '', body: '', imgSrc: ''},
       postsData: [],
+      allPostsData: [],
       currentComments: [],
       isThemeDefault: true
     }
+    this.fetchPosts();
   }
 
   componentDidMount() {
@@ -92,7 +94,7 @@ export default class extends Component {
       mode: 'no-cors', // 'cors' by default
       credentials: "same-origin"
     }).then(data => data.json())
-      .then(data => this.setState({postsData: data}))
+      .then(data => this.setState({allPostsData: data}))
       .catch(this.serverError)
   }
 
@@ -177,6 +179,7 @@ export default class extends Component {
                 moveToNextPost={this.moveToNextPost}
                 isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
                 changeUserLogIn={this.changeUserLogIn}
+                allPostsData={this.state.allPostsData}
       />
       <Footer
         changeTheme={this.onThemeChange}

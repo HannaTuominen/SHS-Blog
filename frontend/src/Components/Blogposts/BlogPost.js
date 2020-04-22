@@ -15,6 +15,9 @@ import {Box} from "@material-ui/core";
 import Hamburger from "./Hamburger";
 import Button from '@material-ui/core/Button';
 import  AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 
 const useStyles = theme => ({
   topGridItem: {
@@ -25,7 +28,13 @@ const useStyles = theme => ({
   },
   topContainer: {
     borderRadius:5
-   }
+   },
+  left: {
+    display: "inline",
+  },
+  search: {
+    width:'40%'
+  }
  });
 
 class BlogPost extends Component {
@@ -42,7 +51,8 @@ class BlogPost extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {currentPostId : 2, windowWidth: undefined}
+    this.state = {currentPostId : 2, windowWidth: undefined, blogPosts: [], tags: []}
+    this.onTagsChange = this.onTagsChange.bind(this);
   }
 
   changeId = (id) => {
@@ -63,31 +73,67 @@ class BlogPost extends Component {
     window.removeEventListener('resize', this.handleResize)
   }
 
+  onTagsChange = (event, values) => {
+    this.setState({
+      tags: values
+    }, () => {
+      // This will output an array of objects
+      // given by Autocompelte options property.
+      console.log(this.state.tags);
+    });
+    // const id = values
+    this.changeId(values.charAt(0));
+    // history.push({pathname: '/read', state: { currentPostId: 5} });
+  }
+
 
   render() {
     const { classes } = this.props;
     console.log(this.props.currentPost)
-
+    console.log(this.props.allPostsData.map((option) => option[1]))
     return <Grid container>
 
       {this.state.windowWidth < 600 && <Hamburger currentPostId={this.state.currentPostId} idChangeCallback={this.changeId} dataCallback={this.postsDataUpdate}/>}
+      <Grid item xs={12} sm={12}>
+        <Box display="flex" >
+          <Box flexGrow={1}></Box>
+          <Box style={{ width:'20%'}} className="search">
+            <Autocomplete
+              MultiLine
+              id="free-solo-2-demo"
+              disableClearable
+              options={this.props.allPostsData.map((option) => option[1] + "\n " + option[0])}
+              onChange={this.onTagsChange}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Search posts"
+                  margin="normal"
+                  variant="outlined"
+                  InputProps={{ ...params.InputProps, type: 'search' }}/>
+              )}
+            /></Box>
+          <Box flexGrow={1}></Box>
+        </Box>
+      </Grid>
 
+      {this.props.isUserLoggedIn ?
       <Grid item sm={12} className={classes.topGridItem}>
-
       <div style={{ width: '100%' }}>
         <Box bgcolor="secondary.main" className={classes.topContainer} display="flex" flexDirection="row-reverse">
-          {this.props.isUserLoggedIn ? <Button
+
+          <Button
             size="large"
             variant="contained" disableElevation
             color="secondary"
             endIcon={<AddCircleOutlineIcon style={{ fontSize: 35 }}/>}
             onClick={() => history.push('/new')}
             > Create New Post
-          </Button>: void 0
-          }
+          </Button>
         </Box>
       </div>
-      </Grid>
+      </Grid>: void 0
+      }
 
       <Grid item xs={12} sm={9}>
         <Router history={history}>
