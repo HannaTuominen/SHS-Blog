@@ -6,6 +6,8 @@ import java.util.ArrayList;
 @Entity
 public class BlogPost {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false, insertable = false)
     private long id;
 
     private String body;
