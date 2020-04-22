@@ -6,7 +6,6 @@ import java.util.ArrayList;
 @Entity
 public class BlogPost {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String body;
