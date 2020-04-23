@@ -85,7 +85,7 @@ class BlogPost extends Component {
       }
     }
 
-    // history.push({pathname: '/read', state: { currentPostId: 5} });
+    history.push('/read');
   }
 
 
