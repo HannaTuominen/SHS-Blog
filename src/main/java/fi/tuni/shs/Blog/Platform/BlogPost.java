@@ -6,8 +6,7 @@ import java.util.ArrayList;
 @Entity
 public class BlogPost {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "SERIAL")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String body;
