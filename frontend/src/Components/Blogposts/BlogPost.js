@@ -39,6 +39,8 @@ const useStyles = theme => ({
 
 class BlogPost extends Component {
   currentPostText;
+  postsId;
+
   callback = (post) => {
     this.currentPostText = post;
   }
@@ -74,15 +76,15 @@ class BlogPost extends Component {
   }
 
   onTagsChange = (event, values) => {
-    this.setState({
-      tags: values
-    }, () => {
-      // This will output an array of objects
-      // given by Autocompelte options property.
-      console.log(this.state.tags);
-    });
-    // const id = values
-    this.changeId(values.charAt(0));
+    const posts = this.props.allPostsData;
+    for(let i = 0; i < posts.length; i++) {
+      //this assumes all tittles are different so....
+      if(posts[i].includes(values)) {
+        this.changeId(posts[i][1]);
+        break;
+      }
+    }
+
     // history.push({pathname: '/read', state: { currentPostId: 5} });
   }
 
@@ -90,30 +92,29 @@ class BlogPost extends Component {
   render() {
     const { classes } = this.props;
     console.log(this.props.currentPost)
-    console.log(this.props.allPostsData.map((option) => option[1]))
+    console.log(this.props.allPostsData.map((option) => option[1]));
+    const posts = this.props.allPostsData;
+
     return <Grid container>
 
       {this.state.windowWidth < 600 && <Hamburger currentPostId={this.state.currentPostId} idChangeCallback={this.changeId} dataCallback={this.postsDataUpdate}/>}
       <Grid item xs={12} sm={12}>
         <Box display="flex" >
-          <Box flexGrow={1}></Box>
-          <Box style={{ width:'20%'}} className="search">
+          <Box flexGrow={1}/>
+          <Box style={{width: '250px', marginTop: 0, marginBottom: 0}}>
             <Autocomplete
-              MultiLine
               id="free-solo-2-demo"
               disableClearable
-              options={this.props.allPostsData.map((option) => option[1] + "\n " + option[0])}
+              options={posts.map((option) => option[0])}
               onChange={this.onTagsChange}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Search posts"
-                  margin="normal"
                   variant="outlined"
                   InputProps={{ ...params.InputProps, type: 'search' }}/>
-              )}
-            /></Box>
-          <Box flexGrow={1}></Box>
+              )}/></Box>
+          <Box flexGrow={1} />
         </Box>
       </Grid>
 
