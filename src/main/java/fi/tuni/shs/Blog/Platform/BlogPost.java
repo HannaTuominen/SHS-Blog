@@ -7,8 +7,7 @@ import java.util.ArrayList;
 public class BlogPost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false, nullable = false, insertable = false)
-    private long id;
+    private int id;
 
     private String body;
     private String title;
@@ -32,7 +31,7 @@ public class BlogPost {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
