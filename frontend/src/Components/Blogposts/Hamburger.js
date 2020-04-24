@@ -17,6 +17,7 @@ import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
 import BookIcon from '@material-ui/icons/Book';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import history from './history'
 
 const drawerWidth = 240;
 
@@ -122,6 +123,7 @@ class Hamburger extends Component{
           <Link
             onClick={() => {
               this.props.idChangeCallback(data[n][1])
+              history.push('/read');
               this.setState({setOpen: false})
             }}
           >

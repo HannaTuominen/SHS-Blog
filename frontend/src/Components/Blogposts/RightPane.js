@@ -5,6 +5,7 @@ import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Box from "@material-ui/core/Box";
+import history from './history'
 
 const useStyles = theme => ({
   rightPane: {
@@ -57,6 +58,7 @@ class RightPane extends Component {
           component="button"
           onClick={() => {
             this.props.idChangeCallback(data[n][1])
+            history.push('/read');
           }}
           >
           {data[n][0]}
