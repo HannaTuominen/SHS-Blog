@@ -1,9 +1,17 @@
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react'
+import Paper from '@material-ui/core/Paper'
 import MediaCard from './../Layouts/MediaCard'
+import EditPost from './EditPost'
 import { withStyles }  from '@material-ui/core/styles'
+import  AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+import history from './history'
 import './../../App.css';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import axios from 'axios'
 
 const useStyles = theme => ({
   welcome: {
@@ -35,7 +43,17 @@ const useStyles = theme => ({
 class WelcomePane extends Component{
   constructor(props) {
     super(props);
-    this.state = {currentPost : props.currentPost}
+    this.state = {
+      currentPost : props.currentPost,
+      posts: []
+    }
+  }
+
+  componentDidMount() {
+    axios.get('api/get/')
+      .then(response => {
+        this.setState( { posts: response.data } )
+      })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,40 +65,33 @@ class WelcomePane extends Component{
    const title = this.state.currentPost.title
    const text = this.state.currentPost.body
 
-    return <div>
-        <Box bgcolor="primary" className={classes.welcome}>
-            <Grid container className={classes.root} spacing={3}>
-              <Grid item xs={12}>
-                <Grid container justify="center" spacing={3}>
-                  {[0, 1, 2].map((value) => (
-                    <Grid key={value} item>
-                      <MediaCard
-                        currentPostText={text}
-                        currentPostTitle={title}
-                      />
-                    </Grid>
-                  ))}
-                </Grid>
-              </Grid>
-              <Grid item xs={12}>
-                <Grid container justify="center" spacing={3}>
-                  {[0, 1, 2].map((value) => (
-                    <Grid key={value} item>
-                      <MediaCard
-                        currentPostText={text}
-                        currentPostTitle={title}
-                      />
-                    </Grid>
-                  ))}
-                </Grid>
-              </Grid>
-            </Grid>
+   let amountOfPosts = this.props.postsData.length
+   let amountOfRows = amountOfPosts/3
 
-            <br/>
-            <br/>
-        </Box>
-    </div>
-  }
+   const postsCards = this.state.posts.map(post => {
+      return <MediaCard currentPostTitle={post.title} currentPostText={post.body}/>
+   })
+
+//   let index = 0
+////   var postsData = []
+////   postsData[index] = this.props.postsData
+//   while (index <= amountOfPosts) {
+////     let index1 = postsData[index][0]
+////     let rowsIndexes = [index1, index1, index1]
+//     rows.push(<FormRow ids={2} />);
+//     index += 3
+//   }
+
+  return (<div>
+    <Box bgcolor="primary" className={classes.welcome} style={{display:'flex'}}>
+      <Grid container spacing={4}>
+        {postsCards}
+      </Grid>
+      <br/>
+      <br/>
+    </Box>
+  </div>
+  )}
 }
 
 export default withStyles(useStyles)(WelcomePane)

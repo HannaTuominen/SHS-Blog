@@ -48,12 +48,16 @@ class BlogPost extends Component {
   postsData = [];
 
   postsDataUpdate = (data) => {
-  this.postsData = data;
+    this.postsData = data;
   }
 
   constructor(props) {
     super(props);
-    this.state = {currentPostId : 2, windowWidth: undefined, blogPosts: [], tags: []}
+    this.state = {
+      currentPostId : 2,
+      windowWidth: undefined,
+      blogPosts: [],
+      tags: []}
     this.onTagsChange = this.onTagsChange.bind(this);
   }
 
@@ -88,12 +92,22 @@ class BlogPost extends Component {
     history.push('/read');
   }
 
+  makeIdArray(){
+  console.log(this.props.allPostsData)
+   let idArray = [];
+   for(let i=0; i < this.props.allPostsData.length; i++){
+        idArray[i] = this.props.allPostsData[i][1]
+    }
+    return idArray
+  }
 
   render() {
     const { classes } = this.props;
     console.log(this.props.currentPost)
     console.log(this.props.allPostsData.map((option) => option[1]));
     const posts = this.props.allPostsData;
+    let idArray = this.makeIdArray()
+    console.log("is user logged in: " + this.props.isUserLoggedIn );
 
     return <Grid container>
 
@@ -143,6 +157,7 @@ class BlogPost extends Component {
             render={(props) => <WelcomePane
               {...props}
               currentPost={this.props.currentPost}
+              postsData={this.props.allPostsData}
               currentPostId={this.state.currentPostId}/>}
             />
             <Route
