@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = theme => ({
     root: {
       maxWidth: 340,
+      height: 360,
       textAlign:'center',
       margin: 12
     },
@@ -29,15 +30,16 @@ const useStyles = theme => ({
 class MediaCard extends Component {
   constructor(props) {
     super(props);
-    }
+  }
 
   render(){
     const { classes } = this.props;
+    const id = this.props.postId
     return (
     <div>
       <Card className={classes.root}>
         <CardActionArea
-          onClick={() => history.push('/read')}>
+          onClick={() => this.props.clicked(id)}>
           <CardMedia
             className={classes.media}
             image={require('../../images/blog_card_placeholder.png')}
@@ -46,15 +48,12 @@ class MediaCard extends Component {
             <Typography gutterBottom variant="h5" component="h2">
               {this.props.currentPostTitle}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {this.props.currentPostText}
+            <Typography variant="body2" color="textSecondary" component="div">
+              <div dangerouslySetInnerHTML={{__html: this.props.currentPostText}}/>
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Read post
-          </Button>
         </CardActions>
       </Card>
     </div>

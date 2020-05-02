@@ -158,7 +158,8 @@ class BlogPost extends Component {
               {...props}
               currentPost={this.props.currentPost}
               postsData={this.props.allPostsData}
-              currentPostId={this.state.currentPostId}/>}
+              currentPostId={this.state.currentPostId}
+              idChangeCallback={this.changeId}/>}
             />
             <Route
               path="/read"

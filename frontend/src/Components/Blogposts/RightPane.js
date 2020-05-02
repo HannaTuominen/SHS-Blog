@@ -52,7 +52,7 @@ class RightPane extends Component {
   updatePage = (data) => {
     let items = [];
     for (let n = 0; n < data.length; n++) {
-      items.push(<ListItem alignItems="center">
+      items.push(<ListItem key={n} alignItems="center">
         <Box flexGrow={1} align="center">
         <Link
           component="button"

@@ -60,6 +60,11 @@ class WelcomePane extends Component{
     this.setState({currentPost : nextProps.currentPost})
   }
 
+  changeCurrentPost = (id) => {
+    this.props.idChangeCallback(id)
+    history.push('/read');
+  }
+
   render(){
    const { classes } = this.props;
    const title = this.state.currentPost.title
@@ -69,18 +74,8 @@ class WelcomePane extends Component{
    let amountOfRows = amountOfPosts/3
 
    const postsCards = this.state.posts.map(post => {
-      return <MediaCard currentPostTitle={post.title} currentPostText={post.body}/>
+      return <MediaCard key={post.id} currentPostTitle={post.title} currentPostText={post.body} postId={post.id} clicked={this.changeCurrentPost}/>
    })
-
-//   let index = 0
-////   var postsData = []
-////   postsData[index] = this.props.postsData
-//   while (index <= amountOfPosts) {
-////     let index1 = postsData[index][0]
-////     let rowsIndexes = [index1, index1, index1]
-//     rows.push(<FormRow ids={2} />);
-//     index += 3
-//   }
 
   return (<div>
     <Box bgcolor="primary" className={classes.welcome} style={{display:'flex'}}>
