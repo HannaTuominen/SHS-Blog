@@ -6,9 +6,22 @@ import java.util.ArrayList;
 @Entity
 public class BlogPost {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
-    private long id;
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "entity_id_seq"
+    )
+    @SequenceGenerator(
+            name = "entity_id_seq",
+            sequenceName = "global_id_sequence",
+            allocationSize = 1
+    )
+    @Column(
+            name = "id",
+            unique = true,
+            updatable = false,
+            nullable = false
+    )
+    protected Long id;
 
     private String body;
     private String title;
@@ -32,7 +45,7 @@ public class BlogPost {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
