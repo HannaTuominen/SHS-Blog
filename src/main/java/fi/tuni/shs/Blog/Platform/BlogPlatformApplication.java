@@ -1,12 +1,11 @@
 package fi.tuni.shs.Blog.Platform;
 
 import fi.tuni.shs.Blog.Platform.storage.FileStorageProperties;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,20 +20,17 @@ public class BlogPlatformApplication {
 		System.out.println("Maija Visala, Hanna Tuominen, Viljami Pietarila");
 		System.out.println("Commands that can be used for REST testing.");
 		System.out.println("Necessary user name: admin / passwords: admin needed for testing");
-		System.out.println(System.getenv("JDBC_DATABASE_URL"));
 		SpringApplication.run(BlogPlatformApplication.class, args);
-		if (System.getenv("JDBC_DATABASE_URL") != null) {
-			try {
-				Connection connection = getConnection();
-			} catch (URISyntaxException | SQLException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 
 	private static Connection getConnection() throws URISyntaxException, SQLException {
-		String dbUrl = System.getenv("JDBC_DATABASE_URL");
-		return DriverManager.getConnection(dbUrl);
+		URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+		String username = dbUri.getUserInfo().split(":")[0];
+		String password = dbUri.getUserInfo().split(":")[1];
+		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+
+		return DriverManager.getConnection(dbUrl, username, password);
 	}
 }
