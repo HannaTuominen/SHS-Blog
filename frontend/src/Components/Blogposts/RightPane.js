@@ -9,21 +9,10 @@ import history from './history'
 
 const useStyles = theme => ({
   rightPane: {
-    // padding: "0 30px",
     height: "100%",
     margin: "30px 30px 30px 0px",
     paddingTop: 10,
     flex: 0,
-    ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
-      margin: "30px 30px 30px 0px",
-    },
-    ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
-      margin: "30px 30px 0px 0px",
-    },
-    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
-      margin: "0px 0px 0px 0px"
-    }
-//    position: "fixed"
   },
   testStyle: {
       width:'100%'

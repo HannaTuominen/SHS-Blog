@@ -35,7 +35,7 @@ const theme = createMuiTheme({
     typography: {
           fontFamily: '"Segoe UI"',
           textTransform: "none",
-      },
+      }
 })
 
 const themeAlternative = createMuiTheme({
@@ -165,26 +165,29 @@ export default class extends Component {
     const { isThemeDefault } = this.state;
     return (
     <MuiThemeProvider theme={isThemeDefault ? theme : themeAlternative}>
-    <Box bgcolor= "secondary.light"  position="absolute">
+    <Box bgcolor= "secondary.light" position="relative" minHeight="100vh">
       <Header
         isThemeDefault={this.state.isThemeDefault}
       />
-      <BlogPost
-                currentPost={this.state.currentPost}
-                postsData={this.state.postsData}
-                currentComments={this.state.currentComments}
-                changeId={this.changeId}
-                moveToNextPost={this.moveToNextPost}
-                isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
-                changeUserLogIn={this.changeUserLogIn}
-                allPostsData={this.state.allPostsData}
-      />
-      <Footer
-        changeTheme={this.onThemeChange}
-        className={'footer'}
-        isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
-        changeUserLogIn={this.changeUserLogIn}
-      />
+      <Box paddingBottom="3.2rem">
+        <BlogPost
+          currentPost={this.state.currentPost}
+          postsData={this.state.postsData}
+          currentComments={this.state.currentComments}
+          changeId={this.changeId}
+          moveToNextPost={this.moveToNextPost}
+          isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
+          changeUserLogIn={this.changeUserLogIn}
+          allPostsData={this.state.allPostsData}/>
+      </Box>
+
+      <Box bottom="5" position="absolute" width="100%" height="3.2rem">
+        <Footer
+          changeTheme={this.onThemeChange}
+          isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
+          changeUserLogIn={this.changeUserLogIn}
+        />
+      </Box>
     </Box>
     </MuiThemeProvider>)
   }

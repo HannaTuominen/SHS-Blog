@@ -26,12 +26,12 @@ const useStyles = theme => ({
       justifyContent: 'center',
       fontSize:"5vw",
       ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
-        padding: "00px",
+        padding: "0px",
         flexGrow: 0,
       },
       ['@media (max-width:980px)']: { // eslint-disable-line no-useless-computed-key
-        padding: "0px",
-        flexGrow: 0,
+        padding: "15px",
+        flexGrow: 1,
 
       }
     },

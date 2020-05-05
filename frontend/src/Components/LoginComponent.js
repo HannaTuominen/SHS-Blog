@@ -18,10 +18,11 @@ const useStyles = theme => ({
   welcome: {
     padding: "50px 0px 0px 50px",
     margin: "30px 30px 0px 30px",
-    height:"360px",
+    height:"100vh",
     ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
       margin: "0px",
-      padding: "50px 0px 0px 50px",
+      padding: "50px 0px 0xp 50px",
+      height:"73vh",
     }
   },
   btn: {

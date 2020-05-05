@@ -9,11 +9,6 @@ import AuthenticationService from "../../service/AuthenticationService";
 import AppBar from "@material-ui/core/AppBar";
 
 const useStyles = theme => ({
-  footer: {
-    zIndex: "1",
-    position: 'relative',
-
-},
 });
 
 class Footer extends Component {
@@ -32,19 +27,22 @@ class Footer extends Component {
 
   render() {
     const { classes } = this.props;
-    return <Box className={classes.footer} bgcolor="primary.main">
-      <Toolbar>
-        <IconButton edge="start"color="inherit" aria-label="menu">
-        </IconButton>
-        {/*<Button color="inherit">Login</Button>*/}
-        {!this.state.isLoggedIn && <Button onClick={() => history.push('/login')}>Login</Button>}
-        {this.state.isLoggedIn && <Button onClick={() => {
-          AuthenticationService.logout();
-          this.props.changeUserLogIn(false)
-          history.push('/logout')
-        }}>Logout</Button>}
-        <Button color="inherit" onClick={() => this.props.changeTheme()}>Change theme</Button>
-      </Toolbar>
+    return <Box bgcolor="primary.main" height="inherit" paddingLeft="1rem">
+      <Box display="flex" >
+        <Box flexGrow={1}></Box>
+        <Box padding="7px 7px 7px 7px">
+          {!this.state.isLoggedIn && <Button onClick={() => history.push('/login')}>Login</Button>}
+          {this.state.isLoggedIn && <Button onClick={() => {
+            AuthenticationService.logout();
+            this.props.changeUserLogIn(false)
+            history.push('/logout')
+          }}>Logout</Button>}
+          <Button color="inherit" onClick={() => this.props.changeTheme()}>Change theme</Button>
+        </Box>
+        <Box flexGrow={1}></Box>
+      </Box>
+
+
     </Box>
   }
 

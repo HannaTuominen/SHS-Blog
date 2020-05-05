@@ -115,7 +115,7 @@ class BlogPost extends Component {
       <Grid item xs={12} sm={12}>
         <Box display="flex" >
           <Box flexGrow={1}/>
-          <Box style={{width: '250px', marginTop: 0, marginBottom: 0}}>
+          <Box style={{width: '250px', marginTop: 0, marginBottom: 10}}>
             <Autocomplete
               id="free-solo-2-demo"
               disableClearable
