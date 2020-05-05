@@ -168,8 +168,6 @@ export default class extends Component {
     <Box bgcolor= "secondary.light"  position="absolute">
       <Header
         isThemeDefault={this.state.isThemeDefault}
-        isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
-        changeUserLogIn={this.changeUserLogIn}
       />
       <BlogPost
                 currentPost={this.state.currentPost}
@@ -184,6 +182,8 @@ export default class extends Component {
       <Footer
         changeTheme={this.onThemeChange}
         className={'footer'}
+        isUserLoggedIn={AuthenticationService.isUserLoggedIn()}
+        changeUserLogIn={this.changeUserLogIn}
       />
     </Box>
     </MuiThemeProvider>)

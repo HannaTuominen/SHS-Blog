@@ -76,7 +76,6 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: AuthenticationService.isUserLoggedIn(),
       isThemeDefault: props.isThemeDefault,
     };
   }
@@ -84,7 +83,6 @@ class Header extends Component {
   componentWillReceiveProps(props){
     this.setState({
       isThemeDefault:props.isThemeDefault,
-      isLoggedIn: props.isUserLoggedIn
     })
   }
   render(){
@@ -106,12 +104,6 @@ class Header extends Component {
         <Typography color="primary.light" className={classes.display}>
            Sanat suussani sulavat, puheet putoelevat, kielelleni kerkiävät, hampahilleni hajoovat.
         </Typography>
-        {!this.state.isLoggedIn && <Button onClick={() => history.push('/login')}>Login</Button>}
-        {this.state.isLoggedIn && <Button onClick={() => {
-          AuthenticationService.logout();
-          this.props.changeUserLogIn(false)
-          history.push('/logout')
-        }}>Logout</Button>}
 
       </AppBar>
       </Box>
