@@ -76,7 +76,7 @@ class Comment extends Component {
             </Box>
             <Box padding="10px 10px 10px 10px" bgcolor="secondary.light" display="flex">
               <Box flexGrow={1} padding="10px 10px 10px 10px">
-                <Typography className="left"  style={{ fontFamily: 'inherit' }}>{message}   {parentPost}</Typography>
+                <Typography className="left"  style={{ fontFamily: 'inherit' }}>{message}</Typography>
               </Box>
             </Box>
             <Box display="flex">
