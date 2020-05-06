@@ -1,6 +1,7 @@
 package fi.tuni.shs.Blog.Platform;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:8080" })
 @RestController
-public class SHSRestController {
+public class SHSRestController implements CommandLineRunner {
 
     @Autowired
     BlogPostRepository blogPostRepository;
@@ -135,7 +136,7 @@ public class SHSRestController {
     }
 
     @RequestMapping("test/")
-    public void CreateTestPosts() {
+    public void createTestPosts() {
         Date date = new Date();
         String postText = "Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan, " +
                 "sukuvirttä suoltamahan, lajivirttä laulamahan. Sanat suussani sulavat, puhe'et putoelevat, " +
@@ -151,5 +152,10 @@ public class SHSRestController {
             blogCommentRepository.save(new BlogComment("Jussi", "Hellurei on kommenttimme " + parentPost, date, parentPost, 0));
         }
         createLogEntry("create testPosts");
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        createTestPosts();
     }
 }
