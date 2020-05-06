@@ -35,12 +35,12 @@ public class SHSRestController implements CommandLineRunner {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uriComponents.toUri());
 
-        createLogEntry("created comment id: " + post.getId());
+        createLogEntry("created post id: " + post.getId());
 
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping("api/getLogs")
+    @RequestMapping("api/getLogs/")
     public ResponseEntity<Iterable<LogEntry>> getLogs() {
         return new ResponseEntity<>(logRepository.findAll(), HttpStatus.CREATED);
     }
