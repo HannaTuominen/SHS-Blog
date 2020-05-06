@@ -6,7 +6,8 @@ import java.util.ArrayList;
 @Entity
 public class BlogPost {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_generator")
+    @SequenceGenerator(name="book_generator", sequenceName = "book_seq", allocationSize=50)
     @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
